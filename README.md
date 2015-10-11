@@ -1,4 +1,4 @@
-# PictiTab
+# PictiTab ![alt tag](https://raw.githubusercontent.com/FerreroJeremy/PictiTab/master/res/drawable-mdpi/ic_launcher.png)
 
 PictiTab is a communication tool for children with communication disorders. <br/>
 [A beta version (version 2.5b only for tablets) is freely available on the Google Play](https://play.google.com/store/apps/details?id=com.pictitab.app) (last update on March 29, 2014).
