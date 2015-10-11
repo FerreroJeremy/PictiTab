@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PictiTab</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">PictiTab</string>
+    <string name="image_content_description">Un Android avec un chien</string>
+    <string name="create_account">Créer un compte</string>
+    <string name="email">Adresse email</string>
+    <string name="password">Mot de passe</string>
+    <string name="connect">Se connecter</string>
+    <string name="title_activity_login_display">LoginDisplayActivity</string>
+    <string name="hint_mail">"Ici : L'adresse email de l'utilisateur"</string>
+    <string name="hint_pass">"Ici : Le mot de passe de l'utilisateur"</string>
+    <string name="email_format_error">"Le champs email ne correspond pas au format d'une adresse mail"</string>
+    <string name="email_or_password_empty">"L'adresse email et mot de passe sont obligatoires"</string>
+    <string name="title_activity_children_administration">ChildrenAdministration</string>
+    <string name="action_settings">Settings</string>
+    <string name="mode_enfant">Mode Enfant</string>
+    <string name="mode_educateur">Mode Educateur</string>
+    <string name="title_activity_select_children">SelectChildrenActivity</string>
+    <string name="page_en_construction_">Page en Construction&#8230;</string>
+    <string name="bugdroid">bugdroid</string>
+    <string name="gestion_des_profils_enfant">Gestion des profils enfant</string>
+    <string name="gestion_des_lexiques">Gestion des lexiques</string>
+    <string name="gestion_des_grammaires">Gestion des grammaires</string>
+    <string name="gestion_des_cat_gories">Gestion des catégories</string>
+    <string name="gestion_des_situations">Gestion des situations</string>
+    <string name="ajouter_un_enfant">Ajouter un enfant</string>
+    <string name="valider">Valider</string>
+    <string name="nom_de_l_apos_enfant">Nom de l\'&amp;apos;enfant</string>
+    <string name="pr_nom_de_l_apos_enfant">Prénom de l&amp;apos;enfant</string>
+    <string name="edition_d_apos_une_fiche_enfant">Edition d&amp;apos;une fiche enfant</string>
+    <string name="edition_d_apos_un_profil_enfant">Edition d\'un profil enfant</string>
+    <string name="work">work</string>
+    <string name="textview">TextView</string>
+    <string name="image">image</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="button">Button</string>
+    <string name="title_activity_select_grammar">SelectGrammarActivity</string>
+    <string name="title_activity_select_category">SelectCategoryActivity</string>
+    <string name="title_activity_select_lexicon">SelectLexiconActivity</string>
+    <string name="title_activity_grammar_administration">GrammarAdministrationActivity</string>
+    <string name="title_activity_lexicon_administration">LexiconAdministrationActivity</string>
+    <string name="title_activity_category_administration">CategoryAdministrationActivity</string>
+    <string name="eduction_d_apos_une_categorie">Edition d\'une catégorie</string>
+    <string name="nom_de_la_categorie">Nom de la catégorie</string>
+    <string name="edition_d_apos_une_grammaire">Edition d&amp;apos;une grammaire</string>
+    <string name="title_lexicon_administration">Edition d\'une entrée</string>
+    <string name="lexicon_hint_word">Mot</string>
+    <string name="lexicon_validate_button">Valider</string>
+    <string name="lexicon_delete_button">Supprimer</string>
+    <string name="selectLexiconTitle">Selection du lexique à modifier</string>
+    <string name="chercher_sur_votre_appareil">Chercher sur votre appareil</string>
+    <string name="prendre_une_photo">Prendre une photo</string>
+    <string name="title_activity_child_communication">ChildCommunicationActivity</string>
+    <string name="title_activity_tree_category">TreeCategoryActivity</string>
+    <string name="image_selectionnee">Image selectionnee</string>
+    <string name="ajouter_une_cat_gorie">Ajouter une catégorie</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="ajouter_une_grammaire">Ajouter une grammaire</string>
+    <string name="title_activity_child_log">ChildLogActivity</string>
+    <string name="historique">Historique</string>
+
+</resources>

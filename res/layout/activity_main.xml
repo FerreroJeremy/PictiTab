@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.09"
+        android:orientation="vertical"
+        tools:ignore="UselessLeaf" >
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/selectChildActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_weight="0.24"
+        android:text="@string/mode_enfant" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="NewApi" />
+
+    <Button
+        android:id="@+id/selectEducatorActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:layout_weight="0.24"
+        android:text="@string/mode_educateur" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        tools:ignore="UselessLeaf" >
+
+    </LinearLayout>
+
+</LinearLayout>

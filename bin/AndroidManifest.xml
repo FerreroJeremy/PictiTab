@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pictitab.ui"
+    android:versionCode="27"
+    android:versionName="2.5" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.pictitab.ui.MainActivity"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.MainEducatorActivity"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name="com.pictitab.ui.ChildrenAdministration"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.ChildAdministrationActivity"
+            android:label="@string/title_activity_main"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.SelectChildActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.SelectGrammarActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.SelectCategoryActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.SelectLexiconActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.GrammarAdministrationActivity"
+            android:label="@string/title_activity_main"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.LexiconAdministrationActivity"
+            android:label="@string/title_activity_main"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.CategoryAdministrationActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.ChildCommunicationActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.RuleAdministrationActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.SelectPictureActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.pictitab.ui.ChildLogActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+    </application>
+
+</manifest>

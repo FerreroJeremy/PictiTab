@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/layout_padding_top" >
+
+    <Button
+        android:id="@+id/selectChildAdministration"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:text="@string/gestion_des_profils_enfant"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/selectLexiconAdministration"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:text="@string/gestion_des_lexiques"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/selectGrammarAdministration"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:text="@string/gestion_des_grammaires"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/selectCategoryAdministration"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:text="@string/gestion_des_cat_gories"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        tools:ignore="UselessLeaf" >
+    </LinearLayout>
+
+</LinearLayout>
