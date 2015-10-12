@@ -39,32 +39,31 @@ public class ChildCommunicationActivity extends Activity {
 	public static final String SELECTED_CHILD ="selected_child";
 	static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy  -  H:mm:ss", Locale.FRANCE);
 	
-	// Les donnees de l'application
 	private AppData data;
 	
-	// Principales zones de la fenetre
-	private LinearLayout mainLayout;					// Le layout princpal de la fenetre
-	private LinearLayout topLayout;						// Le layout contenant les boutons d'arret et d'effacement
-	private LinearLayout sentenceLayout;				// Le layout des mots selectionnes dans la phrase
-	private ScrollView botLayout;						// ScrollView des mots disponibles
+	// main frame of the window
+	private LinearLayout mainLayout;					// Main layout
+	private LinearLayout topLayout;						// Layout of the buttons
+	private LinearLayout sentenceLayout;				// Layout of the sentence
+	private ScrollView botLayout;						// ScrollView of the avalaible words
 	
-	// Les deux boutons
-	private ImageButton stopSentenceButton;				// Bouton d'arret de la communication
-	private ImageButton clearSentenceButton;			// Bouton d'effacement de la sequence
+	// Buttons
+	private ImageButton stopSentenceButton;				// Stop (go back)
+	private ImageButton clearSentenceButton;			// Clear (erase the current sentence)
 	
-	// La phrase en cours
-	private HorizontalScrollView sentenceScrollView;	// ScrollView horizontale des mots selectionnes
-	private List<GridLayout> wordsSentenceButtons;		// La grille des mots selectionnes
+	// Current sentence
+	private HorizontalScrollView sentenceScrollView;	// Horizontal scrollView of the sentence layout
+	private List<GridLayout> wordsSentenceButtons;		// Grid reprsenting the sentence
 	
-	// Le clavier propose a l'enfant
-	private GridLayout listWordLayout;					// Les mots disponibles
-	private ArrayList<GridLayout> wordsToSelectButtons;	// La grille des mots disponibles
+	// Keybord
+	private GridLayout listWordLayout;					// Avalaible words
+	private ArrayList<GridLayout> wordsToSelectButtons;	// Grid representing the keybord
 	
-	private Child profil;								// Le profil de l'enfant
-	private ArrayList<Automate> automates;				// Les automates parcourant les regles des grammaires administrees a l'enfant
-	private ArrayList<Lexicon> wordsToSelect;			// Les mots que l'enfant peut selectionner
-	private ArrayList<Lexicon> wordsFromSentence;		// Les mots rentres par l'enfant dans la sequence
-	private List<Entry> logs;							// Les entrees de l'enfant
+	private Child profil;								// Child profile
+	private ArrayList<Automate> automates;				// Grammar automate of child
+	private ArrayList<Lexicon> wordsToSelect;			// Avalaible words for the child according to the automate
+	private ArrayList<Lexicon> wordsFromSentence;		// Words already entried by the child
+	private List<Entry> logs;							// Historics of the child
 	
 	/*====================================================================================================================*/
 	/*==													EVENEMENTS													==*/
@@ -74,18 +73,17 @@ public class ChildCommunicationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		// On recupere les donnees a afficher
+		// Get the data
 		this.data =(AppData)getIntent().getBundleExtra(MainActivity.DATAEXTRA_KEY).getParcelable(MainActivity.DATA_KEY);
 		int num = (int)getIntent().getBundleExtra(MainActivity.DATAEXTRA_KEY).getInt(SELECTED_CHILD, -1);
 		if(num == -1) {
-			// Affiche un message d'erreur dans le cas ou l'enfant n'est pas indique
 			AlertDialog.Builder ab = new AlertDialog.Builder(ChildCommunicationActivity.this);
 			ab.setTitle("Avertissement").setMessage("Aucun enfant selectionne.")
 									    .setIcon(android.R.drawable.ic_notification_clear_all)
 									    .setNeutralButton("Ok", null).show();
 			finish();
 		}
-		// On recupere le profil de l'enfant selectionne ainsi que son historique
+		// Get the child profile and its historic
 		this.profil =data.getProfils().get(num);
 		logs = XMLTools.loadLogs(this, this.profil.getName(), this.profil.getFirstname(), data);
 
@@ -106,28 +104,27 @@ public class ChildCommunicationActivity extends Activity {
 
 	@Override  
 	public void onBackPressed() {
+        // When activity close or go back, save the logs
 		super.onBackPressed();
 		
-		// On definit une date au format "aaaa-mm-jj"
 		Date actuelle = new Date();
 		String date = dateFormat.format(actuelle);
 		
-		// On ajoute l'entree au log
 		ArrayList <Lexicon> copy = new ArrayList<Lexicon>(wordsFromSentence);
 		logs.add(new Entry(date, copy));
-		
-		// On met a jour le log XML que lorsqu'on ferme la fenetre
+
 		XMLTools.printLogs(getApplicationContext(), logs, this.profil.getName(), this.profil.getFirstname());
-		// On ferme cette activite
 		finish();
 	}
 	
 	/*====================================================================================================================*/
-	/*==													TRAITEMENTS													==*/
+	/*==                                                        PROCESS													==*/
 	/*====================================================================================================================*/
 	
+    /**
+     * Initialize the keybord
+     */
 	private void initialize() {
-		// Initialisation des variables.
 		this.wordsFromSentence = new ArrayList<Lexicon>();
 		this.wordsToSelect = new ArrayList<Lexicon>();
 		this.automates =new ArrayList<Automate>();
@@ -139,16 +136,15 @@ public class ChildCommunicationActivity extends Activity {
 				this.automates.add(new Automate(this.data.getGrammarByName(tmpGram.getName()), this.data.getLexicon(), this.data));
 			}
 		}
-		// On rempli le tableau des mots pouvant etre ajouter a une phrase.
 		this.setListWords();
 	}
 	
-	/** Methode creant le contenu de la fenetre de communication. **/
+	/** 
+     * Display the window.
+     **/
 	private void toDisplay() {
-		// Ajout du mainLayout dans la vue.
 		setContentView(R.layout.activity_child_communication);
 		
-		// Initialisation des elements graphiques.
 		this.mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
 		this.topLayout          = new LinearLayout(this);
 		this.sentenceScrollView = new HorizontalScrollView(this);
@@ -168,7 +164,7 @@ public class ChildCommunicationActivity extends Activity {
 		this.topLayout.addView(this.sentenceScrollView);
 		this.sentenceScrollView.addView(this.sentenceLayout);
 
-		// Implementation de l'action du bouton "STOP"
+		// Stop button
 		this.stopSentenceButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -176,20 +172,14 @@ public class ChildCommunicationActivity extends Activity {
 			}
 		});
 		
-		// Implementation de l'action du bouton "STOP"
+		// Action of Stop button, save logs (historic)
 		this.clearSentenceButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// On definit une date
 				Date actuelle = new Date();
-				// Donne la date au format "aaaa-mm-jj"
 				String date = dateFormat.format(actuelle);
-				
-				// On ajoute l'entree au log
 				ArrayList <Lexicon> copy = new ArrayList<Lexicon>(wordsFromSentence);
 				logs.add(new Entry(date, copy));
-				
-				// On vide le bandeau superieur representant la phrase constituee
 				deleteWordFromSentenceAction(0);
 			}
 		});
@@ -204,32 +194,32 @@ public class ChildCommunicationActivity extends Activity {
 		this.drawWordsToSelect();
 	}
 	
-	/** Methode permettant de dessiner dans la vue les boutons-images represensant les mots selectionnes. **/
+	/** 
+     * Draw the keybord.
+     **/
 	private void drawWordsSentence() {
 		for(int i=0;i<this.wordsFromSentence.size();i++) {
-			// Pour chaque mot selectionne, on cree un bouton
+            // For each avlaible word, create a button
 			ImageButton tmpButton =new ImageButton(this);
 			GridLayout tmpLayout =new GridLayout(this);
 			tmpLayout.setColumnCount(1);
 			tmpLayout.setPadding(5, 5, 5, 5);
 			
-			// On recupere l'image.
+			// Get the picture of the word
 			Bitmap bit =BitmapFactory.decodeFile(this.wordsFromSentence.get(i).getPictureSource());
 			tmpButton.setImageBitmap(Bitmap.createScaledBitmap(bit, 80, 80, false));
 			
-			// On donne la bonne valeur au TextView
+			// Set the text
 			TextView tmpName =new TextView(this);
 			tmpName.setGravity(Gravity.CENTER);
 			tmpName.setText(this.wordsFromSentence.get(i).getWord());
 			
-			// On ajoute le bouton-image a la GridView.
+			// Add the picture button to the view
 			tmpLayout.addView(tmpButton);
 			tmpLayout.addView(tmpName);
 			
-			// Ajout de la vue contenant le bouton et le texte dans un tableau.
 			this.wordsSentenceButtons.add(tmpLayout);
 			
-			// Ajout du bouton dans le layout
 			this.sentenceLayout.addView(tmpLayout);
 			
 			final int wordIndex =i;
@@ -242,32 +232,28 @@ public class ChildCommunicationActivity extends Activity {
 		}
 	}
 	
-	/** Methode permettant de dessiner dans la vue les boutons-images represensant les mots disponibles. **/
+	/** 
+     * Draw the keybord.
+     **/
 	private void drawWordsToSelect() {
 		for(int i=0;i<this.wordsToSelect.size();i++) {
-			// Pour chaque mot que l'on peut selectionner, on cree un bouton
 			ImageButton tmpButton =new ImageButton(this);
 			GridLayout tmpLayout =new GridLayout(this);
 			tmpLayout.setColumnCount(1);
 			tmpLayout.setPadding(5, 5, 5, 5);
 			
-			// On recupere l'image.
 			Bitmap bit =BitmapFactory.decodeFile(this.wordsToSelect.get(i).getPictureSource());
 			tmpButton.setImageBitmap(Bitmap.createScaledBitmap(bit, 80, 80, false));
 			
-			// On donne la bonne valeur au TextView
 			TextView tmpName =new TextView(this);
 			tmpName.setGravity(Gravity.CENTER);
 			tmpName.setText(this.wordsToSelect.get(i).getWord());
 			
-			// On ajoute le bouton-image a la GridView.
 			tmpLayout.addView(tmpButton);
 			tmpLayout.addView(tmpName);
 			
-			// Ajout de la vue contenant le bouton et le texte dans un tableau.
 			this.wordsToSelectButtons.add(tmpLayout);
 			
-			// Ajout du bouton dans le layout
 			this.listWordLayout.addView(tmpLayout);
 			
 			final int wordIndex =i;
@@ -281,22 +267,19 @@ public class ChildCommunicationActivity extends Activity {
 	}
 
 	/**
-	 * Methode permettant de faire revenir en arriere l'automate de chaque grammaire de l'enfant.
-	 * @param wordIndex(int): l'indice de l'image mot que l'on souhaite supprimer, ainsi que les suivantes.
+     * Go back the automate of each method of the child.
+	 * @param wordIndex(int): id of the picture/word to delete (the nexts are delete equally).
 	 */
 	private void deleteWordFromSentenceAction(int wordIndex) {
-		// On supprime les images-mots que l'on peut actuellement selectionner...
 		this.sentenceLayout.removeAllViews();
     	this.listWordLayout.removeAllViews();
 		this.wordsToSelect.clear();
 		
-		// On actualise les images-mots de la phrase a afficher...
 		for(int i=this.wordsFromSentence.size()-1;i>=0;i--) {
 			this.wordsFromSentence.remove(i);
 			if(i==wordIndex)
 				break;
 		}
-		// Pour chaque automate, on recule...
 		for(int i=0;i<this.automates.size();i++) {
 			this.automates.get(i).moveBackward(this.wordsFromSentence);
 			this.getEligibleWord(this.automates.get(i));
@@ -307,22 +290,19 @@ public class ChildCommunicationActivity extends Activity {
 	
 
 	/**
-	 * Methode permettant d'ajouter un mot a la phrase et d'actualiser les mots que l'on peut selectionner.
-	 * @param wordIndex(int): Index du mot a ajouter a la phrase courante.
+     * Go to the next step in the automate, add word in the sentence and update the keyboard.
+	 * @param wordIndex(int): id of the new word.
 	 */
 	private void selectWordAction(int wordIndex) {
 		Lexicon word =this.wordsToSelect.remove(wordIndex);
 		String catName =word.getCategory().getName();
 		
-		// Efface les contenus...
 		this.wordsToSelect.clear();
 		this.sentenceLayout.removeAllViews();
     	this.listWordLayout.removeAllViews();
     	
-		// Ajout du mot a la phrase.
 		this.wordsFromSentence.add(word);
 		
-		// Mise a jour des automates:
 		for(int i=0;i<this.automates.size();i++) {
 			this.automates.get(i).moveForwardToNextCat(catName);
 			this.getEligibleWord(this.automates.get(i));
@@ -331,21 +311,21 @@ public class ChildCommunicationActivity extends Activity {
 		this.drawWordsToSelect();
 	}
 	
-	/** Methode permettant d'afficher les premiers mots possibles en fonction des grammaires de l'enfant. **/
+	/**
+     * Display the first avlaible words according to the grammars of the child.
+     **/
 	private void setListWords() {
-		// Pour chaque automate de grammaire de l'enfant:
 		for(int i=0; i<this.automates.size(); i++) {
 			this.getEligibleWord(this.automates.get(i));
 		}
 	}
 	
 	/**
-	 * Methode permettant de selectionner les mots eligibles pour constituer la phrase.
-	 * @param automate(Automate): L'automate d'une grammaire utilisable par l'enfant.
+	 * Get the eligible word by the child according to a grammar/ a automate.
+	 * @param automate(Automate): Automate.
 	 */
 	private void getEligibleWord(Automate automate) {
 		ArrayList<Lexicon> tmpWords;
-		// On recupere la liste des mots eligibles pour cette grammaire sans creer de doublons
 		tmpWords =automate.getWordsToDisplay();
 		this.wordsToSelect.removeAll(tmpWords);
 		this.wordsToSelect.addAll(tmpWords);

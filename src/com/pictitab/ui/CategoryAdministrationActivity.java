@@ -19,13 +19,11 @@ import com.pictitab.utils.XMLTools;
 
 public class CategoryAdministrationActivity extends Activity {
 	
-	// Les donnees de l'application
 	private static AppData data;
 	
-	// Informations generales de la categorie
-	private TextView titre;				// Titre de la fenetre
-	private EditText categoryName;		// Edition du nom de la categorie
-	private Button valideButton;		// Bouton de creation de la categorie
+	private TextView titre;				// Window's title
+	private EditText categoryName;		// Edition of the category name
+	private Button valideButton;		// Button of the creation of the category
 
 	/*====================================================================================================================*/
 	/*==													EVENEMENTS													==*/
@@ -35,10 +33,9 @@ public class CategoryAdministrationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		// On recupere toutes les donnees relatives aux categories
+		// Load a categories data
 		data =(AppData)getIntent().getBundleExtra(MainActivity.DATAEXTRA_KEY).getParcelable(MainActivity.DATA_KEY);
 		
-		// On affiche l'activite
 		this.toDisplay();
 	}
 
@@ -49,48 +46,46 @@ public class CategoryAdministrationActivity extends Activity {
 	}
 
 	/*====================================================================================================================*/
-	/*==													TRAITEMENTS													==*/
+	/*==                                                        PROCESS													==*/
 	/*====================================================================================================================*/
 	
-	/** Mise en place de la fenêtre d'administration d'une categorie. **/
+	/** 
+     * Display of the category administration window.
+     **/
 	private void toDisplay() {
 		setContentView(R.layout.activity_category_administration);
 		
-		// On force l'affichage en mode portrait
+		// Set orientation in portrait
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
-		// Initialisation des elements graphiques.
 		categoryName = (EditText) findViewById(R.id.catName);
 		titre = (TextView) findViewById(R.id.EditTextCategory);
 		valideButton = (Button) findViewById(R.id.AjCat);
 		
-		// On prepare les donnees de la liste
 		final String nom = getIntent().getStringExtra("nom");
 		final int mode = getIntent().getIntExtra("mode", 0);
         
-		// (mode = 0) : Creation d'une categorie en tant que fille de la categorie "nom"
+		// (mode = 0) : Creation of a category in a sub-category of the category "nom"
 		if(mode == 0) {
 			createChildCategoryToDisplay(nom);
 		}
-		// (mode = 1) : Modification d'une categorie
+		// (mode = 1) : Modify of category
 		else {
 			modifyCategoryToDisplay(nom);
 		}
 	}
     
     /**
-	 * Adaptation de la fenetre a l'action de modification d'une categorie.
-	 * @param nom(String): Le nom de la categorie dans l'objet AppData.
+     * Display window for modification of a category.
+	 * @param nom(String): The name of the category in the Data.
 	 **/
 	private void modifyCategoryToDisplay(final String nom) {
-		// On affiche le nom de la categorie dans le champ prevu a cet effet
 		categoryName.setText(nom);
 		
-		// On modifie le texte du bouton de validation de "Valider" en "Modifier"
 		valideButton.setText("Renommer");
 		titre.setText("Nouveau nom de la categorie");
 		
-		// Action du bouton de modification
+		// Modification button
 		valideButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -98,18 +93,15 @@ public class CategoryAdministrationActivity extends Activity {
 				    @Override
 				    public void onClick(DialogInterface dialog, int which) {
 				        switch (which){
-				        // On modifie la categorie
 				        case DialogInterface.BUTTON_POSITIVE:
 				        	modifyCategory(nom);
-
-				        // Aucune modification
 				        case DialogInterface.BUTTON_NEGATIVE:
 				            break;
 				        }
 				    }
 				};
 				
-				// Boite de dialogue de confirmation de modification
+				// Alert dialog box to rename the category
 				AlertDialog.Builder ab = new AlertDialog.Builder(CategoryAdministrationActivity.this);
 				ab.setTitle("Modification").setMessage("Voulez-vous vraiment renommer cette categorie ?")
 										   .setPositiveButton("Oui", dialogClickListener)
@@ -119,20 +111,22 @@ public class CategoryAdministrationActivity extends Activity {
 		});
 	}
 	
-	/** Adaptation de la fenetre a l'action de creation d'une categorie. **/
+	/**
+     * Display the window for the creation of a category.
+     **/
 	protected void createNewCategoryToDisplay() {
 		titre.setText("Nom de la nouvelle categorie");
-		// Action du bouton de creation
 		valideButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// On ajoute la categorie
 				addCategory();
 			}
 		});
 	}
 	
-	/** Adaptation de la fenetre a l'action de creation d'une categorie en tant que fille d'une autre. **/
+	/**
+     * Display the window for the creation of a category in sub-category of the other.
+     **/
 	protected void createChildCategoryToDisplay(final String nom) {
 		titre.setText("Nom de la nouvelle sous-categorie");
 		// Action du bouton de creation
@@ -145,109 +139,102 @@ public class CategoryAdministrationActivity extends Activity {
 		});
 	}
 	
-	/** Cree la categorie. **/
+	/** 
+     * Create the sub-category.
+     **/
 	protected void addSubCategory(String name){
-		// On recupere le nom de la categorie
+		// Get the category name
 		String catName = categoryName.getText().toString();
 		
-		// Si le champ du nom de la categorie est vide, alors on affiche l'erreurs
+        // If the category name is empty else error
 		if (catName.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(CategoryAdministrationActivity.this);
 			ab.setTitle("Avertissement").setMessage("Veuillez remplir le champ correctement.")
 										.setIcon(android.R.drawable.ic_notification_clear_all)
 										.setNeutralButton("Ok", null).show();
 		}
-		// Si la categorie existe deja
+		// If the category already exists
 		else if(categoryIsExist(catName)) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(CategoryAdministrationActivity.this);
 			ab.setTitle("Avertissement").setMessage("Cette categorie existe deja.")
 									    .setIcon(android.R.drawable.ic_notification_clear_all)
 									    .setNeutralButton("Ok", null).show();
 		}
-		// Ajout de la nouvelle categorie
+		// Add a new category
 		else {
-			// On construit la liste des sous-categories
+			// Build a sub-category list
 			ArrayList<Category> subCategories = new ArrayList<Category>();
-			// On ajoute cette nouvelle categorie aux donnees
+			// Add new category to the data
 			Category child = new Category(catName, subCategories);
 			data.addCategory(child);
-			
-			// On recupere la categorie correspondant au nom de la categorie mere
+			// Get the category according to the name of the parent category
 			Category mother = data.getCategories().get(data.getCategoryByName(name));
-			// On ajoute la fille a la mere
+			// Add the child to the parent
 			mother.addCategory(child);
-	        // Puis on actualise le fichier XML des categories
-	        // Enfin on retourne en arriere
+	        // Update the xml file
+	        // Go back
 			XMLTools.printCategories(getApplicationContext(), data.getCategories());
 			onBackPressed();
 		}
 	}
 	
-	/** Cree la categorie. **/
+	/** 
+     * Create the category.
+     **/
 	protected void addCategory(){
-		// On recupere le nom de la categorie
+		// Get category name
 		String catName = categoryName.getText().toString();
 		
-		// Si le champ du nom de la categorie est vide, alors on affiche l'erreurs
+		// Condition on name
 		if (catName.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(CategoryAdministrationActivity.this);
 			ab.setTitle("Avertissement").setMessage("Veuillez remplir le champ correctement.")
 										.setIcon(android.R.drawable.ic_notification_clear_all)
 										.setNeutralButton("Ok", null).show();
 		}
-		// Si la categorie existe deja
+		// If the category already exists
 		else if(categoryIsExist(catName)) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(CategoryAdministrationActivity.this);
 			ab.setTitle("Avertissement").setMessage("Cette categorie existe deja.")
 									    .setIcon(android.R.drawable.ic_notification_clear_all)
 									    .setNeutralButton("Ok", null).show();
 		}
-		// Ajout de la nouvelle categorie
+		// Add a new category
 		else {
-			// On construit la liste des sous-categories
 			ArrayList<Category> subCategories = new ArrayList<Category>();
-			// On ajoute cette nouvelle categorie aux donnees
 			Category child = new Category(catName, subCategories);
 			data.addCategory(child);
-			
-			// On recupere la categorie correspondant au nom de la categorie mere
 			Category mother = data.getCategories().get(data.getCategoryByName("TOUT"));
-			// On ajoute la fille a la mere
 			mother.addCategory(child);
-	        // Puis on actualise le fichier XML des categories
-	        // Enfin on retourne en arriere
+	        // Update xml file and go back
 			XMLTools.printCategories(getApplicationContext(), data.getCategories());
 			onBackPressed();
 		}
 	}
 	
 	/**
-	* Modifie la categorie courante.
-	* @param oldName(String): Le nom de la categorie a modifier.
+	* Modify the current category.
+	* @param oldName(String): The name of the category to modify.
 	**/
 	protected void modifyCategory(String oldName) {
-		// On recupere le nouveau nom de la categorie
+		// Get new name
 		String newName = categoryName.getText().toString();
-		// Si le champ du nom de la categorie est vide, alors on affiche l'erreurs
+		// Condition test
 		if (newName.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(CategoryAdministrationActivity.this);
 			ab.setTitle("Avertissement").setMessage("Veuillez remplir le champ correctement.")
 										.setIcon(android.R.drawable.ic_notification_clear_all)
 										.setNeutralButton("Ok", null).show();
 		}
-		// Si la categorie existe deja
 		else if((!newName.equals(oldName)) && (categoryIsExist(newName))) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(CategoryAdministrationActivity.this);
 			ab.setTitle("Avertissement").setMessage("Cette categorie existe deja.")
 									    .setIcon(android.R.drawable.ic_notification_clear_all)
 									    .setNeutralButton("Ok", null).show();
-		}
-		// Modification
-		else {
-			// On renomme la categorie dans l'ensemble des categories, dans les mots du lexique et dans les regles des grammaires
+		} else {
+			// Rename
 			data.renameCategory(oldName, newName);
-	        // Puis on actualise les fichiers XML des categories, mots et grammaires
-	        // Enfin on retourne en arriere
+	        // Update xml file
 			XMLTools.printCategories(getApplicationContext(), data.getCategories());
 			XMLTools.printLexicon(getApplicationContext(), data.getLexicon());
 			XMLTools.printGrammars(getApplicationContext(), data.getGrammars());
@@ -256,16 +243,14 @@ public class CategoryAdministrationActivity extends Activity {
 	}
 	
 	/** 
-	* Retourne si la categorie existe deja ou non.
-	* @param category(String): La categorie entree
-	* @return (boolean) : true si la categorie existe deja, false sinon
+	* Return if the category already exists or not
+	* @param category(String): Category name
+	* @return (boolean) : true if it is the case else false
 	**/
 	public static boolean categoryIsExist(String category) {
-		// On recupere la categorie correspondante
 		int id = data.getCategoryByName(category);
 		if(id != -1) {
 	        Category c = data.getCategories().get(id);
-	        // Si elle existe
 	        if(c != null) {
 	        	return true;
 	        }

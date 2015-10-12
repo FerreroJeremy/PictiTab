@@ -37,34 +37,31 @@ import android.graphics.Color;
 
 public class ChildAdministrationActivity extends Activity {
 	
-	// Les donnees de l'application
 	private static AppData data;
 	
-	// Informations generales de l'enfant
-	private EditText family_name;	// Nom
-	private EditText first_name;	// Prenom
-	private DatePicker birth_date;	// Date de naissance
-	private Bitmap bitMapChild;		// Photographie
-	private ImageButton imgButton;	// Bouton contenant la photographie de l'enfant
-	private ImageButton logButton;	// Bouton de redirection vers la fenetre des logs de l'enfant
+	private EditText family_name;	// last name
+	private EditText first_name;	// first name
+	private DatePicker birth_date;	// Birth date
+	private Bitmap bitMapChild;		// Picture
+	private ImageButton imgButton;	// Picture button
+	private ImageButton logButton;	// Child history button (logs)
 	
-	// Suppression et validation d'un profil enfant
-	private Button valideButton;	// Bouton de suppression de l'entree
-	private Button deleteButton;	// Bouton d'ajout de l'entree
+	private Button valideButton;	// Suppression button
+	private Button deleteButton;	// Add button
 	
-	// Liste deroulante de toutes les grammaires disponibles
-	ExpandableTreeAdapter listAdapterAllGram;				// Adaptateur de la liste deroulante
-	ExpandableListView lvExpAllGram;						// Header de la liste deroulante
-	List<String> listDataHeaderAllGram;						// Liste de toutes les grammaires disponibles
-	HashMap<String, List<String>> listDataChildAllGram;		// Map de la liste des grammaires disponibles
+	// Avalaible grammars list
+	ExpandableTreeAdapter listAdapterAllGram;				// Adaptater
+	ExpandableListView lvExpAllGram;						// Header
+	List<String> listDataHeaderAllGram;						// List of avalaible grammars
+	HashMap<String, List<String>> listDataChildAllGram;		// Map
 	
-	// Liste deroulante des grammaires selectionnees
-	ExpandableTreeAdapter listAdapterChildGram;				// Adaptateur de la liste deroulante
-    ExpandableListView lvExpChildGram;						// Header de la liste deroulante
-    List<String> listDataHeaderChildGram;					// Liste de toutes les grammaires selectionnees
-    HashMap<String, List<String>> listDataChildChildGram;	// Map de la liste des grammaires selectionnees
+	// Selected grammars list
+	ExpandableTreeAdapter listAdapterChildGram;				// Adaptater
+    ExpandableListView lvExpChildGram;						// Header
+    List<String> listDataHeaderChildGram;					// List
+    HashMap<String, List<String>> listDataChildChildGram;	// Map
     
-    List<String> topChildGram;		// Les grammaires selectionnees
+    List<String> topChildGram;		// Selected grammars
 	
 	/*====================================================================================================================*/
 	/*==													EVENEMENTS													==*/
@@ -74,10 +71,9 @@ public class ChildAdministrationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		// On recupere toutes les donnees relatives aux profils enfant
+		// Load children data
 		data =(AppData)getIntent().getBundleExtra(MainActivity.DATAEXTRA_KEY).getParcelable(MainActivity.DATA_KEY);
 		
-		// On affiche l'activite
 		this.toDisplay();
 	}
 	
@@ -85,17 +81,14 @@ public class ChildAdministrationActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		// Si le code de retour est bon, alors on change l'image.
+        // Change the picture
 		if(resultCode==RESULT_OK) {
-			// On recupere l'image de l'appareil photo.
+			// Get the camera picture.
 			this.bitMapChild = (Bitmap) data.getExtras().get("data");
-			
-			// On verifie que le retour a l'activite vienne de l'appareil photo.
 			if(this.bitMapChild!=null) {
 				imgButton.setImageBitmap(this.bitMapChild);
 			}
-			
-			// On charge l'image dans la zone de la photographie
+            // Set the picture on the picture's button
 			this.imgButton.setImageBitmap(bitMapChild);
 		}
 	}
@@ -107,17 +100,19 @@ public class ChildAdministrationActivity extends Activity {
 	}
 	
 	/*====================================================================================================================*/
-	/*==													TRAITEMENTS													==*/
+	/*==                                                        PROCESS													==*/
 	/*====================================================================================================================*/
 	
-	/** Mise en place de la fenêtre d'administration d'un profil enfant. **/
+	/** 
+     * Display the administration window.
+     **/
 	private void toDisplay() {
 		setContentView(R.layout.activity_child_administration);
 		
-		// On force l'affichage en mode portrait
+		// Set the orientation in portrait mode
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
-		// Initialisation des elements graphiques.
+		// Graphical elements
 		family_name = (EditText) findViewById(R.id.category_name);
 		first_name = (EditText) findViewById(R.id.first_name);
 		birth_date = (DatePicker) findViewById(R.id.birth_date);
@@ -127,92 +122,84 @@ public class ChildAdministrationActivity extends Activity {
 		valideButton = (Button) findViewById(R.id.valider);
 		deleteButton = (Button) findViewById(R.id.supprimer);
 		
-		// On rend le bouton de suppression invisible au depart
+		// Set invisible the delete button
 		deleteButton.setVisibility(View.INVISIBLE);
 		
-		// On recupere le nom et prenom de l'enfant
+		// Get the child name
 		final String nom = getIntent().getStringExtra("nom");
 		final String prenom = getIntent().getStringExtra("prenom");
 		
-		// on récupère les listviews
 		lvExpAllGram = (ExpandableListView) findViewById(R.id.expandableListView1);
 		lvExpChildGram = (ExpandableListView) findViewById(R.id.expandableListView2);
 
         topChildGram = new ArrayList<String>();
         
-        // On prépare les data
         prepareListData(nom, prenom);
         
-        // on initialise les adaptateurs
         listAdapterAllGram = new ExpandableTreeAdapter(this, 5, listDataHeaderAllGram, listDataChildAllGram);
         listAdapterChildGram = new ExpandableTreeAdapter(this, 5, listDataHeaderChildGram, listDataChildChildGram);
         lvExpAllGram.setAdapter(listAdapterAllGram);
         lvExpChildGram.setAdapter(listAdapterChildGram);
 		
-		// Modification d'un profil enfant
+		// Modification
 		if(nom != null) {
-	        // On initialise la vue
 			setChildToDisplay(nom);
 		}
-		// Creation d'un profil enfant
+		// Creation
 		else {
 			createChildToDisplay(nom, prenom);
 			logButton.setVisibility(View.INVISIBLE);
 		}
 		
-		// Action du bouton-image du profil
+		// Action of the picture's button
 		imgButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// Crer un intent qui envoie vers la camera
+				// Go to the camera
 				Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-				// Attent le retour de cet intent
+				// Wait the camera result
 				startActivityForResult(intent, 3);
 			}
 		});
 		
-		// Action du bouton d'historique
+		// Historic button
 		logButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(ChildAdministrationActivity.this, ChildLogActivity.class);
-				// On envoie les donnees
 				Bundle b = new Bundle();
 				b.putParcelable(MainActivity.DATA_KEY, data);
-				// On ajoute un parametre a l'intention.
 				i.putExtra(MainActivity.DATAEXTRA_KEY, b);
-				
 				i.putExtra("nom", nom);
 				i.putExtra("prenom", prenom);
-				// On lance l'intent i, une nouvelle activite, en attendant un resultat
 				startActivity(i);
 			}
 		});
 }
 	
 	 /**
-	 * Adaptation de la fenetre a l'action de modification d'un profil enfant.
-	 * @param nom(String): Le nom de l'enfant dans l'objet AppData.
+	 * Display the window for the modification.
+	 * @param nom(String): Child name in data.
 	 **/
 	private void setChildToDisplay(final String nom) {
-		// On recupere les informations relatives a l'enfant
+		// Get the child information
 		final String prenom = getIntent().getStringExtra("prenom");
 		final String photo = getIntent().getStringExtra("photo");
 		int an = getIntent().getIntExtra("an",0);
 		int mois = getIntent().getIntExtra("mois",0) - 1;
 		int jour = getIntent().getIntExtra("jour",0);
 		
-		// On remplit directement les champs du profil avec les informations obtenues
+		// Initialize the info in the window
 		family_name.setText(nom);
 		first_name.setText(prenom);
 		birth_date.updateDate(an, mois, jour);
 		
-		// On extrait le chemin de la photo
+		// Get the picture path
 		String fp   = File.separator;
 		String path = fp + "Android" + fp + "data" + fp + getApplicationContext().getPackageName() + fp + "photo" + fp + photo;
 		final String picturePath = Environment.getExternalStorageDirectory() + path;
 		
-		// On charge la photo dans le bouton-image prevu a cet effet
+		// Load the picture
 		try {
 			InputStream inputStream = new FileInputStream(picturePath);
 			Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
@@ -221,14 +208,14 @@ public class ChildAdministrationActivity extends Activity {
 			e1.printStackTrace();
 		}
 		
-		// On rend le bouton de suppression visible et de couleur rouge
+		// Set visible the delete button
 		deleteButton.setVisibility(View.VISIBLE);
 		deleteButton.setTextColor(Color.RED);
 		
-		// On modifie le texte du bouton de validation de "Valider" en "Modifier"
+		// Set the text of the valide button from "Valider" (add mode) to "Modifier" (update mode)
 		valideButton.setText("Modifier");
 		
-		// Action du bouton de suppression
+		// Action of the delete button
 		deleteButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -236,22 +223,19 @@ public class ChildAdministrationActivity extends Activity {
 				    @Override
 				    public void onClick(DialogInterface dialog, int which) {
 				        switch (which){
-				        // On supprime le profile
-				        // Puis on actualise le fichier XML des profils
-				        // Enfin on retourne en arriere
+				        // Delete the profile, update the xml file and go back
 				        case DialogInterface.BUTTON_POSITIVE:
 				        	deleteChild(picturePath, nom, prenom);
 				        	XMLTools.printChildren(getApplicationContext(), data.getProfils());
 				            onBackPressed();
-
-				        // Aucune modification
+				        // Do nothing
 				        case DialogInterface.BUTTON_NEGATIVE:
 				            break;
 				        }
 				    }
 				};
 				
-				// Boite de dialogue de confirmation de suppression
+				// Alert dialog box
 				AlertDialog.Builder ab = new AlertDialog.Builder(ChildAdministrationActivity.this);
 				ab.setTitle("Suppression").setMessage("Voulez-vous vraiment supprimer ce profil ?")
 										  .setPositiveButton("Oui", dialogClickListener)
@@ -260,7 +244,7 @@ public class ChildAdministrationActivity extends Activity {
 			}
 		});
 		
-		// Action du bouton de modification
+		// Modification
 		valideButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -268,11 +252,8 @@ public class ChildAdministrationActivity extends Activity {
 				    @Override
 				    public void onClick(DialogInterface dialog, int which) {
 				        switch (which){
-				        // On supprime le profil enfant
-				        // Puis on le rajoute avec les nouvelles donnees
-				        // Enfin on retourne en arriere
+				        // Update child, data and xml file and go back
 				        case DialogInterface.BUTTON_POSITIVE:
-				        	// Si un des deux champs est vide, alors on affiche l'erreurs
 				    		if (nom.equals("") || prenom.equals("")) {
 				    			AlertDialog.Builder ab = new AlertDialog.Builder(ChildAdministrationActivity.this);
 				    			ab.setTitle("Avertissement").setMessage("Veuillez remplir tous les champs correctement.")
@@ -284,14 +265,12 @@ public class ChildAdministrationActivity extends Activity {
 					        	addChild();
 					        	createLog(nom, prenom);
 				    		}
-				        // Aucune modification
 				        case DialogInterface.BUTTON_NEGATIVE:
 				            break;
 				        }
 				    }
 				};
-				
-				// Boite de dialogue de confirmation de modification
+                
 				AlertDialog.Builder ab = new AlertDialog.Builder(ChildAdministrationActivity.this);
 				ab.setTitle("Modification").setMessage("Voulez-vous vraiment modifier ce profil ?")
 										   .setPositiveButton("Oui", dialogClickListener)
@@ -302,10 +281,10 @@ public class ChildAdministrationActivity extends Activity {
 	}
 	
 	/**
-	 * Supprime le profil d'un enfant ainsi que sa photo.
-	 * @param path(String): Le chemin de la photo.
-	 * @param nom(String): Le nom de l'enfant.
-	 * @param prenom(String): Le prénom de l'enfant.
+	 * Delete a profile and its picture.
+	 * @param path(String): Picture path.
+	 * @param nom(String): Child last name.
+	 * @param prenom(String): Child first name.
 	 **/
 	protected void deleteChild(String path, String nom, String prenom){
 		data.deleteProfil(nom, prenom);
@@ -314,30 +293,25 @@ public class ChildAdministrationActivity extends Activity {
 	}
 	
 	/** 
-	 * Cree le profil d'un enfant en remplissant les champs nom, prenom, date de naissance et photo si besoin.
+	 * Create a child profile.
 	 **/
 	protected void addChild(){
-		// On recupere les informations relatives a l'enfant
 		String familyName = family_name.getText().toString();
 		String firstName = first_name.getText().toString();
 		imgButton.buildDrawingCache();
 		Bitmap bitMap = imgButton.getDrawingCache();
 		
-		// Si un des deux champs est vide, alors on affiche l'erreurs
 		if (familyName.equals("") || firstName.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(ChildAdministrationActivity.this);
 			ab.setTitle("Avertissement").setMessage("Veuillez remplir tous les champs correctement.")
 										.setIcon(android.R.drawable.ic_notification_clear_all)
 										.setNeutralButton("Ok", null).show();
-		}
-		// On remplit directement les champs du profil avec les informations obtenues
-		else {
-			// On recupere la date de naissance
+		} else {
 			int birthDay = birth_date.getDayOfMonth();
 			int birthMonth = birth_date.getMonth() + 1;
 			int birthYear = birth_date.getYear();
 			
-			// On recupere la liste des grammaires de l'enfant
+			// Get the grammars list of the child
 			ArrayList <Grammar> grammars = new ArrayList<Grammar>();
 			for(int i=0; i < topChildGram.size(); i++) {
 				grammars.add(data.getGrammarByName(topChildGram.get(i)));
@@ -369,7 +343,7 @@ public class ChildAdministrationActivity extends Activity {
 					e.printStackTrace();
 				}
 			}
-			// Ajout du nouvel enfant.
+			// Add the new profile
 			data.addProfil(new Child(familyName, firstName, birthDay, birthMonth, birthYear, pictureName, grammars));
 			
 			XMLTools.printChildren(getApplicationContext(), data.getProfils());
@@ -378,16 +352,13 @@ public class ChildAdministrationActivity extends Activity {
 	}
 	
 	/** 
-	 * Adaptation de la fenetre a l'action de creation d'un profil enfant. 
+	 * Display the window for the creation.
 	 **/
 	protected void createChildToDisplay(final String nom, final String prenom) {
-		// Action du bouton de creation
 		valideButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// On ajoute le profil enfant
-				// Puis on actualise le fichier XML des profils
-		        // Enfin on retourne en arriere
+				// add child in data, update xml file and go back
 				addChild();
 				createLog(nom, prenom);
 			}
@@ -395,12 +366,11 @@ public class ChildAdministrationActivity extends Activity {
 	}
 	
 	/**
-	* Creer ou renomme, selon son existance, le fichier log de l'enfant.
-	* @param nom(String): Le nom de l'enfant.
-	* @param prenom(String): Le prenom de l'enfant.
+	* Create or rename a history log file of a child.
+	* @param nom(String): Child last name.
+	* @param prenom(String): Child first name.
 	**/
 	protected void createLog(String nom, String prenom) {
-		// On recupere les nouveaux nom et prenom de l'enfant
 		String familyName = family_name.getText().toString();
 		String firstName = first_name.getText().toString();
 		
@@ -409,26 +379,22 @@ public class ChildAdministrationActivity extends Activity {
 		String filePath = Environment.getExternalStorageDirectory() + path;
 		File newFileLog = new File(filePath + familyName + "_" + firstName + ".xml");
 		File oldFileLog = new File(filePath + nom + "_" + prenom + ".xml");
-		// Si un fichier log existait deja pour l'enfant
+        
 		if (oldFileLog.exists()) {
-			// On en cree un avec son nouveau nom
 			oldFileLog.renameTo(newFileLog);
-		}
-		// Si un fichier log n'existait pas deja pour l'enfant
-		else {
-			// On renomme celui de son ancien nom avec le nouveau, p-ê inutile si aucun changement de nom
+		} else {
 			XMLTools.createEmptyXML(filePath + familyName + "_" + firstName + ".xml", "logs");
 		}
 	}
 	
 	/**
-	* Prepare la liste des grammaires dans les listes deroulantes.
-	* @param nom(String): Le nom de l'enfant.
+	* Initialize the grammars list.
+    * @param nom(String): Child last name.
+    * @param prenom(String): Child first name.
 	**/
     private void prepareListData(String nom, String prenom) {
     	List<Grammar> grammars = data.getGrammars();
     	
-    	// Liste de gauche, toutes les grammaires
         listDataHeaderAllGram = new ArrayList<String>();
         listDataChildAllGram = new HashMap<String, List<String>>();
         listDataHeaderAllGram.add("Toutes les grammaires...");
@@ -443,12 +409,10 @@ public class ChildAdministrationActivity extends Activity {
         }
         listDataChildAllGram.put(listDataHeaderAllGram.get(0), topAllCat);
         
-        // Liste de droite, seulement les grammaires de l'enfant
         listDataHeaderChildGram = new ArrayList<String>();
         listDataChildChildGram = new HashMap<String, List<String>>();
         listDataHeaderChildGram.add("Grammaires de l'enfant...");
         
-        // Cas d'une modification
         if(nom != null) {
         	ArrayList<Grammar> grammarsOfChild = data.getChildByName(nom, prenom).getGrammars();
         	if(grammarsOfChild != null) {
@@ -459,8 +423,7 @@ public class ChildAdministrationActivity extends Activity {
                 }
                 listDataChildChildGram.put(listDataHeaderChildGram.get(0), topChildGram);
         	}
-        }
-        else { // Cas d'un ajout, aucune grammaire selectionnee, le champ nom est vide
+        } else {
             listDataChildChildGram.put(listDataHeaderChildGram.get(0), topChildGram);
         }
         
