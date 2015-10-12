@@ -34,20 +34,17 @@ import android.util.Xml;
 
 public class XMLTools {
 	
-	// TODO Penser a valider les XML avec les DTD dans un soucis de rigueur
-	// Bien qu'inutile etant donne que l'on gere nous meme leur edition et lecture
-	
 	/**
-	 * Methode permettant de creer un fichier XML vide
-	 * @param path(String): Le chemin ou creer le fichier XML.
-	 * @param root(String): La racine de l'arbre du fichier XML.
+	 * Create an empty XML file
+	 * @param path(String): path where create the file.
+	 * @param root(String): XML tree root.
 	 **/
 	public static void createEmptyXML(String path, String root) {
 		File newxmlfile = new File(path);
 		try{
 			newxmlfile.createNewFile();
 		} catch(IOException e) {
-			Log.e("IOException", "Exception in create new File(");
+			Log.e("IOException", "Exception in create new file");
 		}
 		FileOutputStream fileOS = null;
 		try {
@@ -72,13 +69,12 @@ public class XMLTools {
 	/*========================================			CATEGORIES			==============================================*/
 	
 	/**
-	 * Methode permettant l'extraction des informations contenues dans un arbre DOM
-	 * en les presentant dans un tableau de categories.
-	 * @param n(Node): Le Noeud racine de l'arbre DOM pour les categories.
-	 * @return Un tableau de categories.
+	 * Extract the information from DOM tree and constitute a list of extracted elements.
+	 * @param n(Node): DOM tree root node.
+	 * @return List of elements.
 	 **/
 	public static ArrayList<Category> DOMToCategories(Node n) {
-		// Si on ne se trouve pas a la racine de l'arbre, on s'arrete
+		// If it is not the root of the tree, stop
 		if (!n.getNodeName().equals("categories")) {
 			return new ArrayList<Category>();
 		}
@@ -108,9 +104,9 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode parcourant recursivement les sous-categories pour construire la categorie mere.
-	 * @param nodes(NodeList): La liste des noeuds de la categorie mere.
-	 * @return Une liste de sous-categories.
+	 * Build sub-categories to build the parent category.
+	 * @param nodes(NodeList): Nodes list of the parent category.
+	 * @return Sub-categories.
 	 **/
 	public static List<Category> buildSubCategories(NodeList nodes) {
 		int size = nodes.getLength();
@@ -135,9 +131,9 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant de charger les categories.
-	 * @param context(Context): Le contexte de l'application.
-	 * @return Un tableau contenant les categories OU "null" si ces dernieres n'ont pu etre chargees.
+	 * Load the elements.
+	 * @param context(Context): Context.
+	 * @return List of elements or "null".
 	 **/
 	public static ArrayList<Category> loadCategory(Context context) {
 		String path =Environment.getExternalStorageDirectory() + File.separator + "Android" + File.separator + "data" + File.separator +
@@ -156,11 +152,10 @@ public class XMLTools {
 			try {
 				profilsXML = new FileInputStream(categoryFile);
 			} catch (IOException e) {
-				Log.e("XMLTools", "Le fichier \""+categoryFile+"\" n'a pas pu etre lu.");
+				Log.e("XMLTools", "The file \""+categoryFile+"\" could not be read.");
 				e.printStackTrace();
 			}
 
-			// if(db.isValidating())
 			doc = db.parse(profilsXML);
 			doc.getDocumentElement().normalize();
 			return DOMToCategories(doc.getDocumentElement());
@@ -173,9 +168,9 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant d'afficher les categories.
-	 * @param context(Context): Le contexte de l'application.
-	 * @param categories(List<Category>): La liste des categories.
+	 * Write and save the elements.
+	 * @param context(Context): Context.
+	 * @param categories(List<Category>): List of elements.
 	 **/
 	public static void printCategories(Context context, List<Category> categories) {
 		String path =Environment.getExternalStorageDirectory() + File.separator+ "Android" + File.separator + "data" + File.separator+
@@ -183,7 +178,7 @@ public class XMLTools {
 		
 		File newxmlfile = new File(path);
 		try { newxmlfile.createNewFile(); }
-		catch(IOException e) { Log.e("IOException", "Exception in create new File("); }
+		catch(IOException e) { Log.e("IOException", "Exception in create new file"); }
 		
 		FileOutputStream fileOs = null;
 		try { fileOs = new FileOutputStream(newxmlfile); }
@@ -206,9 +201,9 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant d'afficher les sous-categories.
-	 * @param serializer(XmlSerializer): L'interface de serialisation des donnees XML.
-	 * @param category(Category): La categorie cible.
+	 * Write and save one element.
+	 * @param serializer(XmlSerializer): Xml serializer.
+	 * @param category(Category): Element.
 	 **/
 	private static void printSubCategories(XmlSerializer serializer, Category category) {
 		try {
@@ -230,13 +225,13 @@ public class XMLTools {
 	/*========================================			 LEXICON			==============================================*/
 	
 	/**
-	 * Methode permettant l'extraction des informations contenues dans un arbre DOM
-	 * en les presentant dans un tableau des entrees du lexique.
-	 * @param n(Node): Le Noeud racine de l'arbre DOM pour les entrees du lexique.
-	 * @return Un tableau des entrees du lexique.
+	 * Extract the information from DOM tree and constitute a list of extracted elements.
+	 * @param n(Node): DOM tree root node.
+	 * @param categories(List<Category>): Categories
+	 * @return List of elements.
 	 **/
 	public static List<Lexicon> DOMToLexicon(Node n, List<Category> categories) {
-		// Si on ne se trouve pas a la racine de l'arbre, on s'arrete
+
 		if (!n.getNodeName().equals("lexiques")) {
 			return new ArrayList<Lexicon>();
 		}
@@ -265,9 +260,10 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant de charger le lexique.
-	 * @param context(Context): Le contexte de l'application.
-	 * @return Un tableau contenant le lexique OU "null" si ce dernier n'a pu etre charge.
+	 * Load the elements.
+	 * @param context(Context): Context.
+	 * @param categories(List<Category>): Categories
+	 * @return List of elements or "null".
 	 **/
 	public static List<Lexicon> loadLexicon(Context context, List<Category> categories) {
 		String path =Environment.getExternalStorageDirectory() + File.separator + "Android" + File.separator + "data" + File.separator +
@@ -286,11 +282,10 @@ public class XMLTools {
 			try {
 				profilsXML = new FileInputStream(profilFile);
 			} catch (IOException e) {
-				Log.e("XMLTools", "Le fichier \""+path+"\" n'a pas pu etre lu.");
+				Log.e("XMLTools", "The file \""+path+"\" could not be read.");
 				e.printStackTrace();
 			}
 
-			// if(db.isValidating())
 			doc = db.parse(profilsXML);
 			doc.getDocumentElement().normalize();
 			return DOMToLexicon(doc.getDocumentElement(), categories);
@@ -301,11 +296,11 @@ public class XMLTools {
 		
 		return null;
 	}
-	
+
 	/**
-	 * Methode permettant d'ecrire les lexiques.
-	 * @param context(Context): Le contexte de l'application.
-	 * @param profils(List<Lexicon>): La liste des lexiques.
+	 * Write and save the elements.
+	 * @param context(Context): Context.
+	 * @param profils(List<Lexicon>): List of elements.
 	 **/
 	public static void printLexicon(Context context, List<Lexicon> lexicons) {
 		String path =Environment.getExternalStorageDirectory() + File.separator+ "Android" + File.separator + "data" + File.separator +
@@ -313,7 +308,7 @@ public class XMLTools {
 		
 		File newxmlfile = new File(path);
 		try { newxmlfile.createNewFile(); }
-		catch(IOException e) { Log.e("IOException", "Exception in create new File(\"lexique.xml\")"); }
+		catch(IOException e) { Log.e("IOException", "Exception in create new file"); }
 		
 		FileOutputStream fileOs = null;
 		try { fileOs = new FileOutputStream(newxmlfile); }
@@ -349,13 +344,13 @@ public class XMLTools {
 	/*========================================			 GRAMMARS			==============================================*/
 	
 	/**
-	 * Methode permettant l'extraction des informations contenues dans un arbre DOM
-	 * en les presentant dans un tableau de grammaires.
-	 * @param n(Node): Le Noeud racine de l'arbre DOM pour les grammaires.
-	 * @return Un tableau de grammaires.
+	 * Extract the information from DOM tree and constitute a list of extracted elements.
+	 * @param n(Node): DOM tree root node.
+	 * @param categories(List<Category>): Categories
+	 * @return List of elements.
 	 **/
 	public static ArrayList<Grammar> DOMToGrammars(Node n, List<Category> categories) {
-		// Si on ne se trouve pas a la racine de l'arbre, on s'arrete
+
 		if (!n.getNodeName().equals("grammaires")) {
 			return new ArrayList<Grammar>();
 		}
@@ -382,9 +377,9 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode construisant les regles d'une grammaire.
-	 * @param nodes(NodeList): La liste des regles de la grammaire.
-	 * @return Une liste de regles.
+	 * Build the grammar rules.
+	 * @param nodes(NodeList): Rules list of the grammar.
+	 * @return List of rules.
 	 **/
 	public static ArrayList<ArrayList<Category>> buildRules(NodeList nodes, List<Category> categories) {
 		int size = nodes.getLength();
@@ -418,9 +413,10 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant de charger les grammaires.
-	 * @param context(Context): Le contexte de l'application.
-	 * @return Un tableau contenant les grammaires OU "null" si ces dernieres n'ont pu etre chargees.
+	 * Load the elements.
+	 * @param context(Context): Context.
+	 * @param categories(List<Category>): Categories
+	 * @return List of elements or "null".
 	 **/
 	public static ArrayList<Grammar> loadGrammar(Context context, List<Category> categories) {
 		String path =Environment.getExternalStorageDirectory() + File.separator + "Android" + File.separator + "data" + File.separator +
@@ -439,11 +435,10 @@ public class XMLTools {
 			try {
 				profilsXML = new FileInputStream(grammarFile);
 			} catch (IOException e) {
-				Log.e("XMLTools", "Le fichier \""+grammarFile+"\" n'a pas pu etre lu.");
+				Log.e("XMLTools", "The file \""+grammarFile+"\" could not be read.");
 				e.printStackTrace();
 			}
 
-			// if(db.isValidating())
 			doc = db.parse(profilsXML);
 			doc.getDocumentElement().normalize();
 			return DOMToGrammars(doc.getDocumentElement(), categories);
@@ -456,9 +451,9 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant d'afficher les grammaires.
-	 * @param context(Context): Le contexte de l'application.
-	 * @param grammars(List<Grammar>): La liste des grammaires.
+	 * Write and save the elements.
+	 * @param context(Context): Context.
+	 * @param grammars(List<Grammar>): List of elements.
 	 **/
 	public static void printGrammars(Context context, List<Grammar> grammars) {
 		String path =Environment.getExternalStorageDirectory() + File.separator+ "Android" + File.separator + "data" + File.separator +
@@ -466,7 +461,7 @@ public class XMLTools {
 		
 		File newxmlfile = new File(path);
 		try { newxmlfile.createNewFile(); }
-		catch(IOException e) { Log.e("IOException", "Exception in create new File("); }
+		catch(IOException e) { Log.e("IOException", "Exception in create new file"); }
 		
 		FileOutputStream fileOs = null;
 		try { fileOs = new FileOutputStream(newxmlfile); }
@@ -489,9 +484,9 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant d'afficher la grammaire.
-	 * @param serializer(XmlSerializer): L'interface de serialisation des donnees XML.
-	 * @param grammar(Grammar): La grammaire cible.
+	 * Write and save one element.
+	 * @param serializer(XmlSerializer): Xml serializer.
+	 * @param grammar(Grammar): Element.
 	 **/
 	private static void printGrammar(XmlSerializer serializer, Grammar grammar) {
 		try {
@@ -521,14 +516,12 @@ public class XMLTools {
 	/*========================================			 PROFILES			==============================================*/
 	
 	/**
-	 * Methode permettant l'extraction des informations contenues dans un arbre DOM
-	 * en les presentant dans un tableau de profils.
-	 * @param n(Node): Le Noeud racine de l'arbre DOM pour les profils.
-	 * @param data(AppData): Les donnees de l'application
-	 * @return Un tableau de profils.
+	 * Extract the information from DOM tree and constitute a list of extracted elements.
+	 * @param n(Node): DOM tree root node.
+	 * @param data(AppData): Data
+	 * @return List of elements.
 	 **/
 	public static ArrayList<Child> DOMToProfils(Node n, AppData data) {
-		// Si on ne se trouve pas a la racine de l'arbre, on s'arrete
 		if (!n.getNodeName().equals("enfants")) {
 			return new ArrayList<Child>();
 		}
@@ -589,9 +582,10 @@ public class XMLTools {
 	}
 
 	/**
-	 * Methode permettant de charger les profils.
-	 * @param context(Context): Le contexte de l'application.
-	 * @return Un tableau contenant les profils OU "null" si ces derniers n'ont pu etre charges.
+	 * Load the elements.
+	 * @param context(Context): Context.
+	 * @param data(AppData): Data
+	 * @return List of elements or "null".
 	 **/
 	public static ArrayList<Child> loadProfil(Context context, AppData data) {
 		String path =Environment.getExternalStorageDirectory() + File.separator + "Android" + File.separator + "data" + File.separator +
@@ -610,11 +604,10 @@ public class XMLTools {
 			try {
 				profilsXML = new FileInputStream(profilFile);
 			} catch (IOException e) {
-				Log.e("XMLTools", "Le fichier \""+profilFile+"\" n'a pas pu etre lu.");
+				Log.e("XMLTools", "The file \""+profilFile+"\" could not be read.");
 				e.printStackTrace();
 			}
 
-			// if(db.isValidating())
 			doc = db.parse(profilsXML);
 			doc.getDocumentElement().normalize();
 			return DOMToProfils(doc.getDocumentElement(), data);
@@ -627,9 +620,9 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant d'afficher les profils.
-	 * @param context(Context): Le contexte de l'application.
-	 * @param profils(List<Child>): La liste des profils.
+	 * Write and save the elements.
+	 * @param context(Context): Context.
+	 * @param profils(List<Child>): List of elements.
 	 **/
 	public static void printChildren(Context context, List<Child> profils) {
 		String path =Environment.getExternalStorageDirectory() + File.separator+ "Android" + File.separator + "data" + File.separator +
@@ -637,7 +630,7 @@ public class XMLTools {
 		
 		File newxmlfile = new File(path);
 		try { newxmlfile.createNewFile(); }
-		catch(IOException e) { Log.e("IOException", "Exception in create new File("); }
+		catch(IOException e) { Log.e("IOException", "Exception in create new file"); }
 		
 		FileOutputStream fileOs = null;
 		try { fileOs = new FileOutputStream(newxmlfile); }
@@ -688,13 +681,12 @@ public class XMLTools {
 	/*========================================			   LOGS				==============================================*/
 	
 	/**
-	 * Methode permettant l'extraction des informations contenues dans un arbre DOM
-	 * en les presentant dans un tableau de logs.
-	 * @param n(Node): Le Noeud racine de l'arbre DOM pour les logs.
-	 * @return Un tableau de logs.
-	 **/
+	 * Extract the information from DOM tree and constitute a list of logs.
+	 * @param n(Node): DOM tree root node.
+	 * @param data(AppData): Data.
+	 * @return Logs.
+	 */
 	public static ArrayList<Entry> DOMToLogs(Node n, AppData data) {
-		// Si on ne se trouve pas a la racine de l'arbre, on s'arrete
 		if (!n.getNodeName().equals("logs")) {
 			return new ArrayList<Entry>();
 		}
@@ -738,11 +730,11 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant de charger les logs.
-	 * @param context(Context): Le contexte de l'application.
-	 * @param name(String): Le nom de l'enfant.
-	 * @param firstname(String): Le prenom de l'enfant.
-	 * @return Un tableau contenant les logs d'un enfant precis.
+	 * Load the logs.
+	 * @param context(Context): Context.
+	 * @param name(String): last name of the child.
+	 * @param firstname(String): first name of the child.
+	 * @return Logs.
 	 **/
 	public static ArrayList<Entry> loadLogs(Context context, String name, String firstname, AppData data) {
 		String path =Environment.getExternalStorageDirectory() + File.separator + "Android" + File.separator + "data" + File.separator +
@@ -761,11 +753,10 @@ public class XMLTools {
 			try {
 				profilsXML = new FileInputStream(filePath);
 			} catch (IOException e) {
-				Log.e("XMLTools", "Le fichier \""+filePath+"\" n'a pas pu etre lu.");
+				Log.e("XMLTools", "The file \""+filePath+"\" could not be read.");
 				e.printStackTrace();
 			}
 
-			// if(db.isValidating())
 			doc = db.parse(profilsXML);
 			doc.getDocumentElement().normalize();
 			return DOMToLogs(doc.getDocumentElement(), data);
@@ -778,11 +769,11 @@ public class XMLTools {
 	}
 	
 	/**
-	 * Methode permettant d'afficher les logs.
-	 * @param context(Context): Le contexte de l'application.
-	 * @param name(String): Le nom de l'enfant.
-	 * @param firstname(String): Le prenom de l'enfant.
-	 * @param logs(List<Entry>): La liste des logs.
+	 * Write and save the logs.
+	 * @param context(Context): Context.
+	 * @param name(String): last name of the child.
+	 * @param firstname(String): first name of the child.
+	 * @param logs(List<Entry>): Logs.
 	 **/
 	public static void printLogs(Context context, List<Entry> logs, String name, String firstname) {
 		String path =Environment.getExternalStorageDirectory() + File.separator + "Android" + File.separator + "data" + File.separator +
@@ -790,7 +781,7 @@ public class XMLTools {
 		
 		File newxmlfile = new File(path);
 		try { newxmlfile.createNewFile(); }
-		catch(IOException e) { Log.e("IOException", "Exception in create new File("); }
+		catch(IOException e) { Log.e("IOException", "Exception in create new file"); }
 		
 		FileOutputStream fileOs = null;
 		try { fileOs = new FileOutputStream(newxmlfile); }

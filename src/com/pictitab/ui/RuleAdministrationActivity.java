@@ -22,25 +22,21 @@ import android.app.Activity;
 
 public class RuleAdministrationActivity extends Activity {
 	
-	// Les donnees de l'application
 	private static AppData data;
 	
-	// Utilitaires
-	private ImageButton previousButton;							// Bouton de parcours des categories meres
-	private Button addRule;										// Bouton d'ajout de regle dans la grammaire
+	private ImageButton previousButton;
+	private Button addRule;
 	
-	// Choix des categories de la regle
-	private LinearLayout listRulesLayout;						// Layout de la fenetre d'administration des regles
-    ExpandableListView categoriesAdapter;						// Vue de la liste deroulante des categories
-    static ExpandableTreeAdapter listAdapter;					// Adaptateur de la liste deroulante
-    static List<String> listDataHeaderAllCat;					// Header de la liste deroulate des categories
-    static List<String> listDataCategories;						// Liste des regles de la grammaire
-    static HashMap<String, List<String>> listDataChildCat;		// Liste des sous-categories rangees par regles
+	private LinearLayout listRulesLayout;
+    ExpandableListView categoriesAdapter;
+    static ExpandableTreeAdapter listAdapter;
+    static List<String> listDataHeaderAllCat;
+    static List<String> listDataCategories;						// List of the grammar's rules
+    static HashMap<String, List<String>> listDataChildCat;		// List of sub-categories grouped by rule
     
-    // Informations generales de la regle
-    static SparseArray<List<Category>> tree;					// Arborescence de la liste des categories
-    static int compteur;										// Profondeur de l'arborescence des categories
-    private ArrayList<Category> rule;							// Les categories de la regle
+    static SparseArray<List<Category>> tree;
+    static int compteur;
+    private ArrayList<Category> rule;
 	
 	/*====================================================================================================================*/
 	/*==													EVENEMENTS													==*/
@@ -49,26 +45,16 @@ public class RuleAdministrationActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		// On recupere toutes les donnees relatives aux regles
 		data =(AppData)getIntent().getBundleExtra(MainActivity.DATAEXTRA_KEY).getParcelable(MainActivity.DATA_KEY);
-		
-		// On affiche l'activite
 		this.toDisplay();
 	}
 	
 	@Override  
 	public void onBackPressed() {
-		
-		// On actualise nos donnees
 		Bundle b = new Bundle();
 		b.putParcelable(MainActivity.DATA_KEY, data);
-
-		// On ajoute un parametre a l'intention
 		this.getIntent().putExtra(MainActivity.DATAEXTRA_KEY, b);
 		this.getIntent().putExtra("nom", getIntent().getStringExtra("nom"));
-		
-		// Si le retour de l'intent (donc de l'activite fille) est OK on termine l'activite courante
 		setResult(RESULT_OK, this.getIntent());
 		finish();
 	}
@@ -77,34 +63,31 @@ public class RuleAdministrationActivity extends Activity {
 	/*==													TRAITEMENTS													==*/
 	/*====================================================================================================================*/
 	
-	/** Mise en place de la fenetre d'administration d'une regle d'une grammaire. **/
+	/**
+     * Display the rule administration window.
+     **/
 	private void toDisplay() {
 		setContentView(R.layout.activity_rule_administration);
 		
-		// Initialisation des elements graphiques.
 		previousButton = (ImageButton) findViewById(R.id.previousButton);
 		addRule = (Button) findViewById(R.id.addRuleInGram);
 		categoriesAdapter = (ExpandableListView) findViewById(R.id.CategoryGrammarList);
 		listRulesLayout = (LinearLayout) findViewById(R.id.resultLayout);
 		
-		// On prepare les donnees de la liste
 		prepareListData();
 		
-		// On definit un adaptateur en precisant l'entete et les enfants de la liste
         listAdapter = new ExpandableTreeAdapter(this, 0, listDataHeaderAllCat, listDataChildCat);
         
-        // On affecte l'adaptateur a la liste
         categoriesAdapter.setAdapter(listAdapter);
         
-        // On prepare le bandeau superieur contenant la regle en cours d'edition
 		rule = new ArrayList<Category>();
 		
 		final String nom = getIntent().getStringExtra("nom");
 		final int indice = getIntent().getIntExtra("indice",-1);
 		
-		// Cas de la creation d'une regle
+		// Rule creation case
 		if(indice == -1) {
-			// Bouton de validation, creation de la regle
+
 			addRule.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -114,9 +97,8 @@ public class RuleAdministrationActivity extends Activity {
 				}		
 			});
 		}
-		// Cas de la modification d'une regle
+		// Rule modification case
 		else {
-			//addRule.setText("Valider");
 			rule = data.getGrammarByName(nom).getRuleAt(indice);
 			ArrayList<Category> rulebis = new ArrayList<Category>();
 			for(int i =0; i < rule.size(); i++) {
@@ -129,7 +111,7 @@ public class RuleAdministrationActivity extends Activity {
 			}
 			rule = rulebis;
 			drawRuleLayout();
-			// Bouton de validation, modification de la regle
+
 			addRule.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -141,7 +123,9 @@ public class RuleAdministrationActivity extends Activity {
 		}
 	}
 	
-	/** Redessine la liste deroulante en affichant les filles de la categorie selectionnee. **/
+	/**
+     * Redraw the scroll list with children (sub-categories) of the selected categories.
+     **/
 	public static void nextTree(int groupPosition, final int childPosition) {
 		String subCategoryName = listDataChildCat.get(listDataHeaderAllCat.get(groupPosition)).get(childPosition);
         Category c = data.getCategories().get(data.getCategoryByName(subCategoryName));
@@ -153,27 +137,27 @@ public class RuleAdministrationActivity extends Activity {
             	listDataCategories.add(categories.get(i).getName());
             }
             tree.put(++compteur, categories);
-            // On MAJ la liste
             listAdapter.notifyDataSetChanged();
     	}
 	}
 	
-	/** Redessine le layout de la regle. **/
+	/** 
+     * Redraw the rule's layout.
+     **/
 	private void drawRuleLayout() {
-    	// Efface le contenu du layout
+    	// clear the content of the layout
     	listRulesLayout.removeAllViews();
-    	
-    	// Ajoute les boutons categorie de la regle dans la layout
+
         for(int i=0; i < rule.size(); i++) {
         	
         	final String name = rule.get(i).getName();
 			final Button tmp = new Button(RuleAdministrationActivity.this);
 			tmp.setText(name);
 			
-			// Ajoute le bouton dans le layout
+			// add the button in the layout
 			listRulesLayout.addView(tmp);
 			
-			// Action du bouton
+			// Action of the button
 			tmp.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -185,21 +169,21 @@ public class RuleAdministrationActivity extends Activity {
         }
 	}
 	
-	/** Prepare la liste des categories dans la liste deroulante. **/
+	/** 
+     * Prepare the categories list.
+     **/
     private void prepareListData() {
     	List<Category> categories = data.getNotChildCategories();
     	
-    	// Liste de toutes les categories
         listDataHeaderAllCat = new ArrayList<String>();
         listDataChildCat = new HashMap<String, List<String>>();
         
         compteur = 0;
         tree = new SparseArray<List<Category>>();
         
-        // On donne une entete a la liste
         listDataHeaderAllCat.add("Selectionner une categorie...");
         
-        // On remplit la liste
+        // Fill the list
         listDataCategories = new ArrayList<String>();
         for (int i =0; i < categories.size(); i++) {
         	listDataCategories.add(categories.get(i).getName());
@@ -207,7 +191,7 @@ public class RuleAdministrationActivity extends Activity {
         tree.put(compteur, categories);
         listDataChildCat.put(listDataHeaderAllCat.get(0), listDataCategories);
         
-        // Lors d'un clic sur un element (un enfant) de la liste
+        // When a sub-categories is selected
         categoriesAdapter.setOnChildClickListener(new OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
@@ -221,7 +205,7 @@ public class RuleAdministrationActivity extends Activity {
             }
         });
 
-        // Bouton de retour
+        // Back button
         previousButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

@@ -24,19 +24,18 @@ public class SelectPictureActivity extends Activity {
 	
 	public static final String DATA_Picture = "Picture_path";
 	
-	private LinearLayout layout;					// Layout principal
-	private ScrollView listPictureLayout;			// La ScrollView du layout
-	private GridLayout gridPictureLayout;			// La grille des images
-	private ArrayList<GridLayout> pictureButtons;	// La liste des boutons-image
+	private LinearLayout layout;
+	private ScrollView listPictureLayout;
+	private GridLayout gridPictureLayout;
+	private ArrayList<GridLayout> pictureButtons;
 	
 	/*====================================================================================================================*/
-	/*==													EVENEMENTS													==*/
+	/*==													EVENEMENTS	- normal stuff									==*/
 	/*====================================================================================================================*/
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		this.toDisplay();
 	}
 	
@@ -48,8 +47,6 @@ public class SelectPictureActivity extends Activity {
 	
 	@Override
 	public void onBackPressed() {
-		// On recupere toutes les donnees relatives aux images
-		// On ajoute un parametre a l'intention.
 		getIntent().putExtra(SelectPictureActivity.DATA_Picture, "");
 		setResult(RESULT_CANCELED, this.getIntent());
 		finish();
@@ -59,21 +56,20 @@ public class SelectPictureActivity extends Activity {
 	/*==													TRAITEMENTS													==*/
 	/*====================================================================================================================*/
 	
-	/** Mise en place de la fenetre de selection d'une entree du lexique. **/
+	/** 
+     * Display the window.
+     **/
 	private void toDisplay() {
-		// Affichage de la liste des images existantes
-		// Initialisation de l'affichage de la liste des images.
 		listPictureLayout =new ScrollView(this);
 		gridPictureLayout =new GridLayout(this);
 		
-		// Ici on sait que les images font 80x80p, du coup on fait taille_ecran/80
-		// pour avoir le nombre de colones disponibles!
+        // The picture are 80x80p dimension picture, so, to get the column number, do screen size / 80
 		int nbCol =UITools.getNbColumn(getWindowManager().getDefaultDisplay(), getResources().getConfiguration().orientation, 90, 5);
 		gridPictureLayout.setColumnCount(nbCol);
 		pictureButtons =new ArrayList<GridLayout>();
 		
-		// On recupere les images ainsi que leurs noms.
-		String folderPath =Environment.getExternalStorageDirectory().getPath() + File.separator + "Pictures"; // <-- CHANGER ICI LE PATH DU REPERTOIRE D'IMAGE SI BESOIN
+		// Get the pictures and their names.
+		String folderPath =Environment.getExternalStorageDirectory().getPath() + File.separator + "Pictures"; // <-- CHANGE HERE THE PICTURES PATH IF NECESSARY
 		List<Bitmap> pictures =this.getPictures(folderPath);
 		List<String> picturesPath =this.getPicturesName(folderPath);
 		
@@ -86,28 +82,22 @@ public class SelectPictureActivity extends Activity {
 			TextView tmpName =new TextView(this);
 			tmpName.setGravity(Gravity.CENTER);
 			
-			// On recupere l'image.
 			tmpButton.setImageBitmap(Bitmap.createScaledBitmap(pictures.get(i), 80, 80, false));
-			// On donne la bonne valeur au TextView
 			tmpName.setText(picturesPath.get(i));
-			// On ajoute le bouton-image a la GridView.
+            // Add button into the view
 			tmpLayout.addView(tmpButton);
-			// On ajoute ce dernier a la GridLayout
 			tmpLayout.addView(tmpName);
-			// Ajout de la vue contenant le bouton et le texte dans un tableau.
+			// Add this view in a array
 			pictureButtons.add(tmpLayout);
-			
-			// Ajout du bouton dans le layout
+			// Add this view into the gridlayout
 			gridPictureLayout.addView(tmpLayout);
 			
 			final String selectedPicture =new String(folderPath+File.separator+picturesPath.get(i));
 			
-			// Action du bouton-image
+			// Action of the picture button
 			tmpButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// On met a jour les donnees
-					// On ajoute un parametre a l'intention.
 					getIntent().putExtra(SelectPictureActivity.DATA_Picture, selectedPicture);
 					setResult(RESULT_OK, getIntent());
 					finish();
@@ -115,25 +105,24 @@ public class SelectPictureActivity extends Activity {
 			});
 		}
 		
-		// Ajout des vues dans le layout
+		// Add views in the layout
 		layout = new LinearLayout(this);
 		listPictureLayout.addView(gridPictureLayout);
 		layout.setOrientation(LinearLayout.VERTICAL);
 		layout.addView(listPictureLayout);
 		
-		// Ajout du layout dans la vue
+		// Add final layout in the window
 		setContentView(layout);
 	}
 	
 	/**
-	 * Methode permettant d'extraire les noms des images d'un dossier.
-	 * /!\ Attention, cette methode ne verifie pas que le dossier ait ete cree prealablement.
-	 * @param folderPath(String): Chemin du dossier contenant les images.
-	 * @return Un tableau contenant les noms des images du dossier (ce tableau peut-etre vide).
+	 * Return the name of pictures contained in a directory.
+	 * @param folderPath(String): Path.
+	 * @return Pictures names in a array.
 	 */
 	private List<String> getPicturesName(String folderPath) {
 		List<String> paths =new ArrayList<String>();
-		File dir = new File(folderPath);//File dir = new File(myFile, "Pictures");
+		File dir = new File(folderPath);
 		if (dir.listFiles() == null){
 			return paths;
 		} 
@@ -147,12 +136,11 @@ public class SelectPictureActivity extends Activity {
 		return paths;
 	}
 
-	/**
-	 * Methode permettant d'extraire les images d'un dossier.
-	 * /!\ Attention, cette methode ne verifie pas que le dossier ait ete cree prealablement.
-	 * @param folderPath(String): Chemin du dossier contenant les images.
-	 * @return Un tableau contenant les images du dossier (ce tableau peut-etre vide).
-	 */
+    /**
+     * Return pictures contained in a directory.
+     * @param folderPath(String): Path.
+     * @return Bitmap in a array.
+     */
 	private List<Bitmap> getPictures(String folderPath) {
 		List<Bitmap> pics =new ArrayList<Bitmap>();
 		File dir = new File(folderPath);

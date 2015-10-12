@@ -2,7 +2,7 @@ package com.pictitab.utils;
 
 import java.util.HashMap;
 import java.util.List;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.pictitab.ui.GrammarAdministrationActivity;
 import com.pictitab.ui.LexiconAdministrationActivity;
 import com.pictitab.ui.R;
@@ -21,28 +20,28 @@ import com.pictitab.ui.SelectCategoryActivity;
 import com.pictitab.ui.SelectGrammarActivity;
 import com.pictitab.ui.RuleAdministrationActivity;
 
+@SuppressLint("InflateParams")
 public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
-	
-	// Informations generales de la liste
-    private Context context;								// Contexte de l'application, necessaire a l'utilisation de certaines methodes des classes activity
-    private int mode;										// Mode d'utilisation de la liste deroulante
-    private List<String> listDataHeader;					// Header des colonnes de la liste deroulante
-    private HashMap<String, List<String>> listDataChild;	// Liste des fils pour chaque element
+
+    private Context context;
+    private int mode;										// Mode of usage of the list
+    private List<String> listDataHeader;					// Header of the column of the list
+    private HashMap<String, List<String>> listDataChild;	// children list of each element
     
-    ImageButton nextButton;		// Bouton pour parcourir les fils de l'element
-    ImageButton editButton;		// Bouton pour modifier l'element
-    ImageButton delButton;		// Bouton pour supprimer l'element
+    ImageButton nextButton;		// Button to go to the next element of the list
+    ImageButton editButton;		// Button to update the element of the list
+    ImageButton delButton;		// Button to delete the element from the list
     
 	/*====================================================================================================================*/
-	/*==												   CONSTRUCTEURS												==*/
+	/*==												   CONSTRUCTORS													==*/
 	/*====================================================================================================================*/
     
     /**
-	 * Constructeur de la classe ExpandableTreeAdapter.
-	 * @param context(Context): Contexte de l'application
-	 * @param mode(int): Mode d'utilisation de la liste deroulante
-	 * @param listDataHeader(List<String>): Liste des headers de la liste deroulante
-	 * @param listChildData( HashMap<String, List<String>>): Liste des fils pour chaque element
+	 * Constructor of ExpandableTreeAdapter class.
+	 * @param context(Context): Context
+	 * @param mode(int): Mode of list utilization
+	 * @param listDataHeader(List<String>): list of header of list
+	 * @param listChildData( HashMap<String, List<String>>): children list for each element
 	 */
     public ExpandableTreeAdapter(Context context, int mode, List<String> listDataHeader, HashMap<String, List<String>> listChildData) {
         this.context = context;
@@ -56,10 +55,10 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
 	/*====================================================================================================================*/
     
     /**
-	 * Renvoie l'element du groupe d'indice groupPosition et de sous-element d'indice childPosition dans la liste deroulante.
-	 * @param groupPosition(int): Indice du groupe d'elements
-	 * @param childPosition(int): Indice du sous-element
-	 * @return Le sous-element de la liste deroulante.
+     * Return the element of the group with the id groupPosition and of the sub-element with id childPosition in the list.
+	 * @param groupPosition(int): group id
+	 * @param childPosition(int): sub-element id
+	 * @return Element.
 	 **/
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
@@ -67,10 +66,10 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
     }
     
     /**
-   	 * Renvoie l'indice de l'element dans la liste deroulante.
-   	 * @param groupPosition(int): Indice du groupe d'elements
-   	 * @param childPosition(int): Indice du sous-element
-   	 * @return L'indice de l'element dans la liste deroulante.
+   	 * Return the id of the element in the list.
+	 * @param groupPosition(int): group id
+	 * @param childPosition(int): sub-element id
+   	 * @return id.
    	 **/
     @Override
     public long getChildId(int groupPosition, int childPosition) {
@@ -78,28 +77,28 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
     }
     
     /**
-   	 * Renvoie la vue de la liste deroulante en fonction de l'action effectuee.
-   	 * @param groupPosition(int): Indice du groupe d'elements
-   	 * @param childPosition(int): Indice du sous-element
-   	 * @param isLastChild(boolean): Si l'element est le dernier fils ou non
-   	 * @param convertView(View): La vue a modifier
-   	 * @param parent(ViewGroup): La vue parente
-   	 * @return La vue de la liste deroulante adaptee a l'action effectuee.
+   	 * Return the view of the list.
+	 * @param groupPosition(int): group id
+	 * @param childPosition(int): sub-element id
+   	 * @param isLastChild(boolean): If the element is the last child of not
+   	 * @param convertView(View): converted View
+   	 * @param parent(ViewGroup): Parent view
+   	 * @return View.
    	 **/
     @Override
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
     	final String childText = (String) getChild(groupPosition, childPosition);
     	
-    	// Cas de liste simple (selection d'elements)
-    	// Liste deroulante de la selection des grammaires dans le menu d'administration des enfants
+    	// Simple case (selection of elements)
+    	// List of the selection of the grammars in the administration menu of children
     	if(mode == 5) {
   			if (convertView == null) {
   				LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   				convertView = infalInflater.inflate(R.layout.list_item, null);
   			}
     	}
-    	// Cas de l'arbre arborescent des categories (seulement bouton fleche suivante)
-    	// Dans la selection d'une categorie lors de l'edition d'une regle ou d'un mot
+    	// Categories tree case (only next arrow button)
+    	// List of the selection of the categories in the edition of the rule or a lexicon entry
     	if(mode == 0 || mode == 1) {
   			if (convertView == null) {
   				LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -112,10 +111,10 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
 	            @Override
 	            public void onClick(View view) {
 	            	switch(mode) {
-		            	case 0 : // REGLE
+		            	case 0 : // RULES
 		            		RuleAdministrationActivity.nextTree(groupPosition, childPosition);
 		            		break;
-		            	case 1 : // LEXIQUE
+		            	case 1 : // LEXICON
 		            		LexiconAdministrationActivity.nextTree(groupPosition, childPosition);
 		            		break;
 		            	default :
@@ -124,9 +123,10 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
 	            }
 	        });
     	}
-        // Cas de liste avec des boutons d'edition, de suppression et de fleche
+    	// List with delete, modify and arrow buttons cases
     	if(mode != 0 && mode != 1 && mode != 5) {
-    		if(mode == 2) { // Cas de la selection d'une categorie
+    		// Category selection case
+    		if(mode == 2) { 
     			if (convertView == null) {
 	  				LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	  				convertView = infalInflater.inflate(R.layout.list_item_3_buttons, null);
@@ -141,8 +141,8 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
     	            }
     	        });
     		}
-    		// Cas de liste seulement avec les boutons d'edition et de suppression
-    		// Cas de la selection d'une regle ou d'une grammaire
+    		// List with only delete and modify button case
+    		// Selection of a rule or grammar case
     		else {
     			if (convertView == null) {
 	  				LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -158,7 +158,7 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
 	        delButton.setVisibility(View.VISIBLE);
 	        editButton.setVisibility(View.VISIBLE);
   	        
-	        // Si la categorie est la racine on affiche pas les boutons de suppression et edition
+	        // If the category is the root category ("TOUT" in French = "ALL" in English)
   	        if(childText.equals("TOUT")) {
   	        	delButton.setVisibility(View.INVISIBLE);
   	        	editButton.setVisibility(View.INVISIBLE);
@@ -168,13 +168,13 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
                 @Override
                 public void onClick(View view) {
                 	switch(mode) {
-                	case 2 : // CATEGORIE
+                	case 2 : // CATEGORY
                 		SelectCategoryActivity.deleteCategory(groupPosition, childPosition);
                     	break;
-                	case 3 : // EDIT GRAMMAIRE
+                	case 3 : // EDIT GRAMMAR
                 		GrammarAdministrationActivity.deleteRule(groupPosition, childPosition);
                     	break;
-                	case 4 : // SELECT GRAMMAIRE
+                	case 4 : // SELECT GRAMMAR
                 		SelectGrammarActivity.deleteGrammar(groupPosition, childPosition);
                     	break;
                 	default :
@@ -187,13 +187,13 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
                 @Override
                 public void onClick(View view) {
                 	switch(mode) {
-                	case 2 : // CATEGORIE
+                	case 2 : // CATEGORY
                 		SelectCategoryActivity.modifyCategory(groupPosition, childPosition);
                     	break;
-                	case 3 : // EDIT GRAMMAIRE
+                	case 3 : // EDIT GRAMMAR
                 		GrammarAdministrationActivity.modifyRule(groupPosition, childPosition);
                     	break;
-                	case 4 : // SELECT GRAMMAIRE
+                	case 4 : // SELECT GRAMMAR
                 		SelectGrammarActivity.modifyGrammar(groupPosition, childPosition);
                     	break;
                 	default :
@@ -210,9 +210,9 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
     }
     
     /**
-   	 * Renvoie le nombre de sous-elements.
-   	 * @param groupPosition(int): Indice du groupe d'elements
-   	 * @return Le nombre de sous-elements.
+   	 * Return the sub-elements number.
+   	 * @param groupPosition(int): Group id
+   	 * @return Sub-elements number
    	 **/
     @Override
     public int getChildrenCount(int groupPosition) {
@@ -220,9 +220,9 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
     }
     
     /**
-   	 * Renvoie le groupe d'elements.
-   	 * @param groupPosition(int): Indice du groupe d'elements
-   	 * @return Le groupe d'elements.
+   	 * Return the group of elements
+   	 * @param groupPosition(int): Group id
+   	 * @return Group of elements
    	 **/
     @Override
     public Object getGroup(int groupPosition) {
@@ -230,8 +230,8 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
     }
     
     /**
-   	 * Renvoie le nombre de groupes d'elements.
-   	 * @return Le nombre de groupes d'elements.
+   	 * Return the group number
+   	 * @return Group number
    	 **/
     @Override
     public int getGroupCount() {
@@ -239,8 +239,8 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
     }
     
     /**
-   	 * Renvoie l'indice du groupe d'elements.
-   	 * @return L'indice du groupe d'elements.
+   	 * Return the group id
+   	 * @return Group id
    	 **/
     @Override
     public long getGroupId(int groupPosition) {
@@ -248,12 +248,12 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
     }
     
     /**
-   	 * Renvoie la vue du groupe d'elements.
-   	 * @param groupPosition(int): Indice du groupe d'elements
-   	 * @param isExpanded(boolean): Si le groupe est developpe ou reduit
-   	 * @param convertView(View): La vue a modifier
-   	 * @param parent(ViewGroup): La vue parente
-   	 * @return La vue du groupe d'elements.
+   	 * Return the view of the group of elements.
+   	 * @param groupPosition(int): group id
+   	 * @param isExpanded(boolean): If the group is expanded or reduced
+   	 * @param convertView(View): Convert view
+   	 * @param parent(ViewGroup): Parent view
+   	 * @return View of the group.
    	 **/
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
@@ -271,19 +271,18 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
         return convertView;
     }   
     
-    /** Indique si les IDs des enfants et des groupes sont stables en fonction des changements effectues sur leur donnees **/
     @Override
     public boolean hasStableIds() {
         return false;
     }
     
     /**
-   	 * Indique si le sous-element est selectionnable.
-   	 * @param groupPosition(int): Indice du groupe d'elements
-   	 * @param childPosition(int): Indice du sous-element
-   	 * @param convertView(View): La vue a modifier
-   	 * @param parent(ViewGroup): La vue parente
-   	 * @return vrai si le sous-element est selectionnable, faux sinon.
+   	 * Return if the sub-element is selectionned.
+	 * @param groupPosition(int): group id
+	 * @param childPosition(int): sub-element id
+   	 * @param convertView(View): Convert view
+   	 * @param parent(ViewGroup): Parent view
+   	 * @return true if the element is selectionned, else false.
    	 **/
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {

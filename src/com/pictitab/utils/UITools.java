@@ -7,13 +7,12 @@ import android.view.Display;
 public class UITools {
 	
 	/**
-	 * Methode permettant de definir le nombre de colonnes d'un GridLayout d'images
-	 * en fonction de la taille de l'ecran.
-	 * @param display(Display): L'ecran dans lequel sera affiche le GridLayout
-	 * @param orientation(int): Code indiquant le mode d'orientation de l'image
-	 * @param pictureWidth(int): Largeur des images
-	 * @param padding(int): La marge entre les images
-	 * @return Le nombre de colonnes du GridLayout
+	 * Define the column number of a GridLayout according to the screen size.
+	 * @param display(Display): Display
+	 * @param orientation(int): Code of the orientation
+	 * @param pictureWidth(int): Width of the pictures
+	 * @param padding(int): Padding
+	 * @return Column number in the grid
 	 */
 	public static int getNbColumn(Display display, int orientation, int pictureWitdth, int padding) {
 		int nbCols;
@@ -22,7 +21,7 @@ public class UITools {
 		int width = size.x;
 		int height = size.y;
 		
-		// On defini le nombre de colonnes selon l'orientation de l'ecran.
+		// Column number according to the orientation of the screen.
 		if(orientation==Configuration.ORIENTATION_PORTRAIT) {
 			nbCols = (int) Math.ceil(width / (pictureWitdth + 2*padding) - 1);
 		}
@@ -33,13 +32,12 @@ public class UITools {
 	}
 	
 	/**
-	 * Methode permettant de definir le nouveau padding entre les images.
-	 * Elles seront ainsi toutes separees par une marge egale en fonction de la taille de l'ecran.
-	 * @param display(Display): L'ecran dans lequel sera affiche le GridLayout
-	 * @param orientation(int): Code indiquant le mode d'orientation de l'image
-	 * @param pictureWidth(int): Largeur des images
-	 * @param nbCols(int): Le nombre de colonnes de la grille
-	 * @return La valeur du nouveau padding
+	 * Define the new padding between each pictures.
+	 * @param display(Display): Display
+	 * @param orientation(int): Code of the orientation
+	 * @param pictureWidth(int): Width of the pictures
+	 * @param nbCols(int): Column number in the grid
+	 * @return Padding
 	 */
 	public static int getNewPadding(Display display, int orientation, int pictureWidth, int nbCols) {
 		int newPadding;
@@ -48,7 +46,7 @@ public class UITools {
 		int width = size.x;
 		int height = size.y;
 		
-		// On defini le nombre de colonnes selon l'orientation de l'ecran.
+		// Column number according to the orientation of the screen.
 		if(orientation==Configuration.ORIENTATION_PORTRAIT) {
 			newPadding = (width - (nbCols * pictureWidth)) / (2*nbCols);
 		}
@@ -60,9 +58,9 @@ public class UITools {
 	}
 	
 	/**
-	 * Methode permettant de recuperer la largeur de l'ecran.
-	 * @param display(Display): Le display de l'ecran.
-	 * @return La largeur de l'ecran.
+	 * Return the width of the screen.
+	 * @param display(Display): Display of the screen.
+	 * @return Width of the screen.
 	 */
 	public static int getWidth(Display display) {
 		Point size = new Point();

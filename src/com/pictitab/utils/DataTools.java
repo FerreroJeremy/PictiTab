@@ -7,9 +7,10 @@ import com.pictitab.data.Category;
 public class DataTools {
 	
 	/**
-	 * Methode recherchant une categorie avec le nom renseigne.
-	 * @param name(String): Nom de la categorie recherchee.
-	 * @return La categorie recherchee, si cette derniere est trouvee OU "null" sinon.
+	 * Search a category.
+	 * @param categoryList(ArrayList<Category): Categories list.
+	 * @param name(String): Name of the searched category.
+	 * @return The category if it exists else "null".
 	 */
 	public static Category searchCategory(List<Category> categories, String name) {
 		Category res =null;
@@ -28,10 +29,10 @@ public class DataTools {
 	}
 	
 	/**
-	 * Methode permettant de chercher une categorie via son nom, dans une liste donnee.
-	 * @param name(String): Nom de la categorie recherchee.
-	 * @param categoryList(ArrayList<Category): La liste de categorie dans laquelle on souhaite faire la recherche.
-	 * @return La categorie recherchee, si cette dernière est trouvee OU "null" sinon.
+	 * Search a category.
+	 * @param name(String): Name of the searched category.
+	 * @param categoryList(ArrayList<Category): Categories list.
+	 * @return The category if it exists else "null".
 	 */
 	private static Category searchCategoryIn(String name, List<Category> categoryList) {
 		Category res =null;

@@ -21,7 +21,6 @@ public class MainActivity extends Activity {
 	public static final String DATA_KEY = "DATA";
 	public static final String DATAEXTRA_KEY = "DATAEXTRA";
 	
-	// Les donnees de l'application
 	private AppData data;
 	
 	/*====================================================================================================================*/
@@ -32,10 +31,10 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		// On recupere toutes les donnees de l'application
+		// Get all the data
 		data =new AppData();
 		
-		// On controle la memoire externe de la tablette et on affiche l'activite
+		// Control of the external storage of the device and display the window
 		this.controlDir();
 		this.toDisplay();
 	}
@@ -49,15 +48,16 @@ public class MainActivity extends Activity {
 	/*==													TRAITEMENTS													==*/
 	/*====================================================================================================================*/
 	
-	/** Controle de la memoire externe de l'appareil physique. **/
+	/** 
+     * Control the external storage.
+     **/
 	private void controlDir() {
-		// Si il n'y a pas de memoire externe ou qu'elle est seulement en
-		// lecture seule, ecriture impossible
+        // If there isn't external storage or if it is in read only then the write of data and save directory is impossible
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)
 			&& Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED_READ_ONLY)) {
 				Toast.makeText(getApplicationContext(), "Probleme de droits ou memoire introuvable !", Toast.LENGTH_LONG).show();
 		}
-		// Creation des repertoires si il n'existe pas
+		// Creation of directory if they don't exist
 		String pathApp = Environment.getExternalStorageDirectory() + File.separator + "Android" + File.separator + "data" + File.separator + getApplicationContext().getPackageName();
 		File dossierApp = new File(pathApp);
 		if (!dossierApp.exists()) {
@@ -89,47 +89,41 @@ public class MainActivity extends Activity {
 		}
 	}
 	
-	/** Mise en place de la fenetre d'acceuil de l'application. **/
+	/** 
+     * Display the window.
+     **/
 	private void toDisplay() {
-		// On charge les donnees.
+		// Load the data.
 		data.setCategories(XMLTools.loadCategory(this));
 		data.setLexicon(XMLTools.loadLexicon(this, data.getCategories()));
 		data.setGrammars(XMLTools.loadGrammar(this, data.getCategories()));
 		data.setProfils(XMLTools.loadProfil(this, data));
 		
-		// On affiche la vue ayant le xml "activity_main"
 		setContentView(R.layout.activity_main);
 		
-		// On prend connaissance des boutons
 		final Button ChildButton = (Button) findViewById(R.id.selectChildActivity);
 		final Button EducatorButton = (Button) findViewById(R.id.selectEducatorActivity);
 		
-		// Action du bouton "ChildButton"
+		// Child mode
 		ChildButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// Nouvelle intention : activity source -> classe de destination
 				Intent intent = new Intent(MainActivity.this, SelectChildActivity.class);
-				// On ajoute un parametre a l'intention
 				intent.putExtra(TYPE_SOURCE, "main_activity");
-				// On passe les donnees de l'application a l'activite suivante...
 				Bundle b = new Bundle();
 				b.putParcelable(DATA_KEY, data);
-				// On ajoute un parametre a l'intention.
 				intent.putExtra(DATAEXTRA_KEY, b);
-				// On demarre la nouvelle intention
 				startActivity(intent);
 			}
 		});
 		
-		// Action du bouton "EducateurButton"
+		// Educator mode
 		EducatorButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this, MainEducatorActivity.class);
 				Bundle b = new Bundle();
 				b.putParcelable(DATA_KEY, data);
-				// On ajoute un parametre a l'intention.
 				intent.putExtra(DATAEXTRA_KEY, b);
 				startActivityForResult(intent, 0);
 			}

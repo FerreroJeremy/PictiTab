@@ -4,24 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Automate {
-
-	// Les informations relatives a l'automate qui met a jour les mots disponibles en fonction :
-	//    - des grammaires autorisees a l'enfant
-	//    - de l'etat de la phrase
-	private String gramName;					// Le nom de la grammaire
-	private ArrayList<Node> rules;				// Les regles associees
-	private ArrayList<Integer> eligibleRules;	// Les numeros des regles associees
-	private ArrayList<Node> currentNodes;		// Les noeuds courants dans l'etat present de automate correspondants aux règles éligible
-	private int position;						// Position du noeud courant
 	
-	// Les donnees de l'application
+	// The Automate is the predictive system.
+
+	private String gramName;					// Grammar name
+	private ArrayList<Node> rules;				// Associated rules
+	private ArrayList<Integer> eligibleRules;	// Associated rules id
+	private ArrayList<Node> currentNodes;		// current position in the eligible rules
+	private int position;						// current position
+
 	AppData data;
 	
 	/*====================================================================================================================*/
-	/*==												   CONSTRUCTEURS												==*/
+	/*==												   CONSTRUCTORS													==*/
 	/*====================================================================================================================*/
 	
-	/** Constructeur par defaut de la classe Automate. */
+	/** Default constructor of the Automate class. */
 	public Automate() {
 		this.gramName =new String("");
 		this.rules =new ArrayList<Node>();
@@ -31,9 +29,9 @@ public class Automate {
 	}
 	
 	/**
-	 * Constructeur de la classe Automate.
-	 * @param newRules(ArrayList<Node>): Les nouvelles regles de cet automate.
-	 * @param newGramName(String): Le nom de la grammaire duquel est issu cet automate.
+	 * Constructor of the Automate class.
+	 * @param newRules(ArrayList<Node>): New rules.
+	 * @param newGramName(String): Grammar name.
 	 */
 	public Automate(ArrayList<Node> newRules, String newGramName){
 		this.rules = newRules;
@@ -42,18 +40,17 @@ public class Automate {
 		this.currentNodes =new ArrayList<Node>();
 		this.position =-1;
 		
-		// Au debut toutes les regles sont eligibles.
-		// Donc on initialise les regles eligibles.
+		// At the beginning of the rules are eligible
 		for(int i=0;i<this.rules.size();i++) {
 			this.eligibleRules.add(i);
 		}
 	}
 	
 	/**
-	 * Constructeur d'un automate a partir d'une grammaire et la liste de mots.
-	 * @param gram(Grammar): La grammaire a partir de laquelle on doit construire l'automate.
-	 * @param words(ArrayList<Lexicon>): La liste de tous les mots de l'application.
-	 * @param data(AppData): Les donnees de l'application
+	 * Constructor of the Automate class.
+	 * @param gram(Grammar): Grammar.
+	 * @param words(ArrayList<Lexicon>): Lexicon entries.
+	 * @param data(AppData): Data
 	 */
 	public Automate(Grammar gram, List<Lexicon> words, AppData data) {
 		this.gramName =gram.getName();
@@ -66,33 +63,32 @@ public class Automate {
 			Node tmp =this.createNodesFromRule(gram.getRules().get(i), 0, words);
 			this.rules.add(tmp);
 		}
-		// Au debut toutes les regles sont eligibles.
-		// Donc on initialise les regles eligibles.
+		// At the beginning of the rules are eligible
 		for(int i=0;i<this.rules.size();i++) {
 			this.eligibleRules.add(i);
 		}
 	}
 	
+	/*====================================================================================================================*/
+	/*==											 PROCESS															==*/
+	/*====================================================================================================================*/
+	
 	/**
-	 * Methode construisant la suite des noeuds representant une regle pour l'automate.
-	 * @param rule(ArrayList<Category>): La liste des categories representant les regles de la grammaire.
-	 * @param numState(int): L'indice de la profondeur du noeud courant dans la regle de la grammaire.
-	 * @param words(List<Lexicon>): Les mots de l'application.
-	 * @return Le noeud courant.
+	 * Build the next nodes representing the rule of the automate.
+	 * @param rule(ArrayList<Category>): categories sequence representing the rule of the grammar.
+	 * @param numState(int): Index of the depth of the current node in the rule.
+	 * @param words(List<Lexicon>): Lexicon entries.
+	 * @return Current node.
 	 */
 	private Node createNodesFromRule(ArrayList<Category> rule, int numState, List<Lexicon> words) {
 		Node node =new Node();
-		// Ce tableau nous sert a stocker les regles de la grammaire (le premier element du tableau sera toujours la categorie du noeud courant)
+		// rules of the grammar (the first element are always the category of the current node)
 		ArrayList<Category> endRule =new ArrayList<Category>(rule);
-		// Ce tableau sert a stocker les images-mots n'ayant pas encore ete attribues a un noeud.
 		ArrayList<Lexicon> remainingWords =new ArrayList<Lexicon>(words);
 		
-		// On donne a notre noeud sa categorie, tout en la retirant des categories restantes.
 		node.setCategory(endRule.remove(0));
-		// On recupere les mots auxquels cette categorie nous donne acces:
 		node.setWords(this.getWordsFromCategory(node.getCategory(), remainingWords));
 		node.setState(numState);
-		// Si il reste encore des regles a construire pour l'automate:
 		if(endRule.size()>0) {
 			Node son =this.createNodesFromRule(endRule, numState+1, remainingWords);
 			son.setFather(node);
@@ -103,31 +99,23 @@ public class Automate {
 		return node;
 	}
 	
-	/*====================================================================================================================*/
-	/*==											 TRAITEMENTS AUTOMATE												==*/
-	/*====================================================================================================================*/
-	
 	/**
-	 * Methode permettant de recuperer les mots pour une categorie donnee.
-	 * @param c(Category): La categorie dont on doit recuperer les mots.
-	 * @param words(ArrayList<Lexicon>): La liste de tout les mots.
-	 * @return La liste des mots associes a cette categorie/regle.
+	 * Return words of a category.
+	 * @param c(Category): Category.
+	 * @param words(ArrayList<Lexicon>): Lexicon entries.
+	 * @return Words of the category.
 	 */
 	public ArrayList<Lexicon> getWordsFromCategory(Category c, ArrayList<Lexicon> words)
 	{
 		Category c2 = data.getCategories().get(data.getCategoryByName(c.getName()));
-		// Tableau servant a contenir les mots de cette categorie.
 		ArrayList<Lexicon> tmpWords =new ArrayList<Lexicon>();
-		// On rappelle la methode sur toutes ses filles
 		List<Category> subcategories = c2.getCategories();
 		for(int i =0; i < subcategories.size(); i++) {
 			ArrayList<Lexicon> tmpLex =getWordsFromCategory(subcategories.get(i), words);
 			tmpWords.addAll(tmpLex);
 		}
-		// On verifie les mots appartenant a cette categorie
 		for(int i =0; i < words.size(); i++) {
 			if(words.get(i).getCategory().getName().equals(c.getName())) {
-				// Si le mot appartient bien a la categorie, on l'ajoute
 				tmpWords.add(words.get(i));
 			}
 		}
@@ -135,10 +123,10 @@ public class Automate {
 	}
 	
 	/**
-	 * Methode permettant d'avancer dans l'automate (Cette operation peut echouer).
-	 * Cette methode met a jour les regles eligibles ainsi que les noeuds courants.
-	 * @param CatName(String): Le nom de la categorie dans laquelle on souhaite aller.
-	 * @return "true" si il y a bien une transition vers un etat appartenant a la categorie dont le nom est passe en argument OU "false" sinon.
+	 * Go to the next state of the automate (this operation can be aborted).
+	 * Update the rules and the current node.
+	 * @param CatName(String): Next category name.
+	 * @return "true" if ok else "false".
 	 */
 	public boolean moveForwardToNextCat (String catName) {
 		Node tmp;
@@ -147,10 +135,7 @@ public class Automate {
 		boolean testForward =false;
 		
 		for(int i=0;i<this.eligibleRules.size();i++) {
-
-			// Si on n'a jamais ete dans un etat.
 			if(this.position==-1) {
-				// On prend la premiere regle eligible.
 				tmp =this.rules.get(this.eligibleRules.get(i));
 				if(tmp.haveNextCategoryInFirstRules(catName, this.data)) {
 					this.currentNodes.add(tmp);
@@ -159,7 +144,6 @@ public class Automate {
 					rulesToDelete.add(this.eligibleRules.get(i));
 				}
 			} else {
-				// On prend le noeud courant.
 				tmp =this.currentNodes.get(i);
 				if(!tmp.isFinal()) {
 					index =tmp.haveNextCategory(catName, this.data);
@@ -175,7 +159,6 @@ public class Automate {
 			}
 		}
 		this.eligibleRules.removeAll(rulesToDelete);
-		// On test que l'avancement ai bien ete effectue.
 		if(testForward)
 			this.position++;
 
@@ -183,13 +166,11 @@ public class Automate {
 	}
 	
 	/**
-	 * Methode permettant de reculer dans l'automate.
-	 * Cette methode met a jour les regles eligibles ainsi que les noeuds courants et la position de l'automate.
-	 * @param sentence(ArrayList<Lexicon>): Les mots restants de la phrase.
+	 * Go to the precedent state in the automate (flashback).
+	 * Update the rules and the current node.
+	 * @param sentence(ArrayList<Lexicon>): The remaining words of the sentence.
 	 */
 	public void moveBackward(ArrayList<Lexicon> sentence) {
-		
-		// On fait table rase...
 		this.eligibleRules.clear();
 		this.currentNodes.clear();
 		for(int i=0;i<this.rules.size();i++) {
@@ -197,31 +178,25 @@ public class Automate {
 		}
 		this.position =-1;
 		
-		// Et on simule l'automate pour les mots restant de la phrase.
 		for(int i=0;i<sentence.size();i++) {
 			this.moveForwardToNextCat(sentence.get(i).getCategory().getName());
 		}
 	}
 	
 	/**
-	 * Methode permettant de recuperer toutes les images-mots a afficher pour passer dans le prochain etat de l'automate.
-	 * @return Un tableau contenant toutes les images-mots possibles pour passer dans un etat suivant.
+	 * Return all the words to draw/display to go to the next state of the automate.
+	 * @return list of lexicon entries.
 	 */
 	public ArrayList<Lexicon> getWordsToDisplay() {
 		ArrayList<Lexicon> words =new ArrayList<Lexicon>();
 		ArrayList<Lexicon> tmpwords =new ArrayList<Lexicon>();
 		Node tmp;
 		if(this.position!=-1) {
-			// Pour chaque regle eligible de l'automate, on recupere les images-mots.
 			for(int i=0;i<this.eligibleRules.size();i++) {
 				tmp =this.currentNodes.get(i);
-				// On parcourt tous les prochains etats des regles eligibles.
 				for(int j=0;j<tmp.getTransitions().size();j++) {
-					// Et on recupere les mots permettant d'acceder a ces dernieres.
 					tmpwords =tmp.getTransitions().get(j).getWords();
-					// On supprime les doublons,
 					words.removeAll(tmpwords);
-					// puis on ajoute tout.
 					words.addAll(tmpwords);
 				}
 			}
@@ -229,9 +204,7 @@ public class Automate {
 			for(int i=0;i<this.rules.size();i++) {
 				tmp =this.rules.get(i);
 				tmpwords =tmp.getWords();
-				// On supprime les doublons,
 				words.removeAll(tmpwords);
-				// puis on ajoute tout.
 				words.addAll(tmpwords);
 			}
 		}
@@ -243,32 +216,32 @@ public class Automate {
 	/*====================================================================================================================*/
 	
 	/**
-	 * Renvoie les regles de l'automate.
-	 * @return Les regles de l'automate.
+	 * Return automate's rules.
+	 * @return rules.
 	 **/
 	public ArrayList<Node> getRules() {
 		return rules;
 	}
 	
 	/**
-	 * Renseigne les regles de l'automate.
-	 * @param rules(ArrayList<Node>): Les regles de l'automate.
+	 * Set rules to the automate.
+	 * @param rules(ArrayList<Node>): rules.
 	 **/
 	public void setRules(ArrayList<Node> rules) {
 		this.rules = rules;
 	}
 	
 	/**
-	 * Renvoie le nom de la grammaire de l'automate.
-	 * @return Le nom de la grammaire de l'automate.
+	 * Return automate's grammar.
+	 * @return grammar.
 	 **/
 	public String getGramName() {
 		return gramName;
 	}
 	
 	/**
-	 * Renseigne le nom de la grammaire de l'automate.
-	 * @param gramName(String): Le nom de la grammaire de l'automate.
+	 * Set grammar to the automate.
+	 * @param gramName(String): Grammar.
 	 **/
 	public void setGramName(String gramName) {
 		this.gramName = gramName;

@@ -4,17 +4,19 @@ import java.util.ArrayList;
 
 public class Node {
 	
-	// Les informations relatives a un noeud de l'automate
-	private Category category;				// La categorie du noeud
-	private int state;						// La profondeur de la categorie dans la règle courante
-	private ArrayList<Node> transitions;	// Les noeuds de transition d'un etat a un autre dans l'automate
-	private Node father;					// Le noeud pere du noeud courant
-	private ArrayList<Lexicon> words;		// Les mots accessibles depuis le noeud
+	private Category category;				// The node category
+	private int state;						// The depth of the category in the current rule
+	private ArrayList<Node> transitions;	// The transition nodes for the states of the automate
+	private Node father;					// The parent node of the current node
+	private ArrayList<Lexicon> words;		// The available words accessible from the current node
 	
 	/*====================================================================================================================*/
-	/*==												   CONSTRUCTEURS												==*/
+	/*==												   CONSTRUCTORS													==*/
 	/*====================================================================================================================*/
 	
+	/**
+	 * Default constructor of the Node class.
+	 */
 	public Node() {
 		this.state =-1;
 		this.transitions =new ArrayList<Node>();
@@ -24,12 +26,12 @@ public class Node {
 	}
 	
 	/*====================================================================================================================*/
-	/*==												 TRAITEMENTS NOEUD												==*/
+	/*==												 NODE PROCESS													==*/
 	/*====================================================================================================================*/
 	
 	/**
-	 * Methode indiquant si le noeud courant n'a pas de fils (Noeud final).
-	 * @return "true" si ce dernier n'a aucun fils OU "false" si ce n'est pas le cas.
+	 * Return if the current node is a final node (no child).
+	 * @return true if it is the case, else false.
 	 */
 	public boolean isFinal() {
 		if(this.transitions.size()==0) {
@@ -39,10 +41,10 @@ public class Node {
 	}
 	
 	/**
-	 * Methode renvoyant le numero de la transition allant vers la categorie dont le nom est passe en argument.
-	 * @param catName(String): Le nom de la categorie dans laquelle on souhaite aller.
-	 * @param data(AppData): Les donnees de l'application.
-	 * @return le numero de la transition allant vers la categorie passe en argument OU -1 si aucune n'y va.
+	 * Return the transition id going to the category with the parameter name.
+	 * @param catName(String): Category parameter name.
+	 * @param data(AppData): Data.
+	 * @return Transition id or -1 if it doesn't exist.
 	 */
 	public int haveNextCategory(String catName, AppData data) {
 		int res =-1;
@@ -64,10 +66,10 @@ public class Node {
 	}
 	
 	/**
-	 * Indique si le noeud a des transitions possibles vers d'autres categories filles.
-	 * @param catName(String): Le nom de la categorie dans laquelle on souhaite aller.
-	 * @param data(AppData): Les donnees de l'application.
-	 * @return true si le noeud possede des trasitions vers d'autres categories filles.
+	 * Return if the node have available transitions toward other children categories.
+	 * @param catName(String): Category name.
+	 * @param data(AppData): Data.
+	 * @return true if it is possible, else false.
 	 */
 	public boolean haveNextCategoryInFirstRules(String catName, AppData data) {
 		if(this.category.getName().equals(catName)) {
@@ -81,11 +83,11 @@ public class Node {
 	}
 	
 	/**
-	 * Methode permettant d'explorer les sous-categories de la categorie passee en argument.
-	 * @param cat(Category): La categorie a tester.
-	 * @param catName(String): Le nom de la categorie a reconnaitre.
-	 * @param data(AppData): Les donnees de l'application.
-	 * @return "true" si la categorie appartient aux sous-categories de celle passee en argument OU "false" sinon.
+	 * Return if a category is a child of an another category.
+	 * @param cat(Category): Category.
+	 * @param catName(String): Category name.
+	 * @param data(AppData): Data.
+	 * @return true if the second category is a sub-category of the first category else false.
 	 */
 	private boolean testSubCategory(Category cat, String catName, AppData data) {
 		Category trueCat =data.getCategories().get(data.getCategoryByName(cat.getName()));
@@ -104,9 +106,9 @@ public class Node {
 	}
 
 	/**
-	 * Methode permettant de retourner le prochain noeud issu de la transition "i".
-	 * @param i La transition que l'on souhaite emprunter.
-	 * @return Le Noeud issu de la transition "i".
+	 * Return the nex node of a transition.
+	 * @param i(int): Transition.
+	 * @return Node.
 	 */
 	public Node getNextTransition(int i) {
 		return this.transitions.get(i);
@@ -117,80 +119,80 @@ public class Node {
 	/*====================================================================================================================*/
 	
 	/**
-	 * Renvoie la categorie du noeud.
-	 * @return La categorie du noeud.
+	 * Return the node category.
+	 * @return Node category.
 	 **/
 	public Category getCategory() {
 		return this.category;
 	}
 	
 	/**
-	 * Renseigne la categorie du noeud.
-	 * @param newCategory(Category): La categorie du noeud.
+	 * Set a node category.
+	 * @param newCategory(Category): Category.
 	 **/
 	public void setCategory(Category newCategory) {
 		this.category= newCategory;
 	}
 	
 	/**
-	 * Renvoie la profondeur de la categorie dans la règle courante.
-	 * @return La profondeur de la categorie dans la règle courante.
+	 * Return the depth of the category in the current rule.
+	 * @return Depth.
 	 **/
 	public int getState() {
 		return state;
 	}
 	
 	/**
-	 * Renseigne la profondeur de la categorie dans la règle courante.
-	 * @param state(int): La profondeur de la categorie dans la règle courante.
+	 * Set the depth of the category in the current rule.
+	 * @param state(int): Depth.
 	 **/
 	public void setState(int state) {
 		this.state = state;
 	}
 	
 	/**
-	 * Renvoie les noeuds de transition.
-	 * @return Les noeuds de transition.
+	 * Return the transition nodes.
+	 * @return Transition nodes.
 	 **/
 	public ArrayList<Node> getTransitions() {
 		return transitions;
 	}
 	
 	/**
-	 * Renseigne les noeuds de transition.
-	 * @param transitions(ArrayList<Node>): Les noeuds de transition.
+	 * Set the transition nodes.
+	 * @param transitions(ArrayList<Node>): Transition nodes.
 	 **/
 	public void setTransitions(ArrayList<Node> transitions) {
 		this.transitions = transitions;
 	}
 	
 	/**
-	 * Renvoie le noeud pere du noeud courant.
-	 * @return Le noeud pere du noeud courant.
+	 * Return the parent node of the current node.
+	 * @return Parent node.
 	 **/
 	public Node getFather() {
 		return father;
 	}
 	
 	/**
-	 * Renseigne le noeud pere.
-	 * @param newFather(Node): Le noeud pere.
+	 * Set the parent node of the current node.
+	 * @param newFather(Node): Parent node.
 	 **/
 	public void setFather(Node newFather) {
 		this.father = newFather;
 	}
 	
 	/**
-	 * Renvoie les mots accessibles depuis le noeud.
-	 * @return Les mots accessibles depuis le noeud.
+	 * Return the accessible words from the current node.
+	 * @return Accessible words.
 	 **/
 	public ArrayList<Lexicon> getWords() {
 		return words;
 	}
 	
 	/**
-	 * Renseigne les mots accessibles depuis le noeud.
-	 * @param words(ArrayList<Lexicon>): Les mots accessibles depuis le noeud.
+	 * Set the accessible words from the current node.
+	 * @param words(ArrayList<Lexicon>): Accessible words.
 	 **/
 	public void setWords(ArrayList<Lexicon> words) {
 		this.words = words;

@@ -8,9 +8,8 @@ import android.os.Parcelable;
 
 public class Category implements Parcelable {
 
-	// Les informations relatives a la categorie
-	private String name;				// Nom de la categorie
-	private List<Category> categories;	// Ses sous-categories associees
+	private String name;
+	private List<Category> categories;
 	
 	/*====================================================================================================================*/
 	/*==												   CONSTRUCTEURS												==*/
