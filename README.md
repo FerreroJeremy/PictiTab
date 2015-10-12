@@ -12,6 +12,11 @@ PictiTab is a communication tool for children with communication disorders. <br/
 
 The software was designed initially for iPad, then for Android Tablet and now I would like to make it more friendly-user to make it known.
 
+## Notes
+
+Please excuse the OOP implementation and the English skill. I'm just moving on this "old" academic project. <br/>
+It's up to you.
+
 ## Credits and licence
 
 Although the application presented here is becoming increasingly detached from the initial project, thank you to cite the following work:
