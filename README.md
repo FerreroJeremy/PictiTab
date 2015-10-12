@@ -25,11 +25,11 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 
 ## ToDo
 
-- [ ] translate the UI in english
 - [ ] translate the comments and documentation in english
+- [ ] internationalize the UI
 - [ ] redesign under responsive design guidelines
 - [ ] redesign under the material design guidelines
 - [ ] use history entries of a child to improve predictions
 - [ ] use current time to improve predictions
-- [ ] allow loading of an image from camera, SD card or web link.
+- [ ] make possible the use of a picture from the camera, SD card or web link.
 - [ ] secure the educator management interface
