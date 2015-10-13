@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 	/*====================================================================================================================*/
 	/*==													EVENEMENTS													==*/
 	/*====================================================================================================================*/
-	
+	// Overrided functions to manage the AppData !
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

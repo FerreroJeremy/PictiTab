@@ -33,7 +33,7 @@ public class ChildLogActivity extends Activity {
 	/*====================================================================================================================*/
 	/*==													EVENEMENTS													==*/
 	/*====================================================================================================================*/
-	
+	// Overrided functions to manage the AppData !
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

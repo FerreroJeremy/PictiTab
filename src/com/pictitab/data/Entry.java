@@ -4,24 +4,25 @@ import java.util.ArrayList;
 
 public class Entry {
 	
-	// Les informations relatives a l'entree dans l'historiques des logs des enfants
-	private String date;					// La date de l'entree
-	private ArrayList<Lexicon> sequence;	// La sequence des mots utilises
+	private String date;					// The entry date
+	private ArrayList<Lexicon> sequence;	// The used word sequence
 	
 	/*====================================================================================================================*/
-	/*==												   CONSTRUCTEURS												==*/
+	/*==												   CONSTRUCTORS                                                 ==*/
 	/*====================================================================================================================*/
 	
-	/** Constructeur par defaut de la classe Entry. **/
+	/** 
+     * Default constructor of the class.
+     **/
 	public Entry() {
 		this.setDate(new String(""));
 		this.setSequence(new ArrayList<Lexicon>());
 	}
 	
 	/**
-	 * Constructeur de la classe Entry.
-	 * @param date(String): Date d'entree.
-	 * @param sequence(ArrayList<Lexicon>): Sequence des mots.
+	 * Copy constructor of the class.
+	 * @param date(String): Entry date.
+	 * @param sequence(ArrayList<Lexicon>): Word sequence.
 	 */
 	public Entry(String date,  ArrayList<Lexicon> sequence) {
 		this.setDate(date);
@@ -33,49 +34,49 @@ public class Entry {
 	/*====================================================================================================================*/
 	
 	/**
-	 * Renvoie la date de l'entree.
-	 * @return La date de l'entree.
+	 * Get the entry date.
+	 * @return Date.
 	 **/
 	public String getDate() {
 		return date;
 	}
 	/**
-	 * Renseigne la date de lentree.
-	 * @param date(String): La date de l'entree.
+	 * Set a entry date.
+	 * @param date(String): Date.
 	 **/
 	public void setDate(String date) {
 		this.date = date;
 	}
 	
 	/**
-	 * Renvoie la sequence realisee.
-	 * @return La sequence realisee.
+	 * Get the word sequence.
+	 * @return List of words.
 	 **/
 	public ArrayList<Lexicon> getSequence() {
 		return sequence;
 	}
 	
 	/**
-	 * Renseigne la sequence.
-	 * @param sequence(ArrayList<Lexicon>): La sequence.
+	 * Set a word sequence.
+	 * @param sequence(ArrayList<Lexicon>): List of words.
 	 **/
 	public void setSequence(ArrayList<Lexicon> sequence) {
 		this.sequence = sequence;
 	}
 	
 	/**
-	 * Renvoie le mot d'indice i.
-	 * @param i(int): L'indice de la regle.
-	 * @return Le mot d'indice i de la sequence de l'entree.
+	 * Return the word of position i.
+	 * @param i(int): position.
+	 * @return Word.
 	 **/
 	public Lexicon getWordAt(int i) {
 		return this.sequence.get(i);
 	}
 	
 	/**
-	 * Renseigne le mot d'indice i.
-	 * @param i(int): L'indice de la regle.
-	 * @param word(Lexicon): Le mot.
+	 * Set a word in position i.
+	 * @param i(int): Position.
+	 * @param word(Lexicon): Word.
 	 **/
 	public void setWordAt(int i, Lexicon word) {
 		this.sequence.set(i, word);
