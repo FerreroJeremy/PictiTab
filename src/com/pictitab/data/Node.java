@@ -16,7 +16,7 @@ public class Node {
 	
 	/**
 	 * Default constructor of the Node class.
-	 */
+	 **/
 	public Node() {
 		this.state =-1;
 		this.transitions =new ArrayList<Node>();
@@ -32,7 +32,7 @@ public class Node {
 	/**
 	 * Return if the current node is a final node (no child).
 	 * @return true if it is the case, else false.
-	 */
+	 **/
 	public boolean isFinal() {
 		if(this.transitions.size()==0) {
 			return true;
@@ -45,7 +45,7 @@ public class Node {
 	 * @param catName(String): Category parameter name.
 	 * @param data(AppData): Data.
 	 * @return Transition id or -1 if it doesn't exist.
-	 */
+	 **/
 	public int haveNextCategory(String catName, AppData data) {
 		int res =-1;
 		Node tmpNode;
@@ -70,7 +70,7 @@ public class Node {
 	 * @param catName(String): Category name.
 	 * @param data(AppData): Data.
 	 * @return true if it is possible, else false.
-	 */
+	 **/
 	public boolean haveNextCategoryInFirstRules(String catName, AppData data) {
 		if(this.category.getName().equals(catName)) {
 			return true;
@@ -88,7 +88,7 @@ public class Node {
 	 * @param catName(String): Category name.
 	 * @param data(AppData): Data.
 	 * @return true if the second category is a sub-category of the first category else false.
-	 */
+	 **/
 	private boolean testSubCategory(Category cat, String catName, AppData data) {
 		Category trueCat =data.getCategories().get(data.getCategoryByName(cat.getName()));
 		for(int i=0;i<trueCat.getCategories().size();i++) {
@@ -109,7 +109,7 @@ public class Node {
 	 * Return the nex node of a transition.
 	 * @param i(int): Transition.
 	 * @return Node.
-	 */
+	 **/
 	public Node getNextTransition(int i) {
 		return this.transitions.get(i);
 	}

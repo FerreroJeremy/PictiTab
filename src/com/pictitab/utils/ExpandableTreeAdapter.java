@@ -42,7 +42,7 @@ public class ExpandableTreeAdapter extends BaseExpandableListAdapter {
 	 * @param mode(int): Mode of list utilization
 	 * @param listDataHeader(List<String>): list of header of list
 	 * @param listChildData( HashMap<String, List<String>>): children list for each element
-	 */
+	 **/
     public ExpandableTreeAdapter(Context context, int mode, List<String> listDataHeader, HashMap<String, List<String>> listChildData) {
         this.context = context;
         this.mode = mode;

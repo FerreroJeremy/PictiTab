@@ -41,7 +41,7 @@ public class AppData implements Parcelable {
 	
 	/**
 	 * Necessary creator.
-	 */
+	 **/
 	public static final Parcelable.Creator<AppData> CREATOR = new Parcelable.Creator<AppData>() {
 
 		public AppData createFromParcel(Parcel source) {
@@ -55,7 +55,7 @@ public class AppData implements Parcelable {
 	};
 	
 	/**
-	 * Write the different data of the class AppData
+	 * Write the different data of the class AppData into Parcel.
 	 * @param dest(Parcel): Data in package
 	 * @param flags(): supplementary information about the writing.
 	 * May be 0 or PARCELABLE_WRITE_RETURN_VALUE.
@@ -68,7 +68,7 @@ public class AppData implements Parcelable {
 	}
 	
 	/**
-	 * Read the different data of the class AppData 
+	 * Read the different data of the class AppData from Parcel.
 	 * @param in(Parcel): Data in package
 	 **/
 	private void readFromParcel(Parcel in) {
@@ -77,7 +77,10 @@ public class AppData implements Parcelable {
 		in.readTypedList(grammars, Grammar.CREATOR);
 		in.readTypedList(profils, Child.CREATOR);
 	}
-	
+
+    /**
+     * Necessary stuff.
+     **/
 	@Override
 	public int describeContents() {
 		return 0;
@@ -92,7 +95,7 @@ public class AppData implements Parcelable {
 	/**
 	 * Return the loaded categories.
 	 * @return Sub-categories.
-	 * **/
+	 **/
 	public List<Category> getCategories() {
 		return this.categories;
 	}
@@ -113,7 +116,7 @@ public class AppData implements Parcelable {
 	/**
 	 * Add a new category
 	 * @param newCategory(Category): New category.
-	 * **/
+	 **/
 	public void addCategory(Category newCategory) {
 		this.categories.add(newCategory);
 	}
@@ -122,7 +125,7 @@ public class AppData implements Parcelable {
 	 * Return a index of a category from its name.
 	 * @param name(String): Sub-category name.
 	 * @return Index.
-	 * **/
+	 **/
 	public int getCategoryByName(String name){
 		int size = this.categories.size();
 		for(int i=0 ; i < size ; i++){
@@ -165,7 +168,7 @@ public class AppData implements Parcelable {
 	 * Rename a category.
 	 * @param oldName(String): Old name.
 	 * @param newName(String): New name.
-	 * **/
+	 **/
 	public void renameCategory(String oldName, String newName){
 		
 		// Rename category in lexicon and grammar
@@ -207,7 +210,7 @@ public class AppData implements Parcelable {
 	 * Return a list of categories to delete.
 	 * @param deletedList(ArrayList<Category>): Categories to delete.
 	 * @param name(String): Sub-category name.
-	 * **/
+	 **/
 	public ArrayList<Category> deleteCategoryStep(ArrayList<Category> deletedList, String name){
 		Category cat = this.categories.get(this.getCategoryByName(name));
 		
@@ -231,7 +234,7 @@ public class AppData implements Parcelable {
 	/**
 	 * Delete categories.
 	 * @param deletedList(ArrayList<Category>): list of categories.
-	 * **/
+	 **/
 	public void deleteCategories(ArrayList<Category> deletedList){
 		
 		for(int i=0; i < deletedList.size(); i++) {
@@ -261,7 +264,7 @@ public class AppData implements Parcelable {
 	/**
 	 * Delete category and its sub-categories.
 	 * @param name(String): category name.
-	 * **/
+	 **/
 	public void deleteCategoryAndItsChildren(String name){
 		ArrayList<Category> deletedList = new ArrayList<Category>();
 		deletedList = deleteCategoryStep(deletedList, name);
@@ -519,7 +522,7 @@ public class AppData implements Parcelable {
 	 * Delete a child profile.
 	 * @param nom(String): Child profile last name.
 	 * @param prenom(String): Child profile first name.
-	 * **/
+	 **/
 	public void deleteProfil(String nom, String prenom){
 		int size = this.profils.size();
 		for(int i=0 ; i < size ; i++){
@@ -536,7 +539,7 @@ public class AppData implements Parcelable {
 	 * Return a child according to its name.
 	 * @param nom(String): Child profile last name.
 	 * @param prenom(String): Child profile first name.
-	 * **/
+	 **/
 	public Child getChildByName(String nom, String prenom){
 		Child c = null;
 		int size = this.profils.size();

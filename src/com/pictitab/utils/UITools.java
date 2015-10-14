@@ -13,7 +13,7 @@ public class UITools {
 	 * @param pictureWidth(int): Width of the pictures
 	 * @param padding(int): Padding
 	 * @return Column number in the grid
-	 */
+	 **/
 	public static int getNbColumn(Display display, int orientation, int pictureWitdth, int padding) {
 		int nbCols;
 		Point size = new Point();
@@ -38,7 +38,7 @@ public class UITools {
 	 * @param pictureWidth(int): Width of the pictures
 	 * @param nbCols(int): Column number in the grid
 	 * @return Padding
-	 */
+	 **/
 	public static int getNewPadding(Display display, int orientation, int pictureWidth, int nbCols) {
 		int newPadding;
 		Point size = new Point();
@@ -61,7 +61,7 @@ public class UITools {
 	 * Return the width of the screen.
 	 * @param display(Display): Display of the screen.
 	 * @return Width of the screen.
-	 */
+	 **/
 	public static int getWidth(Display display) {
 		Point size = new Point();
 		display.getSize(size);

@@ -23,7 +23,7 @@ public class Entry {
 	 * Copy constructor of the class.
 	 * @param date(String): Entry date.
 	 * @param sequence(ArrayList<Lexicon>): Word sequence.
-	 */
+	 **/
 	public Entry(String date,  ArrayList<Lexicon> sequence) {
 		this.setDate(date);
 		this.setSequence(sequence);

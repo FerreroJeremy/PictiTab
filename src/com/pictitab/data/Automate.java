@@ -19,7 +19,9 @@ public class Automate {
 	/*==												   CONSTRUCTORS													==*/
 	/*====================================================================================================================*/
 	
-	/** Default constructor of the Automate class. */
+	/** 
+     * Default constructor of the Automate class. 
+     **/
 	public Automate() {
 		this.gramName =new String("");
 		this.rules =new ArrayList<Node>();
@@ -32,7 +34,7 @@ public class Automate {
 	 * Constructor of the Automate class.
 	 * @param newRules(ArrayList<Node>): New rules.
 	 * @param newGramName(String): Grammar name.
-	 */
+	 **/
 	public Automate(ArrayList<Node> newRules, String newGramName){
 		this.rules = newRules;
 		this.gramName = newGramName;
@@ -51,7 +53,7 @@ public class Automate {
 	 * @param gram(Grammar): Grammar.
 	 * @param words(ArrayList<Lexicon>): Lexicon entries.
 	 * @param data(AppData): Data
-	 */
+	 **/
 	public Automate(Grammar gram, List<Lexicon> words, AppData data) {
 		this.gramName =gram.getName();
 		this.eligibleRules =new ArrayList<Integer>();
@@ -79,7 +81,7 @@ public class Automate {
 	 * @param numState(int): Index of the depth of the current node in the rule.
 	 * @param words(List<Lexicon>): Lexicon entries.
 	 * @return Current node.
-	 */
+	 **/
 	private Node createNodesFromRule(ArrayList<Category> rule, int numState, List<Lexicon> words) {
 		Node node =new Node();
 		// rules of the grammar (the first element are always the category of the current node)
@@ -104,7 +106,7 @@ public class Automate {
 	 * @param c(Category): Category.
 	 * @param words(ArrayList<Lexicon>): Lexicon entries.
 	 * @return Words of the category.
-	 */
+	 **/
 	public ArrayList<Lexicon> getWordsFromCategory(Category c, ArrayList<Lexicon> words)
 	{
 		Category c2 = data.getCategories().get(data.getCategoryByName(c.getName()));
@@ -127,7 +129,7 @@ public class Automate {
 	 * Update the rules and the current node.
 	 * @param CatName(String): Next category name.
 	 * @return "true" if ok else "false".
-	 */
+	 **/
 	public boolean moveForwardToNextCat (String catName) {
 		Node tmp;
 		int index;
@@ -169,7 +171,7 @@ public class Automate {
 	 * Go to the precedent state in the automate (flashback).
 	 * Update the rules and the current node.
 	 * @param sentence(ArrayList<Lexicon>): The remaining words of the sentence.
-	 */
+	 **/
 	public void moveBackward(ArrayList<Lexicon> sentence) {
 		this.eligibleRules.clear();
 		this.currentNodes.clear();
@@ -186,7 +188,7 @@ public class Automate {
 	/**
 	 * Return all the words to draw/display to go to the next state of the automate.
 	 * @return list of lexicon entries.
-	 */
+	 **/
 	public ArrayList<Lexicon> getWordsToDisplay() {
 		ArrayList<Lexicon> words =new ArrayList<Lexicon>();
 		ArrayList<Lexicon> tmpwords =new ArrayList<Lexicon>();

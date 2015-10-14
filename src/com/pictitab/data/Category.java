@@ -12,29 +12,31 @@ public class Category implements Parcelable {
 	private List<Category> categories;
 	
 	/*====================================================================================================================*/
-	/*==												   CONSTRUCTEURS												==*/
+	/*==												   CONSTRUCTORS												==*/
 	/*====================================================================================================================*/
 	
-	/** Constructeur par defaut de la classe Category. **/
+	/** 
+     * Default constructor of the Category class.
+     **/
 	public Category() {
 		this.name = new String("");
 		this.categories = new ArrayList<Category>();
 	}
 	
 	/**
-	 * Constructeur de la classe Category.
-	 * @param name(String): Nom de la categorie.
-	 */
-	public Category(String name) {
+	 * Constructot.
+	 * @param name(String): Category's name.
+	 **/
+	public Category(Strinr name) {
 		this.name = name;
 		this.categories = new ArrayList<Category>();
 	}
 	
 	/**
-	 * Constructeur de la classe Category.
-	 * @param name(String): Nom de la categorie.
-	 * @param categories(List<Category>): Liste des sous-categories.
-	 */
+	 * Copy constructor.
+	 * @param name(String): Category's name.
+	 * @param categories(List<Category>): Sub-categories name.
+	 **/
 	public Category(String name, List<Category> categories) {
 		this.name = name;
 		this.categories = categories;
@@ -45,7 +47,7 @@ public class Category implements Parcelable {
 	/*====================================================================================================================*/
 	
 	/**
-	 * Constructeur de la classe Category utilisant Parcel
+	 * Parcel constructor.
 	 * @param in(Parcel): Le paquet dans lequel sont contenues les donnees
 	 **/
 	public Category(Parcel in) {
@@ -53,7 +55,9 @@ public class Category implements Parcelable {
 		readFromParcel(in);
 	}
 	
-	/** Les classes qui implementent l'interface Parcelable doivent aussi avoir un champ statique appele CREATOR. **/
+    /**
+     * Necessary creator.
+     **/
 	public static final Creator<Category> CREATOR = new Creator<Category>() {
 
 		public Category createFromParcel(Parcel source) {
@@ -66,10 +70,9 @@ public class Category implements Parcelable {
 	};
 	
 	/**
-	 * Ecriture des differents types de donnees de la classe Category
-	 * @param dest(Parcel): Le paquet dans lequel sont ecrites les donnees
-	 * @param flags(): Des indicateurs supplementaires sur la façon dont l'objet doit etre ecrit.
-	 * Peut etre 0 ou PARCELABLE_WRITE_RETURN_VALUE.
+	 * Write category's data into parcel.
+     * @param name(String): Category's name.
+     * @param categories(List<Category>): Sub-categories name.
 	 **/
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(name);
@@ -77,19 +80,18 @@ public class Category implements Parcelable {
 	}
 
 	/**
-	 * Lecture des differents types de donnees de la classe Category 
-	 * @param in(Parcel): Le paquet depuis lequel sont lues les donnees
+	 * Read the category's data from parcel.
+	 * @param in(Parcel): Parcel
 	 **/
 	@SuppressWarnings("unchecked")
 	private void readFromParcel(Parcel in) {
 		this.name       = in.readString();
 		this.categories = in.readArrayList(Category.class.getClassLoader());
 	}
-	
-	/**
-	 * Description des types d'objets speciaux contenus dans la représentation compressee de ce parcelable.
-	 * @return Le type des objets speciaux
-	 **/
+
+    /**
+     * Necessary stuff.
+     **/
 	@Override
 	public int describeContents() {
 		return 0;
@@ -100,55 +102,57 @@ public class Category implements Parcelable {
 	/*====================================================================================================================*/
 	
 	/**
-	 * Renvoie le nom de la categorie.
-	 * @return Le nom de la categorie.
+	 * Return the category's name.
+	 * @return Category's name.
 	 **/
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * Renomme la categorie.
-	 * @param name(String): Le nouveau nom de la categorie.
+	 * Set a name of category.
+	 * @param name(String): Category's name.
 	 */
 	public void rename(String name) {
 		this.name = name;
 	}
 	
 	/**
-	 * Renvoie les sous-categories.
-	 * @return Les sous-categories.
+	 * Return the sub-categories.
+	 * @return Sub-categories.
 	 **/
 	public List<Category> getCategories() {
 		return categories;
 	}
 	
 	/**
-	 * Renseigne les sous-categories.
-	 * @param categories(List<Category>): Les sous-categories.
+	 * Set a sub-categories.
+	 * @param categories(List<Category>): Sub-categories.
 	 **/
 	public void setCategories(List<Category> categories) {
 		this.categories.addAll(categories);
 	}
 	
 	/**
-	 * Renvoie la sous-categorie d'indice i.
-	 * @param i(int): L'indice de la sous-categorie.
-	 * @return La sous-categorie d'indice i.
+     * Return the category of index i.
+	 * @param i(int): Index i.
+	 * @return Category.
 	 **/
 	public Category getCategory(int i) {
 		return categories.get(i);
 	}
 	
 	/**
-	 * Ajoute une sous-categorie a une categorie.
-	 * @param category(<Category>): La sous-categorie.
+	 * Add a sub-categories to the category instance.
+	 * @param category(<Category>): Sub-category.
 	 **/
 	public void addCategory(Category category) {
 		this.categories.add(category);
 	}
 	
-	/** Supprime les sous-categories. **/
+	/** 
+     * Delete all the sub-categories of the category instance. 
+     **/
 	public void clearCategories() {
 		this.categories.clear();
 	}
