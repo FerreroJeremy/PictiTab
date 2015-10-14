@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+<!-- Dynamic strings -->
+
+    <string name="root">TOUT</string>
+    <string name="file_not_created">Le fichier n\'a pas pu être créé</string>
+    <string name="file_not_found">Le fichier n\'a pas pu être trouvé</string>
+    <string name="unwritten_file">Le fichier n\'a pas pu être écrit</string>
+    <string name="unread_file">Le fichier n\'a pas pu être lu</string>
+    <string name="warning">Avertissement</string>
+    <string name="add">Ajouter</string>
+    <string name="create">Création</string>
+    <string name="update">Modifier</string>
+    <string name="modify">Modification</string>
+    <string name="rename">Renommer</string>
+    <string name="delete">Suppression</string>
+    <string name="new_name">Nouveau nom</string>
+    <string name="yes">Oui</string>
+    <string name="ok">OK</string>
+    <string name="no">Non</string>
+    <string name="dialog_box_rename">Voulez-vous vraiment renommer cet élément ?</string>
+    <string name="dialog_box_delete">Voulez-vous vraiment supprimer cet élément ?</string>
+    <string name="dialog_box_no_delete">Vous ne pouvez pas supprimer cet élément.</string>
+    <string name="dialog_box_update">Voulez-vous vraiment modifier cet élément ?</string>
+    <string name="dialog_box_incorrect_field">Veuillez remplir le champ correctement.</string>
+    <string name="dialog_box_already_exist">Cet élément existe déjà.</string>
+    <string name="dialog_box_name">Veuillez donner un nom à l\'élément.</string>
+    <string name="all_grammars">Toutes les grammaires&#8230;</string>
+    <string name="child_grammar">Grammaires de l\'enfant&#8230;</string>
+    <string name="no_selected_element">Aucun élément sélectionné.</string>
+    <string name="selected_element">Sélectionner un élément</string>
+    <string name="category">Catégorie : </string>
+    <string name="child_logs">Historique de l\'enfant</string>
+    <string name="word_not_found">mot n\'existant plus&#8230;</string>
+    <string name="empty_session">session vide&#8230;</string>
+    <string name="external_memory_not_found">Problème de droits ou mémoire introuvable !</string>
+    <string name="select_parent_category">Sélectionner une categorie a laquelle ajouter une fille</string>
+    
+<!-- Graphic strings -->
+
+    <string name="app_name">PictiTab</string>
+    <string name="settings">Paramètres</string>
+    <string name="title_activity_children_administration">ChildrenAdministration</string>
+    <string name="title_activity_select_grammar">SelectGrammarActivity</string>
+    <string name="title_activity_select_category">SelectCategoryActivity</string>
+    <string name="title_activity_select_lexicon">SelectLexiconActivity</string>
+    <string name="title_activity_grammar_administration">GrammarAdministrationActivity</string>
+    <string name="title_activity_lexicon_administration">LexiconAdministrationActivity</string>
+    <string name="title_activity_category_administration">CategoryAdministrationActivity</string>
+    <string name="title_activity_select_children">SelectChildrenActivity</string>
+    <string name="title_activity_child_log">ChildLogActivity</string>
+    <string name="title_activity_child_communication">ChildCommunicationActivity</string>
+    <string name="title_activity_tree_category">TreeCategoryActivity</string>
+    <string name="mode_enfant">Mode Enfant</string>
+    <string name="mode_educateur">Mode Educateur</string>
+    <string name="children_profiles_manager">Gestion des profils enfant</string>
+    <string name="lexicon_manager">Gestion des lexiques</string>
+    <string name="grammars_manager">Gestion des grammaires</string>
+    <string name="categories_manager">Gestion des catégories</string>
+    <string name="situations_manager">Gestion des situations</string>
+    <string name="add_child">Ajouter un enfant</string>
+    <string name="valid">Valider</string>
+    <string name="suppression">Supprimer</string>
+    <string name="child_last_name">Nom de l\'enfant</string>
+    <string name="child_first_name">Prénom de l\'enfant</string>
+    <string name="child_profile_edition">Edition d\'une fiche enfant</string>
+    <string name="category_edition">Edition d\'une catégorie</string>
+    <string name="category_name">Nom de la catégorie</string>
+    <string name="grammar_edition">Edition d\'une grammaire</string>
+    <string name="title_lexicon_administration">Edition d\'une entrée</string>
+    <string name="lexicon_hint_word">Mot</string>
+    <string name="selectLexiconTitle">Selection du lexique à modifier</string>
+    <string name="search_in_device">Chercher sur votre appareil</string>
+    <string name="shoot_picture">Prendre une photo</string>
+    <string name="selected_picture">Image selectionnée</string>
+    <string name="add_category">Ajouter une catégorie</string>
+    <string name="add_grammar">Ajouter une grammaire</string>
+    <string name="logs">Historique</string>
+
+</resources>
