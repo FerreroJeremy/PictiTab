@@ -31,7 +31,7 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 ## ToDo
 
 - [X] quick and dirty translation in English of comments and documentation
-- [ ] localize the app (English and French UI) (in progres...)
+- [ ] localize the app (English and French UI) (in progress...)
 - [ ] redesign under responsive design guidelines
 - [ ] redesign under the material design guidelines
 - [ ] use history entries of a child to improve predictions
