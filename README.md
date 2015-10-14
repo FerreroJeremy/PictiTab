@@ -30,7 +30,7 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 
 ## ToDo
 
-- [ ] translate the comments and documentation in english
+- [X] quick and dirty translation in English of comments and documentation
 - [ ] internationalize the UI
 - [ ] redesign under responsive design guidelines
 - [ ] redesign under the material design guidelines
