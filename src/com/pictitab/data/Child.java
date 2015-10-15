@@ -6,82 +6,107 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Child implements Parcelable {
-	
-	private String name;					// Last name
-	private String firstname;				// First name
+
+	private String name; // Last name
+	private String firstname; // First name
 	private int birthday;
 	private int birthmonth;
 	private int birthyear;
-	private ArrayList<Grammar> grammars;	// Avalaible grammar
-	private String photo;					// Picture's name
-	
-	/*====================================================================================================================*/
-	/*==												   CONSTRUCTORS												==*/
-	/*====================================================================================================================*/
-	
-	/** 
-     * Default constructor. 
-     **/
+	private ArrayList<Grammar> grammars; // Available grammar
+	private String photo; // Picture's name
+
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+	/* == CONSTRUCTORS == */
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+
+	/**
+	 * Default constructor.
+	 **/
 	public Child() {
-		this.name    = new String("");
+		this.name = new String("");
 		this.firstname = new String("");
-		this.birthday  = 0;
-		this.birthmonth  = 0;
+		this.birthday = 0;
+		this.birthmonth = 0;
 		this.birthyear = 0;
 		this.photo = new String("");
 		this.grammars = new ArrayList<Grammar>();
 	}
-	
+
 	/**
 	 * Copy constructor.
-	 * @param name(String): Last name.
-	 * @param firstname(String): Fisrt name.
-	 * @param day(int): Birth day.
-	 * @param month(int): Month day.
-	 * @param year(int): Year day.
-	 * @param photo(String): Picture's name.
-	 * @param grammars(ArrayList<Grammar>): Avalaible grammars.
+	 * 
+	 * @param name
+	 *            (String): Last name.
+	 * @param firstname
+	 *            (String): First name.
+	 * @param day
+	 *            (int): Birth day.
+	 * @param month
+	 *            (int): Month day.
+	 * @param year
+	 *            (int): Year day.
+	 * @param photo
+	 *            (String): Picture's name.
+	 * @param grammars
+	 *            (ArrayList<Grammar>): Available grammars.
 	 **/
-	public Child(String name, String firstname, int day, int month, int year, String photo, ArrayList<Grammar> grammars) {
+	public Child(String name, String firstname, int day, int month, int year,
+			String photo, ArrayList<Grammar> grammars) {
 		this.name = name;
 		this.firstname = firstname;
 		this.birthday = day;
 		this.birthmonth = month;
 		this.birthyear = year;
-		this.photo =photo;
+		this.photo = photo;
 		this.grammars = grammars;
 	}
-	
-	/*====================================================================================================================*/
-	/*==												     PARCELABLE													==*/
-	/*====================================================================================================================*/
-	
+
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+	/* == PARCELABLE == */
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+
 	/**
 	 * Parcel constructor.
-	 * @param in(Parcel): parcel
-     **/
+	 * 
+	 * @param in
+	 *            (Parcel): parcel
+	 **/
 	public Child(Parcel in) {
 		this();
 		readFromParcel(in);
 	}
-	
-    /**
-     * Necessary creator.
-     **/
+
+	/**
+	 * Necessary creator.
+	 **/
 	public static final Creator<Child> CREATOR = new Creator<Child>() {
 
 		public Child createFromParcel(Parcel source) {
 			return new Child(source);
 		}
-		
+
 		public Child[] newArray(int size) {
 			return new Child[size];
 		}
 	};
-	
+
 	/**
 	 * Write child profile's data into parcel.
-	 * @param dest(Parcel): Parcel
+	 * 
+	 * @param dest
+	 *            (Parcel): Parcel
 	 **/
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(name);
@@ -92,10 +117,12 @@ public class Child implements Parcelable {
 		dest.writeString(photo);
 		dest.writeList(grammars);
 	}
-	
+
 	/**
 	 * Read child profile's data from parcel.
-	 * @param in(Parcel): Parcel
+	 * 
+	 * @param in
+	 *            (Parcel): Parcel
 	 **/
 	@SuppressWarnings("unchecked")
 	private void readFromParcel(Parcel in) {
@@ -107,7 +134,7 @@ public class Child implements Parcelable {
 		this.photo = in.readString();
 		this.grammars = in.readArrayList(Grammar.class.getClassLoader());
 	}
-	
+
 	/**
 	 * Necessary stuff.
 	 **/
@@ -115,13 +142,20 @@ public class Child implements Parcelable {
 	public int describeContents() {
 		return 0;
 	}
-	
-	/*====================================================================================================================*/
-	/*==											  GETTERS & SETTERS													==*/
-	/*====================================================================================================================*/
+
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+	/* == GETTERS & SETTERS == */
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
 
 	/**
 	 * Return the last name of the child.
+	 * 
 	 * @return Last name.
 	 **/
 	public String getName() {
@@ -130,7 +164,9 @@ public class Child implements Parcelable {
 
 	/**
 	 * Set a last name of the child.
-	 * @param name(String): Last name.
+	 * 
+	 * @param name
+	 *            (String): Last name.
 	 **/
 	public void setName(String name) {
 		this.name = name;
@@ -138,6 +174,7 @@ public class Child implements Parcelable {
 
 	/**
 	 * Return the first name of the child.
+	 * 
 	 * @return First name.
 	 **/
 	public String getFirstname() {
@@ -146,7 +183,9 @@ public class Child implements Parcelable {
 
 	/**
 	 * Set a first name of the child.
-     * @param firstname(String): First name.
+	 * 
+	 * @param firstname
+	 *            (String): First name.
 	 **/
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
@@ -154,6 +193,7 @@ public class Child implements Parcelable {
 
 	/**
 	 * Return the day of birth.
+	 * 
 	 * @return Day.
 	 **/
 	public int getBirthday() {
@@ -162,7 +202,9 @@ public class Child implements Parcelable {
 
 	/**
 	 * Set a day of birth.
-	 * @param birthday(int): Day.
+	 * 
+	 * @param birthday
+	 *            (int): Day.
 	 **/
 	public void setBirthday(int birthday) {
 		this.birthday = birthday;
@@ -170,6 +212,7 @@ public class Child implements Parcelable {
 
 	/**
 	 * Return the month of birth.
+	 * 
 	 * @return Month.
 	 **/
 	public int getBirthmonth() {
@@ -178,7 +221,9 @@ public class Child implements Parcelable {
 
 	/**
 	 * Set a month of birth.
-	 * @param birthmonth(int): Month.
+	 * 
+	 * @param birthmonth
+	 *            (int): Month.
 	 **/
 	public void setBirthmonth(int birthmonth) {
 		this.birthmonth = birthmonth;
@@ -186,6 +231,7 @@ public class Child implements Parcelable {
 
 	/**
 	 * Return the year of birth.
+	 * 
 	 * @return Year.
 	 **/
 	public int getBirthyear() {
@@ -194,14 +240,17 @@ public class Child implements Parcelable {
 
 	/**
 	 * Set a year of birth.
-	 * @param birthyear(int): Year.
+	 * 
+	 * @param birthyear
+	 *            (int): Year.
 	 **/
 	public void setBirthyear(int birthyear) {
 		this.birthyear = birthyear;
 	}
-	
+
 	/**
 	 * Return the picture's name.
+	 * 
 	 * @return Picture's name.
 	 **/
 	public String getPhoto() {
@@ -210,23 +259,28 @@ public class Child implements Parcelable {
 
 	/**
 	 * Set a picture's name.
-	 * @param nom(String): Picture's name.
+	 * 
+	 * @param nom
+	 *            (String): Picture's name.
 	 **/
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
+
 	/**
 	 * Return the grammar list.
+	 * 
 	 * @return Grammars.
 	 **/
 	public ArrayList<Grammar> getGrammars() {
 		return grammars;
 	}
-	
+
 	/**
 	 * Set a grammar list.
-	 * @param grammars(ArrayList<Grammar>): Grammars.
+	 * 
+	 * @param grammars
+	 *            (ArrayList<Grammar>): Grammars.
 	 **/
 	public void setGrammars(ArrayList<Grammar> grammars) {
 		this.grammars = grammars;

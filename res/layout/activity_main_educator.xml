@@ -13,7 +13,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_weight="1"
-        android:text="@string/gestion_des_profils_enfant"
+        android:text="@string/children_profiles_manager"
         android:textSize="30sp" />
 
     <Button
@@ -23,7 +23,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_weight="1"
-        android:text="@string/gestion_des_lexiques"
+        android:text="@string/lexicon_manager"
         android:textSize="30sp" />
 
     <Button
@@ -33,7 +33,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_weight="1"
-        android:text="@string/gestion_des_grammaires"
+        android:text="@string/grammars_manager"
         android:textSize="30sp" />
 
     <Button
@@ -43,7 +43,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_weight="1"
-        android:text="@string/gestion_des_cat_gories"
+        android:text="@string/categories_manager"
         android:textSize="30sp" />
 
     <LinearLayout

@@ -21,44 +21,54 @@ import com.pictitab.utils.ExpandableTreeAdapter;
 import com.pictitab.utils.XMLTools;
 
 public class SelectGrammarActivity extends Activity {
-	
+
 	private AppData data;
-	
-    ExpandableListView grammarRules;
-    static ExpandableTreeAdapter grammarsAdapter;
-    static Button editGram;
+
+	ExpandableListView grammarRules;
+	static ExpandableTreeAdapter grammarsAdapter;
+	static Button editGram;
 	static Button delGram;
 	private Button addGrammar;
-	
-	static List<String> listDataGram;								// List of all rules
-    static List<String> listDataHeaderGrammarRules;
-    static HashMap<String, List<String>> hmGrammarRules;			// list of rules grouped by grammar
-    static int groupPositionInTree;									// id of the group in the list
-    static int childPositionInTree;									// id of the sub-group in the list
-	
-	/*====================================================================================================================*/
-	/*==													EVENEMENTS													==*/
-	/*====================================================================================================================*/
+
+	static List<String> listDataGram; // List of all rules
+	static List<String> listDataHeaderGrammarRules;
+	static HashMap<String, List<String>> hmGrammarRules; // list of rules
+															// grouped by
+															// grammar
+	static int groupPositionInTree; // id of the group in the list
+	static int childPositionInTree; // id of the sub-group in the list
+
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+	/* == EVENEMENTS == */
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
 	// Classic stuff
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		data =(AppData)getIntent().getBundleExtra(MainActivity.DATAEXTRA_KEY).getParcelable(MainActivity.DATA_KEY);
+		data = (AppData) getIntent().getBundleExtra(MainActivity.DATAEXTRA_KEY)
+				.getParcelable(MainActivity.DATA_KEY);
 		this.toDisplay();
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		this.toDisplay();
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		this.data =(AppData)data.getBundleExtra(MainActivity.DATAEXTRA_KEY).getParcelable(MainActivity.DATA_KEY);
+		this.data = (AppData) data.getBundleExtra(MainActivity.DATAEXTRA_KEY)
+				.getParcelable(MainActivity.DATA_KEY);
 	}
-	
-	@Override  
+
+	@Override
 	public void onBackPressed() {
 		Bundle b = new Bundle();
 		b.putParcelable(MainActivity.DATA_KEY, data);
@@ -66,59 +76,70 @@ public class SelectGrammarActivity extends Activity {
 		setResult(RESULT_OK, this.getIntent());
 		finish();
 	}
-	
-	/*====================================================================================================================*/
-	/*==													PROCESS                                                     ==*/
-	/*====================================================================================================================*/
-	
-	/** 
-     * Display the window.
-     **/
+
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+	/* == PROCESS == */
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+
+	/**
+	 * Display the window.
+	 **/
 	private void toDisplay() {
 		setContentView(R.layout.activity_select_grammar);
-		
+
 		// portrait orientation
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 		grammarRules = (ExpandableListView) findViewById(R.id.expandableListSelectGram);
 		prepareListData();
 
-		grammarsAdapter = new ExpandableTreeAdapter(this, 4, listDataHeaderGrammarRules, hmGrammarRules);
+		grammarsAdapter = new ExpandableTreeAdapter(this, 4,
+				listDataHeaderGrammarRules, hmGrammarRules);
 		grammarRules.setAdapter(grammarsAdapter);
-		
+
 		initialiseButtons();
 	}
-	
-	/** 
-     * Initialize the buttons of the window.
-     **/
+
+	/**
+	 * Initialize the buttons of the window.
+	 **/
 	private void initialiseButtons() {
 		addGrammar = (Button) findViewById(R.id.addGram);
-		
+
 		// Action of the grammar creation button
 		addGrammar.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(SelectGrammarActivity.this, GrammarAdministrationActivity.class);
-				
+				Intent i = new Intent(SelectGrammarActivity.this,
+						GrammarAdministrationActivity.class);
+
 				Bundle b = new Bundle();
 				b.putParcelable(MainActivity.DATA_KEY, data);
 				i.putExtra(MainActivity.DATAEXTRA_KEY, b);
 				startActivityForResult(i, 42);
 			}
 		});
-		
+
 		// Dynamic creation of the modification button
 		editGram = new Button(this);
-		
+
 		// Action of the modification button
 		editGram.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// Get the selected grammar
-				String grammarName = hmGrammarRules.get(listDataHeaderGrammarRules.get(groupPositionInTree)).get(childPositionInTree);
-				
-				Intent i = new Intent(SelectGrammarActivity.this, GrammarAdministrationActivity.class);
+				String grammarName = hmGrammarRules.get(
+						listDataHeaderGrammarRules.get(groupPositionInTree))
+						.get(childPositionInTree);
+
+				Intent i = new Intent(SelectGrammarActivity.this,
+						GrammarAdministrationActivity.class);
 
 				Bundle b = new Bundle();
 				b.putParcelable(MainActivity.DATA_KEY, data);
@@ -127,86 +148,93 @@ public class SelectGrammarActivity extends Activity {
 				startActivityForResult(i, 44);
 			}
 		});
-		
-		// Dynamic creation of the supression button
+
+		// Dynamic creation of the suppression button
 		delGram = new Button(this);
-		
+
 		// Action of delete button
 		delGram.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+
 				DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-				    @Override
-				    public void onClick(DialogInterface dialog, int which) {
-				        switch (which){
-				        case DialogInterface.BUTTON_POSITIVE:
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						switch (which) {
+						case DialogInterface.BUTTON_POSITIVE:
 							// Delete
-							String grammarName = hmGrammarRules.get(listDataHeaderGrammarRules.get(groupPositionInTree)).get(childPositionInTree);
+							String grammarName = hmGrammarRules.get(
+									listDataHeaderGrammarRules
+											.get(groupPositionInTree)).get(
+									childPositionInTree);
 							data.deleteGrammar(grammarName);
 							// Update the xml file
-							XMLTools.printCategories(getApplicationContext(), data.getCategories());
+							XMLTools.printCategories(getApplicationContext(),
+									data.getCategories());
 
 							List<Grammar> grammars = data.getGrammars();
 
-					        listDataGram.clear();
+							listDataGram.clear();
 
-					        for (int i =0; i < grammars.size(); i++) {
-					        	listDataGram.add(grammars.get(i).getName());
-					        }
+							for (int i = 0; i < grammars.size(); i++) {
+								listDataGram.add(grammars.get(i).getName());
+							}
 
-					        grammarsAdapter.notifyDataSetChanged();
+							grammarsAdapter.notifyDataSetChanged();
 
-				        case DialogInterface.BUTTON_NEGATIVE:
-				            break;
-				        }
-				    }
+						case DialogInterface.BUTTON_NEGATIVE:
+							break;
+						}
+					}
 				};
-				
+
 				// Alert box
-				AlertDialog.Builder ab = new AlertDialog.Builder(SelectGrammarActivity.this);
-				ab.setTitle("Modification").setMessage("Voulez-vous vraiment supprimer cette grammaire ?")
-										   .setPositiveButton("Oui", dialogClickListener)
-										   .setNegativeButton("Non", dialogClickListener)
-										   .setIcon(android.R.drawable.ic_menu_edit).show();
+				AlertDialog.Builder ab = new AlertDialog.Builder(
+						SelectGrammarActivity.this);
+				ab.setTitle("Modification")
+						.setMessage(
+								"Voulez-vous vraiment supprimer cette grammaire ?")
+						.setPositiveButton("Oui", dialogClickListener)
+						.setNegativeButton("Non", dialogClickListener)
+						.setIcon(android.R.drawable.ic_menu_edit).show();
 			}
 		});
 	}
 
 	/**
-	* Update the selected grammar.
-	**/
+	 * Update the selected grammar.
+	 **/
 	public static void modifyGrammar(int groupPosition, final int childPosition) {
 		groupPositionInTree = groupPosition;
 		childPositionInTree = childPosition;
 		editGram.performClick();
 	}
-	
+
 	/**
-	* Delete the selected grammar.
-	**/
+	 * Delete the selected grammar.
+	 **/
 	public static void deleteGrammar(int groupPosition, final int childPosition) {
 		groupPositionInTree = groupPosition;
 		childPositionInTree = childPosition;
 		delGram.performClick();
 	}
-	
+
 	/**
-	* Prepare the categories list.
-	**/
-    private void prepareListData() {
-    	
-    	List<Grammar> grammars = data.getGrammars();
-    	
-        listDataHeaderGrammarRules = new ArrayList<String>();
-        hmGrammarRules = new HashMap<String, List<String>>();
+	 * Prepare the categories list.
+	 **/
+	private void prepareListData() {
 
-        listDataHeaderGrammarRules.add("Selectionner une grammaire");
-        listDataGram = new ArrayList<String>();
+		List<Grammar> grammars = data.getGrammars();
 
-        for (int i =0; i < grammars.size(); i++) {
-        	listDataGram.add(grammars.get(i).getName());
-        }
-        hmGrammarRules.put(listDataHeaderGrammarRules.get(0), listDataGram); 
-    }
+		listDataHeaderGrammarRules = new ArrayList<String>();
+		hmGrammarRules = new HashMap<String, List<String>>();
+
+		listDataHeaderGrammarRules.add("Selectionner une grammaire");
+		listDataGram = new ArrayList<String>();
+
+		for (int i = 0; i < grammars.size(); i++) {
+			listDataGram.add(grammars.get(i).getName());
+		}
+		hmGrammarRules.put(listDataHeaderGrammarRules.get(0), listDataGram);
+	}
 }

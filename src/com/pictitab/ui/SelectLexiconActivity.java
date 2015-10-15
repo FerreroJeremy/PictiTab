@@ -38,33 +38,41 @@ public class SelectLexiconActivity extends Activity {
 	private GridLayout gridLexiconLayout;
 	private ArrayList<GridLayout> lexiconButtons;
 	private ScrollView listLexicon;
-	
-	private int buttonWidth  = 90;
-	private int padding      = 5;
-	
-	/*====================================================================================================================*/
-	/*==													EVENEMENTS													==*/
-	/*====================================================================================================================*/
-	
+
+	private int buttonWidth = 90;
+	private int padding = 5;
+
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+	/* == EVENEMENTS == */
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		data =(AppData)getIntent().getBundleExtra(MainActivity.DATAEXTRA_KEY).getParcelable(MainActivity.DATA_KEY);
+		data = (AppData) getIntent().getBundleExtra(MainActivity.DATAEXTRA_KEY)
+				.getParcelable(MainActivity.DATA_KEY);
 		this.toDisplay();
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		this.toDisplay();
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		this.data =(AppData)data.getBundleExtra(MainActivity.DATAEXTRA_KEY).getParcelable(MainActivity.DATA_KEY);
+		this.data = (AppData) data.getBundleExtra(MainActivity.DATAEXTRA_KEY)
+				.getParcelable(MainActivity.DATA_KEY);
 	}
-	
-	@Override  
+
+	@Override
 	public void onBackPressed() {
 		Bundle b = new Bundle();
 		b.putParcelable(MainActivity.DATA_KEY, data);
@@ -72,33 +80,40 @@ public class SelectLexiconActivity extends Activity {
 		setResult(RESULT_OK, this.getIntent());
 		finish();
 	}
-	
-	/*====================================================================================================================*/
-	/*==													PROCESS                                                     ==*/
-	/*====================================================================================================================*/
-	
-	/** 
-     * Display the window.
-     **/
+
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+	/* == PROCESS == */
+	/*
+	 * ==========================================================================
+	 * ==========================================
+	 */
+
+	/**
+	 * Display the window.
+	 **/
 	private void toDisplay() {
 		setContentView(R.layout.activity_select_lexicon);
-		
+
 		// portrait orientation
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		
+
 		createAddButton();
 
-		listLexicon =new ScrollView(this);
-		gridLexiconLayout =new GridLayout(this);
+		listLexicon = new ScrollView(this);
+		gridLexiconLayout = new GridLayout(this);
 
 		Display display = getWindowManager().getDefaultDisplay();
 		int orientation = getResources().getConfiguration().orientation;
-		int nbCols = UITools.getNbColumn(display, orientation, buttonWidth, padding);
-		
+		int nbCols = UITools.getNbColumn(display, orientation, buttonWidth,
+				padding);
+
 		gridLexiconLayout.setColumnCount(nbCols);
 
 		createProfilsGridToDisplay();
-		
+
 		listLexicon.addView(gridLexiconLayout);
 		layout = new LinearLayout(this);
 		layout.setOrientation(LinearLayout.VERTICAL);
@@ -107,37 +122,38 @@ public class SelectLexiconActivity extends Activity {
 
 		setContentView(layout);
 	}
-	
+
 	/**
-     * Redraw the window for the creation template.
-     **/
+	 * Redraw the window for the creation template.
+	 **/
 	private void createProfilsGridToDisplay() {
 
-		List<Lexicon> lexicons =data.getLexicon();
-		lexiconButtons =new ArrayList<GridLayout>();
-		for(int i=0;i<lexicons.size();i++) {
+		List<Lexicon> lexicons = data.getLexicon();
+		lexiconButtons = new ArrayList<GridLayout>();
+		for (int i = 0; i < lexicons.size(); i++) {
 
 			final String mot = lexicons.get(i).getWord();
 			final String src = lexicons.get(i).getPictureSource();
-			
+
 			// Get the picture.
 			ImageButton tmpButton = loadPicture(src);
-			
+
 			// Set the text.
-			TextView tmpName =new TextView(this);
+			TextView tmpName = new TextView(this);
 			tmpName.setGravity(Gravity.CENTER);
 			tmpName.setText(mot);
-			
+
 			GridLayout tmpLayout = createLexicon(tmpButton, tmpName);
 
 			lexiconButtons.add(tmpLayout);
-			
+
 			gridLexiconLayout.addView(tmpLayout);
-			
+
 			tmpButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Intent intent = new Intent(SelectLexiconActivity.this, LexiconAdministrationActivity.class);
+					Intent intent = new Intent(SelectLexiconActivity.this,
+							LexiconAdministrationActivity.class);
 					Bundle b = new Bundle();
 					b.putParcelable(MainActivity.DATA_KEY, data);
 					intent.putExtra(MainActivity.DATAEXTRA_KEY, b);
@@ -147,22 +163,23 @@ public class SelectLexiconActivity extends Activity {
 			});
 		}
 	}
-	
+
 	/**
-     * Draw the creation button in the window.
-     **/
+	 * Draw the creation button in the window.
+	 **/
 	private void createAddButton() {
 		// Dynamic stuff
 		addLexicon = new Button(this);
 		addLexicon.setHeight(100);
 		addLexicon.setText("Ajouter une entree");
-		
+
 		// Action of the button
 		addLexicon.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(SelectLexiconActivity.this, LexiconAdministrationActivity.class);
-				
+				Intent i = new Intent(SelectLexiconActivity.this,
+						LexiconAdministrationActivity.class);
+
 				Bundle b = new Bundle();
 				b.putParcelable(MainActivity.DATA_KEY, data);
 				i.putExtra(MainActivity.DATAEXTRA_KEY, b);
@@ -170,13 +187,15 @@ public class SelectLexiconActivity extends Activity {
 			}
 		});
 	}
-	
+
 	/**
-     * Load a picture of a lexicon entry.
-	 * @param pictureName(String): name of the lexicon entry
+	 * Load a picture of a lexicon entry.
+	 * 
+	 * @param pictureName
+	 *            (String): name of the lexicon entry
 	 **/
 	private ImageButton loadPicture(String pictureName) {
-		ImageButton tmpButton =new ImageButton(this);
+		ImageButton tmpButton = new ImageButton(this);
 		try {
 			InputStream inputStream = new FileInputStream(pictureName);
 			Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
@@ -187,16 +206,18 @@ public class SelectLexiconActivity extends Activity {
 		}
 		return tmpButton;
 	}
-	
+
 	/**
-     * Set a picture button in the grid.
-	 * @param button(ImageButton): button
+	 * Set a picture button in the grid.
+	 * 
+	 * @param button
+	 *            (ImageButton): button
 	 **/
 	private GridLayout createLexicon(ImageButton button, TextView name) {
-		GridLayout lexiconLayout =new GridLayout(this);
+		GridLayout lexiconLayout = new GridLayout(this);
 		lexiconLayout.setColumnCount(1);
 		lexiconLayout.setPadding(padding, padding, padding, padding);
-		
+
 		lexiconLayout.addView(button);
 		lexiconLayout.addView(name);
 		return lexiconLayout;

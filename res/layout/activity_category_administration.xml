@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/eduction_d_apos_une_categorie"
+        android:text="@string/category_edition"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="45sp" />
 
@@ -50,7 +50,7 @@
             android:layout_marginLeft="150dp"
             android:layout_marginRight="150dp"
             android:layout_marginTop="@dimen/normal_padding"
-            android:text="@string/ajouter" />
+            android:text="@string/add" />
     </LinearLayout>
 
 </LinearLayout>

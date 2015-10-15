@@ -19,7 +19,7 @@
             android:id="@+id/addGram"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:text="@string/ajouter_une_grammaire" />
+            android:text="@string/add_grammar" />
 
     </LinearLayout>
 

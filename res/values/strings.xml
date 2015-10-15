@@ -4,11 +4,11 @@
 <!-- Dynamic strings -->
 
     <string name="root">ALL</string>
-    <string name="file_not_created">File could not be created</string>
-    <string name="file_not_found">File could not be found</string>
-    <string name="unwritten_file">File could not be written</string>
-    <string name="unread_file">File could not be read</string>
-    <string name="warning">Warning</string>
+    <string name="file_not_created">File could not be created!</string>
+    <string name="file_not_found">File could not be found!</string>
+    <string name="unwritten_file">File could not be written!</string>
+    <string name="unread_file">File could not be read!</string>
+    <string name="warning">Warning!</string>
     <string name="add">Add</string>
     <string name="create">Create</string>
     <string name="update">Modify</string>
@@ -21,20 +21,20 @@
     <string name="no">No</string>
     <string name="dialog_box_rename">Do you really want to rename this item?</string>
     <string name="dialog_box_delete">Do you really want to delete this item?</string>
-    <string name="dialog_box_no_delete">You can not delete this item.</string>
     <string name="dialog_box_update">Do you really want to modify this item?</string>
-    <string name="dialog_box_incorrect_field">Please complete all fields correctly.</string>
-    <string name="dialog_box_already_exist">This item already exists.</string>
-    <string name="dialog_box_name">Please give a name to the item.</string>
+    <string name="external_memory_not_found">Problem of storage rights or memory not found!</string>
+    <string name="dialog_box_no_delete">You can not delete this item!</string>
+    <string name="dialog_box_incorrect_field">Please complete all fields correctly!</string>
+    <string name="dialog_box_already_exist">This item already exists!</string>
+    <string name="dialog_box_name">Please give a name to the item!</string>
+    <string name="no_selected_element">No item selected!</string>
     <string name="all_grammars">All grammars&#8230;</string>
     <string name="child_grammar">Grammars of the child&#8230;</string>
-    <string name="no_selected_element">No item selected.</string>
     <string name="selected_element">Select an item</string>
-    <string name="category">Category : </string>
+    <string name="category">Category: </string>
     <string name="child_logs">Logs of the child</string>
     <string name="word_not_found">Word no longer exists&#8230;</string>
     <string name="empty_session">Empty session&#8230;</string>
-    <string name="external_memory_not_found">Problem of storage rights or memory not found!</string>
     <string name="select_parent_category">Select a category to which add a sub-category</string>
     
 <!-- Graphic strings -->
@@ -62,11 +62,11 @@
     <string name="add_child">Add a child</string>
     <string name="valid">validate</string>
     <string name="suppression">Remove</string>
-    <string name="child_last_name">Child's last name</string>
-    <string name="child_first_name">Child's first name'</string>
+    <string name="child_last_name">Child\'s last name</string>
+    <string name="child_first_name">Child\'s first name</string>
     <string name="child_profile_edition">Edition of a child profile</string>
     <string name="category_edition">Edition of a category</string>
-    <string name="category_name">Category's name'</string>
+    <string name="category_name">Category\'s name</string>
     <string name="grammar_edition">Edition of a grammar</string>
     <string name="title_lexicon_administration">Edition of a lexicon entry</string>
     <string name="lexicon_hint_word">Word</string>
