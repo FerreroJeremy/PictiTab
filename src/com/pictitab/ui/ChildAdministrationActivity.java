@@ -235,7 +235,7 @@ public class ChildAdministrationActivity extends Activity {
 
 		// Set the text of the valid button from "Valider" (add mode) to
 		// "Modifier" (update mode)
-		valideButton.setText("Modifier");
+		valideButton.setText(R.string.update);
 
 		// Action of the delete button
 		deleteButton.setOnClickListener(new OnClickListener() {
@@ -261,11 +261,10 @@ public class ChildAdministrationActivity extends Activity {
 				// Alert dialog box
 				AlertDialog.Builder ab = new AlertDialog.Builder(
 						ChildAdministrationActivity.this);
-				ab.setTitle("Suppression")
-						.setMessage(
-								"Voulez-vous vraiment supprimer ce profil ?")
-						.setPositiveButton("Oui", dialogClickListener)
-						.setNegativeButton("Non", dialogClickListener)
+				ab.setTitle(R.string.delete)
+						.setMessage(R.string.dialog_box_delete)
+						.setPositiveButton(R.string.yes, dialogClickListener)
+						.setNegativeButton(R.string.no, dialogClickListener)
 						.setIcon(android.R.drawable.ic_delete).show();
 			}
 		});
@@ -283,12 +282,13 @@ public class ChildAdministrationActivity extends Activity {
 							if (nom.equals("") || prenom.equals("")) {
 								AlertDialog.Builder ab = new AlertDialog.Builder(
 										ChildAdministrationActivity.this);
-								ab.setTitle("Avertissement")
+								ab.setTitle(R.string.warning)
 										.setMessage(
-												"Veuillez remplir tous les champs correctement.")
+												R.string.dialog_box_incorrect_field)
 										.setIcon(
 												android.R.drawable.ic_notification_clear_all)
-										.setNeutralButton("Ok", null).show();
+										.setNeutralButton(R.string.ok, null)
+										.show();
 							} else {
 								deleteChild(picturePath, nom, prenom);
 								addChild();
@@ -302,10 +302,10 @@ public class ChildAdministrationActivity extends Activity {
 
 				AlertDialog.Builder ab = new AlertDialog.Builder(
 						ChildAdministrationActivity.this);
-				ab.setTitle("Modification")
-						.setMessage("Voulez-vous vraiment modifier ce profil ?")
-						.setPositiveButton("Oui", dialogClickListener)
-						.setNegativeButton("Non", dialogClickListener)
+				ab.setTitle(R.string.modify)
+						.setMessage(R.string.dialog_box_update)
+						.setPositiveButton(R.string.yes, dialogClickListener)
+						.setNegativeButton(R.string.no, dialogClickListener)
 						.setIcon(android.R.drawable.ic_menu_edit).show();
 			}
 		});
@@ -339,11 +339,10 @@ public class ChildAdministrationActivity extends Activity {
 		if (familyName.equals("") || firstName.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(
 					ChildAdministrationActivity.this);
-			ab.setTitle("Avertissement")
-					.setMessage(
-							"Veuillez remplir tous les champs correctement.")
+			ab.setTitle(R.string.warning)
+					.setMessage(R.string.dialog_box_incorrect_field)
 					.setIcon(android.R.drawable.ic_notification_clear_all)
-					.setNeutralButton("Ok", null).show();
+					.setNeutralButton(R.string.ok, null).show();
 		} else {
 			int birthDay = birth_date.getDayOfMonth();
 			int birthMonth = birth_date.getMonth() + 1;
@@ -447,7 +446,8 @@ public class ChildAdministrationActivity extends Activity {
 
 		listDataHeaderAllGram = new ArrayList<String>();
 		listDataChildAllGram = new HashMap<String, List<String>>();
-		listDataHeaderAllGram.add("Toutes les grammaires...");
+		String all_grammars = getResources().getString(R.string.all_grammars);
+		listDataHeaderAllGram.add(all_grammars);
 		List<String> topAllCat = new ArrayList<String>();
 
 		for (int i = 0; i < grammars.size(); i++) {
@@ -461,7 +461,8 @@ public class ChildAdministrationActivity extends Activity {
 
 		listDataHeaderChildGram = new ArrayList<String>();
 		listDataChildChildGram = new HashMap<String, List<String>>();
-		listDataHeaderChildGram.add("Grammaires de l'enfant...");
+		String child_grammar = getResources().getString(R.string.child_grammar);
+		listDataHeaderChildGram.add(child_grammar);
 
 		if (nom != null) {
 			ArrayList<Grammar> grammarsOfChild = data.getChildByName(nom,

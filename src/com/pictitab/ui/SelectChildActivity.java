@@ -155,7 +155,7 @@ public class SelectChildActivity extends Activity {
 		// Dynamic creation
 		addChild = new Button(this);
 		addChild.setHeight(100);
-		addChild.setText("Ajouter un enfant");
+		addChild.setText(R.string.add);
 
 		// Action of the button
 		addChild.setOnClickListener(new OnClickListener() {

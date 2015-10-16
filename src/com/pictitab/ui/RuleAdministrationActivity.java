@@ -201,7 +201,9 @@ public class RuleAdministrationActivity extends Activity {
 		compteur = 0;
 		tree = new SparseArray<List<Category>>();
 
-		listDataHeaderAllCat.add("Selectionner une categorie...");
+		String selected_element = getResources().getString(
+				R.string.selected_element);
+		listDataHeaderAllCat.add(selected_element);
 
 		// Fill the list
 		listDataCategories = new ArrayList<String>();

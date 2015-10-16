@@ -177,12 +177,13 @@ public class SelectCategoryActivity extends Activity {
 							if (subCategoryName.equals("TOUT")) {
 								AlertDialog.Builder ab = new AlertDialog.Builder(
 										SelectCategoryActivity.this);
-								ab.setTitle("Avertissement")
+								ab.setTitle(R.string.warning)
 										.setMessage(
-												"Vous ne pouvez pas supprimer la categorie racine.")
+												R.string.dialog_box_no_delete)
 										.setIcon(
 												android.R.drawable.ic_notification_clear_all)
-										.setNeutralButton("Ok", null).show();
+										.setNeutralButton(R.string.ok, null)
+										.show();
 							} else {
 								// Delete the selected category
 								data.deleteCategoryAndItsChildren(subCategoryName);
@@ -194,7 +195,8 @@ public class SelectCategoryActivity extends Activity {
 								List<Category> categories = data
 										.getNotChildCategories();
 								if (categories != null) {
-									// Add all the sub-categories of the selected categories
+									// Add all the sub-categories of the
+									// selected categories
 									for (int i = 0; i < categories.size(); i++) {
 										topAllCat.add(categories.get(i)
 												.getName());
@@ -221,11 +223,10 @@ public class SelectCategoryActivity extends Activity {
 				// Suppression alert dialog box
 				AlertDialog.Builder ab = new AlertDialog.Builder(
 						SelectCategoryActivity.this);
-				ab.setTitle("Modification")
-						.setMessage(
-								"Voulez-vous vraiment supprimer cette categorie ?")
-						.setPositiveButton("Oui", dialogClickListener)
-						.setNegativeButton("Non", dialogClickListener)
+				ab.setTitle(R.string.modify)
+						.setMessage(R.string.dialog_box_no_delete)
+						.setPositiveButton(R.string.yes, dialogClickListener)
+						.setNegativeButton(R.string.no, dialogClickListener)
 						.setIcon(android.R.drawable.ic_menu_edit).show();
 			}
 		});
@@ -289,8 +290,9 @@ public class SelectCategoryActivity extends Activity {
 		compteur = 0;
 		tree = new SparseArray<List<Category>>();
 
-		listDataHeaderAllCat
-				.add("Selectionner une categorie a laquelle ajouter une fille");
+		String select_parent_category = getResources().getString(
+				R.string.select_parent_category);
+		listDataHeaderAllCat.add(select_parent_category);
 		topAllCat = new ArrayList<String>();
 		// Fill the list
 		for (int i = 0; i < categories.size(); i++) {

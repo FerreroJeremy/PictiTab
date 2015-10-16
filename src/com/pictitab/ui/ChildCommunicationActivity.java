@@ -95,10 +95,10 @@ public class ChildCommunicationActivity extends Activity {
 		if (num == -1) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(
 					ChildCommunicationActivity.this);
-			ab.setTitle("Avertissement")
-					.setMessage("Aucun enfant selectionne.")
+			ab.setTitle(R.string.warning)
+					.setMessage(R.string.no_selected_element)
 					.setIcon(android.R.drawable.ic_notification_clear_all)
-					.setNeutralButton("Ok", null).show();
+					.setNeutralButton(R.string.ok, null).show();
 			finish();
 		}
 		// Get the child profile and its historic

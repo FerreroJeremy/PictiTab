@@ -46,13 +46,13 @@ public class XMLTools {
 		try {
 			newxmlfile.createNewFile();
 		} catch (IOException e) {
-			
+
 		}
 		FileOutputStream fileOS = null;
 		try {
 			fileOS = new FileOutputStream(newxmlfile);
 		} catch (FileNotFoundException e) {
-			
+
 		}
 		XmlSerializer serializer = Xml.newSerializer();
 		try {
@@ -64,7 +64,7 @@ public class XMLTools {
 			serializer.flush();
 			fileOS.close();
 		} catch (Exception e) {
-			
+
 		}
 	}
 

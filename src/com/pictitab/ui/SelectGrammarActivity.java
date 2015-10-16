@@ -191,11 +191,10 @@ public class SelectGrammarActivity extends Activity {
 				// Alert box
 				AlertDialog.Builder ab = new AlertDialog.Builder(
 						SelectGrammarActivity.this);
-				ab.setTitle("Modification")
-						.setMessage(
-								"Voulez-vous vraiment supprimer cette grammaire ?")
-						.setPositiveButton("Oui", dialogClickListener)
-						.setNegativeButton("Non", dialogClickListener)
+				ab.setTitle(R.string.modify)
+						.setMessage(R.string.dialog_box_delete)
+						.setPositiveButton(R.string.yes, dialogClickListener)
+						.setNegativeButton(R.string.no, dialogClickListener)
 						.setIcon(android.R.drawable.ic_menu_edit).show();
 			}
 		});
@@ -229,7 +228,9 @@ public class SelectGrammarActivity extends Activity {
 		listDataHeaderGrammarRules = new ArrayList<String>();
 		hmGrammarRules = new HashMap<String, List<String>>();
 
-		listDataHeaderGrammarRules.add("Selectionner une grammaire");
+		String selected_element = getResources().getString(
+				R.string.selected_element);
+		listDataHeaderGrammarRules.add(selected_element);
 		listDataGram = new ArrayList<String>();
 
 		for (int i = 0; i < grammars.size(); i++) {

@@ -134,7 +134,7 @@ public class GrammarAdministrationActivity extends Activity {
 			GrammarAdministrationActivity.grammarReturn = null;
 			GrammarAdministrationActivity.grammarName.setText(nameByIntent);
 			currentGrammar = nameByIntent;
-			valideButton.setText("Modifier");
+			valideButton.setText(R.string.update);
 
 			valideButton.setOnClickListener(new OnClickListener() {
 				@Override
@@ -204,7 +204,9 @@ public class GrammarAdministrationActivity extends Activity {
 		listDataHeaderRules = new ArrayList<String>();
 		listDataChildRules = new HashMap<String, List<String>>();
 
-		listDataHeaderRules.add("Selectionner une regle");
+		String selected_element = getResources().getString(
+				R.string.selected_element);
+		listDataHeaderRules.add(selected_element);
 		listDataRules = new ArrayList<String>();
 
 		int size = 0;
@@ -237,10 +239,9 @@ public class GrammarAdministrationActivity extends Activity {
 		if (newName.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(
 					GrammarAdministrationActivity.this);
-			ab.setTitle("Avertissement")
-					.setMessage("Veuillez donner un nom a la grammaire.")
+			ab.setTitle(R.string.warning).setMessage(R.string.dialog_box_name)
 					.setIcon(android.R.drawable.ic_notification_clear_all)
-					.setNeutralButton("Ok", null).show();
+					.setNeutralButton(R.string.ok, null).show();
 		} else {
 			Grammar g = data.getGrammarByName(currentGrammar);
 			g.rename(newName);
@@ -260,10 +261,9 @@ public class GrammarAdministrationActivity extends Activity {
 		if (nameInTextView.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(
 					GrammarAdministrationActivity.this);
-			ab.setTitle("Avertissement")
-					.setMessage("Veuillez donner un nom a la grammaire.")
+			ab.setTitle(R.string.warning).setMessage(R.string.dialog_box_name)
 					.setIcon(android.R.drawable.ic_notification_clear_all)
-					.setNeutralButton("Ok", null).show();
+					.setNeutralButton(R.string.ok, null).show();
 		} else {
 			data.addGrammar(new Grammar(nameInTextView));
 			XMLTools.printGrammars(getApplicationContext(), data.getGrammars());
@@ -281,10 +281,9 @@ public class GrammarAdministrationActivity extends Activity {
 		if (nameInTextView.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(
 					GrammarAdministrationActivity.this);
-			ab.setTitle("Avertissement")
-					.setMessage("Veuillez donner un nom a la grammaire.")
+			ab.setTitle(R.string.warning).setMessage(R.string.dialog_box_name)
 					.setIcon(android.R.drawable.ic_notification_clear_all)
-					.setNeutralButton("Ok", null).show();
+					.setNeutralButton(R.string.ok, null).show();
 		} else {
 			data.addGrammar(new Grammar(nameInTextView));
 			Intent intent = new Intent(GrammarAdministrationActivity.this,
@@ -414,11 +413,10 @@ public class GrammarAdministrationActivity extends Activity {
 				// Alert box to confirm
 				AlertDialog.Builder ab = new AlertDialog.Builder(
 						GrammarAdministrationActivity.this);
-				ab.setTitle("Modification")
-						.setMessage(
-								"Voulez-vous vraiment supprimer cette regle ?")
-						.setPositiveButton("Oui", dialogClickListener)
-						.setNegativeButton("Non", dialogClickListener)
+				ab.setTitle(R.string.modify)
+						.setMessage(R.string.dialog_box_delete)
+						.setPositiveButton(R.string.yes, dialogClickListener)
+						.setNegativeButton(R.string.no, dialogClickListener)
 						.setIcon(android.R.drawable.ic_menu_edit).show();
 			}
 		});

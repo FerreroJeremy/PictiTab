@@ -99,7 +99,7 @@ public class ChildLogActivity extends Activity {
 			generalLayout = (LinearLayout) findViewById(R.id.generalLayout);
 
 			titre = (TextView) findViewById(R.id.textView1);
-			titre.setText("Historique de l'enfant " + prenom);
+			titre.setText(R.string.child_logs + prenom);
 
 			// Get child's logs
 			logs = XMLTools.loadLogs(this, nom, prenom, data);
@@ -148,7 +148,7 @@ public class ChildLogActivity extends Activity {
 
 							} else {
 								TextView tmp = new TextView(this);
-								tmp.setText("mot n'existant plus...");
+								tmp.setText(R.string.word_not_found);
 								dateLayout.addView(tmp);
 							}
 
@@ -161,7 +161,7 @@ public class ChildLogActivity extends Activity {
 						}
 					} else {
 						TextView tmp = new TextView(this);
-						tmp.setText("session vide...");
+						tmp.setText(R.string.empty_session);
 						dateLayout.addView(tmp);
 					}
 

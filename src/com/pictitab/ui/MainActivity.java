@@ -71,8 +71,8 @@ public class MainActivity extends Activity {
 				&& Environment.getExternalStorageState().equals(
 						Environment.MEDIA_MOUNTED_READ_ONLY)) {
 			Toast.makeText(getApplicationContext(),
-					"Probleme de droits ou memoire introuvable !",
-					Toast.LENGTH_LONG).show();
+					R.string.external_memory_not_found, Toast.LENGTH_LONG)
+					.show();
 		}
 		// Creation of directory if they don't exist
 		String pathApp = Environment.getExternalStorageDirectory()

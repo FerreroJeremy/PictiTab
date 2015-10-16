@@ -171,7 +171,7 @@ public class SelectLexiconActivity extends Activity {
 		// Dynamic stuff
 		addLexicon = new Button(this);
 		addLexicon.setHeight(100);
-		addLexicon.setText("Ajouter une entree");
+		addLexicon.setText(R.string.add);
 
 		// Action of the button
 		addLexicon.setOnClickListener(new OnClickListener() {

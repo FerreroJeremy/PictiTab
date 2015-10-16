@@ -345,8 +345,8 @@ public class AppData implements Parcelable {
 	 * 
 	 * @param newLexicon
 	 *            (List<Lexicon>): new lexicon.
-	 * @return true if the lexicon entries are updated (i.e. newLexicon !=
-	 *         null) else false.
+	 * @return true if the lexicon entries are updated (i.e. newLexicon != null)
+	 *         else false.
 	 **/
 	public boolean setLexicon(List<Lexicon> newLexicon) {
 		if (newLexicon != null) {
@@ -475,8 +475,8 @@ public class AppData implements Parcelable {
 	 * 
 	 * @param newGrammars
 	 *            (ArrayList<Grammar>): grammars to loaded.
-	 * @return true if the grammars are updated (i.e. newProfils != null)
-	 *         else false.
+	 * @return true if the grammars are updated (i.e. newProfils != null) else
+	 *         false.
 	 **/
 	public boolean setGrammars(ArrayList<Grammar> newGrammars) {
 		if (newGrammars != null) {
@@ -606,8 +606,8 @@ public class AppData implements Parcelable {
 	 * 
 	 * @param newProfils
 	 *            (ArrayList<Child>): profiles to load.
-	 * @return true if the profiles are loaded (i.e. newProfils != null)
-	 *         else false.
+	 * @return true if the profiles are loaded (i.e. newProfils != null) else
+	 *         false.
 	 **/
 	public boolean setProfils(ArrayList<Child> newProfils) {
 		if (newProfils != null) {

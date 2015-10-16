@@ -184,7 +184,9 @@ public class LexiconAdministrationActivity extends Activity {
 	private void prepareListData() {
 
 		listDataHeaderAllCat = new ArrayList<String>();
-		listDataHeaderAllCat.add("Selectionner une categorie...");
+		String selected_element = getResources().getString(
+				R.string.selected_element);
+		listDataHeaderAllCat.add(selected_element);
 		listDataChildAllCat = new HashMap<String, List<String>>();
 
 		compteur = 0;
@@ -226,7 +228,7 @@ public class LexiconAdministrationActivity extends Activity {
 				categorieName = listDataChildAllCat.get(
 						listDataHeaderAllCat.get(groupPosition)).get(
 						childPosition);
-				selectedCategory.setText("Categorie : " + categorieName);
+				selectedCategory.setText(R.string.category + categorieName);
 				listAdapter.notifyDataSetChanged();
 				return false;
 			}
@@ -244,7 +246,7 @@ public class LexiconAdministrationActivity extends Activity {
 		Lexicon lex = data.getWordByName(mot);
 		String word = lex.getWord();
 		Category c = lex.getCategory();
-		selectedCategory.setText("Categorie : " + c.getName());
+		selectedCategory.setText(R.string.category + c.getName());
 		this.categorieName = c.getName();
 
 		// Identify the picture origin
@@ -267,7 +269,7 @@ public class LexiconAdministrationActivity extends Activity {
 		deleteButton.setTextColor(Color.RED);
 
 		// Change validate button text
-		valideButton.setText("Modifier");
+		valideButton.setText(R.string.update);
 
 		// Action of delete button
 		deleteButton.setOnClickListener(new OnClickListener() {
@@ -290,11 +292,10 @@ public class LexiconAdministrationActivity extends Activity {
 				};
 				AlertDialog.Builder ab = new AlertDialog.Builder(
 						LexiconAdministrationActivity.this);
-				ab.setTitle("Suppression")
-						.setMessage(
-								"Voulez-vous vraiment supprimer cette entree ?")
-						.setPositiveButton("Oui", dialogClickListener)
-						.setNegativeButton("Non", dialogClickListener)
+				ab.setTitle(R.string.delete)
+						.setMessage(R.string.dialog_box_delete)
+						.setPositiveButton(R.string.yes, dialogClickListener)
+						.setNegativeButton(R.string.no, dialogClickListener)
 						.setIcon(android.R.drawable.ic_delete).show();
 			}
 		});
@@ -318,11 +319,10 @@ public class LexiconAdministrationActivity extends Activity {
 				};
 				AlertDialog.Builder ab = new AlertDialog.Builder(
 						LexiconAdministrationActivity.this);
-				ab.setTitle("Modification")
-						.setMessage(
-								"Voulez-vous vraiment modifier cette entree ?")
-						.setPositiveButton("Oui", dialogClickListener)
-						.setNegativeButton("Non", dialogClickListener)
+				ab.setTitle(R.string.modify)
+						.setMessage(R.string.dialog_box_update)
+						.setPositiveButton(R.string.yes, dialogClickListener)
+						.setNegativeButton(R.string.no, dialogClickListener)
 						.setIcon(android.R.drawable.ic_menu_edit).show();
 			}
 		});
@@ -373,20 +373,19 @@ public class LexiconAdministrationActivity extends Activity {
 		if (newName.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(
 					LexiconAdministrationActivity.this);
-			ab.setTitle("Avertissement")
-					.setMessage("Veuillez donner un nom au mot.")
+			ab.setTitle(R.string.warning).setMessage(R.string.dialog_box_name)
 					.setIcon(android.R.drawable.ic_notification_clear_all)
-					.setNeutralButton("Ok", null).show();
+					.setNeutralButton(R.string.ok, null).show();
 		}
 		// If the lexicon entry already exists
 		else if ((!newName.equals(mot))
 				&& (wordIsExist(newName, this.categorieName))) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(
 					LexiconAdministrationActivity.this);
-			ab.setTitle("Avertissement")
-					.setMessage("Cette entree existe deja.")
+			ab.setTitle(R.string.warning)
+					.setMessage(R.string.dialog_box_already_exist)
 					.setIcon(android.R.drawable.ic_notification_clear_all)
-					.setNeutralButton("Ok", null).show();
+					.setNeutralButton(R.string.ok, null).show();
 		} else {
 			Category newCategory = null;
 			if (categorieName.equals("")) {
@@ -432,20 +431,19 @@ public class LexiconAdministrationActivity extends Activity {
 				|| this.categorieName.equals("")) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(
 					LexiconAdministrationActivity.this);
-			ab.setTitle("Avertissement")
-					.setMessage(
-							"Veuillez renseigner toutes les informations correctement.")
+			ab.setTitle(R.string.warning)
+					.setMessage(R.string.dialog_box_incorrect_field)
 					.setIcon(android.R.drawable.ic_notification_clear_all)
-					.setNeutralButton("Ok", null).show();
+					.setNeutralButton(R.string.ok, null).show();
 		}
 		// If the entry already exists
 		else if (wordIsExist(name, this.categorieName)) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(
 					LexiconAdministrationActivity.this);
-			ab.setTitle("Avertissement")
-					.setMessage("Cette entree existe deja.")
+			ab.setTitle(R.string.warning)
+					.setMessage(R.string.dialog_box_already_exist)
 					.setIcon(android.R.drawable.ic_notification_clear_all)
-					.setNeutralButton("Ok", null).show();
+					.setNeutralButton(R.string.ok, null).show();
 		}
 		// Load the picture
 		else {
@@ -551,8 +549,8 @@ public class LexiconAdministrationActivity extends Activity {
 	}
 
 	/**
-	 * Redraw the list with the child categories (sub-categories)
-	 * of the selected category
+	 * Redraw the list with the child categories (sub-categories) of the
+	 * selected category
 	 * 
 	 * @param groupPosition
 	 *            (int): column id
