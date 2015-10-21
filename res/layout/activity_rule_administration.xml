@@ -79,7 +79,7 @@
             android:layout_marginLeft="150dp"
             android:layout_marginRight="150dp"
             android:layout_marginTop="30dp"
-            android:text="Valider"
+            android:text="@string/valid"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>

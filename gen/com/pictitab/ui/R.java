@@ -138,11 +138,13 @@ public final class R {
         public static final int add_category=0x7f060044;
         public static final int add_child=0x7f060035;
         public static final int add_grammar=0x7f060045;
+        public static final int add_rule=0x7f06004a;
         public static final int all_grammars=0x7f060019;
         /**  Graphic strings 
  Graphic strings 
          */
         public static final int app_name=0x7f060021;
+        public static final int birthdate=0x7f060047;
         public static final int categories_manager=0x7f060033;
         public static final int category=0x7f06001c;
         public static final int category_edition=0x7f06003b;
@@ -167,6 +169,7 @@ public final class R {
         public static final int file_not_created=0x7f060001;
         public static final int file_not_found=0x7f060002;
         public static final int grammar_edition=0x7f06003d;
+        public static final int grammar_name=0x7f060048;
         public static final int grammars_manager=0x7f060032;
         public static final int lexicon_hint_word=0x7f06003f;
         public static final int lexicon_manager=0x7f060031;
@@ -183,6 +186,7 @@ public final class R {
  Dynamic strings 
          */
         public static final int root=0x7f060000;
+        public static final int rule_edition=0x7f060049;
         public static final int search_in_device=0x7f060041;
         public static final int selectLexiconTitle=0x7f060040;
         public static final int select_parent_category=0x7f060020;

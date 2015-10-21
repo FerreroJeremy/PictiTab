@@ -60,7 +60,7 @@
     <string name="categories_manager">Categories management</string>
     <string name="situations_manager">Situations management</string>
     <string name="add_child">Add a child</string>
-    <string name="valid">validate</string>
+    <string name="valid">OK!</string>
     <string name="suppression">Remove</string>
     <string name="child_last_name">Child\'s last name</string>
     <string name="child_first_name">Child\'s first name</string>
@@ -77,5 +77,10 @@
     <string name="add_category">Add a category</string>
     <string name="add_grammar">Add a grammar</string>
     <string name="logs">Historic</string>
+    
+    <string name="birthdate">Birthdate</string>
+    <string name="grammar_name">Grammar\'s name</string>
+    <string name="rule_edition">Edition of a Rule</string>
+    <string name="add_rule">Add a rule</string>
 
 </resources>

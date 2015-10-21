@@ -77,5 +77,10 @@
     <string name="add_category">Ajouter une catégorie</string>
     <string name="add_grammar">Ajouter une grammaire</string>
     <string name="logs">Historique</string>
+    
+    <string name="birthdate">Date de naissance</string>
+    <string name="grammar_name">Nom de la grammaire</string>
+    <string name="rule_edition">Edition de la règle</string>
+    <string name="add_rule">Ajout d\'une règle</string>
 
 </resources>

@@ -36,7 +36,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="Mot correspondant à l&apos;image"
+                    android:text="@string/lexicon_hint_word"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/normal_text_size"
                     tools:ignore="HardcodedText" />
@@ -64,7 +64,7 @@
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="40dp"
-                    android:text="Aucune catégorie sélectionnée"
+                    android:text="@string/no_selected_element"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/normal_text_size"
                     tools:ignore="HardcodedText" />
@@ -79,7 +79,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:paddingTop="@dimen/normal_padding"
-            android:text="Sélectionner une image"
+            android:text="@string/shoot_picture"
             android:textColor="@color/black_color"
             android:textSize="@dimen/normal_text_size"
             tools:ignore="HardcodedText" />
@@ -121,7 +121,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="Parcourir..."
+                        android:text="@string/search_in_device"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -136,7 +136,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="Prendre une photo"
+                        android:text="@string/shoot_picture"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>

@@ -30,11 +30,8 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 
 ## ToDo
 
-- [X] quick and dirty translation in English of comments and documentation
-- [X] localize the app (English and French UI)
-- [ ] redesign under responsive design guidelines
-- [ ] redesign under the material design guidelines
+- [ ] redesign UI more friendly-user
+- [ ] secure the educator management interface
 - [ ] use history entries of a child to improve predictions
 - [ ] use current time to improve predictions
-- [ ] make possible the use of a picture from the camera, SD card or web link.
-- [ ] secure the educator management interface
+- [ ] make possible the use of a picture from the camera, SD card or web link
