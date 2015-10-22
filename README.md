@@ -10,12 +10,12 @@ PictiTab is a communication tool for children with communication disorders. <br/
 * the [Laboratoire sur le Langage, le Cerveau et la Cognition](http://l2c2.isc.cnrs.fr/drupal7/index.html) of Bron
 * and the [Saint-Jean de Dieu](http://sjd.arhm.fr/) hospital of Lyon
 
-The software was designed initially for iPad, then for Android Tablet and now I would like to make it more friendly-user to make it known.
+The software was designed initially for iPad.
 
-## Notes
+Then for a Master's degree project, a team of friends and I realized an Android version. <br/>
+Please excuse the OOP implementation and the English skill. I am taking over the project. <br/>
 
-Please excuse the OOP implementation and the English skill. I'm just moving on this "old" academic project. <br/>
-It's up to you.
+<b>So any help that you can give is welcome.</b>
 
 ## Credits and licence
 
@@ -28,10 +28,10 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
-## ToDo
+## Coming soon...
 
-- [ ] redesign UI more friendly-user
-- [ ] secure the educator management interface
-- [ ] use history entries of a child to improve predictions
-- [ ] use current time to improve predictions
-- [ ] make possible the use of a picture from the camera, SD card or web link
+- Redesign UI more friendly-user
+- Secure the educator management interface
+- Use history entries of a child to improve predictions
+- Use current time to improve predictions
+- Make possible the use of a picture from the camera, SD card or web link
