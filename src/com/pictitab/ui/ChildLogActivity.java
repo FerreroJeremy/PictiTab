@@ -98,7 +98,7 @@ public class ChildLogActivity extends Activity {
 			final String prenom = getIntent().getStringExtra("prenom");
 			generalLayout = (LinearLayout) findViewById(R.id.generalLayout);
 
-			titre = (TextView) findViewById(R.id.textView1);
+			titre = (TextView) findViewById(R.id.small_screen_text);
 			titre.setText(R.string.child_logs + prenom);
 
 			// Get child's logs

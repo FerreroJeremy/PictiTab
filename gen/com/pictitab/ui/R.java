@@ -12,6 +12,7 @@ public final class R {
     }
     public static final class color {
         public static final int GREY=0x7f040001;
+        public static final int background=0x7f040002;
         public static final int black_color=0x7f040000;
     }
     public static final class dimen {
@@ -39,36 +40,38 @@ public final class R {
         public static final int default_word_picture=0x7f020003;
         public static final int ic_action_search=0x7f020004;
         public static final int ic_launcher=0x7f020005;
-        public static final int in_work=0x7f020006;
-        public static final int photo=0x7f020007;
+        public static final int ic_picti=0x7f020006;
+        public static final int in_work=0x7f020007;
+        public static final int photo=0x7f020008;
     }
     public static final class id {
         public static final int AjCat=0x7f090003;
-        public static final int CategoryGrammarList=0x7f09002b;
-        public static final int DeleteTreeButton=0x7f090032;
+        public static final int CategoryGrammarList=0x7f09002c;
+        public static final int DeleteTreeButton=0x7f090033;
         public static final int EditTextCategory=0x7f090001;
-        public static final int EditTreeButton=0x7f090031;
+        public static final int EditTreeButton=0x7f090032;
         public static final int LinearLayout1=0x7f09000f;
-        public static final int action_settings=0x7f090035;
-        public static final int addGram=0x7f09002d;
-        public static final int addRuleInGram=0x7f09002c;
+        public static final int Pictilogo=0x7f090022;
+        public static final int action_settings=0x7f090036;
+        public static final int addGram=0x7f09002e;
+        public static final int addRuleInGram=0x7f09002d;
         public static final int ajGram=0x7f090016;
         public static final int ajRegle=0x7f090015;
         public static final int birth_date=0x7f090006;
         public static final int catName=0x7f090002;
         public static final int category_name=0x7f090004;
         public static final int expListCat=0x7f09001f;
-        public static final int expandableListSelectGram=0x7f09002e;
+        public static final int expandableListSelectGram=0x7f09002f;
         public static final int expandableListView1=0x7f090009;
         public static final int expandableListView2=0x7f09000b;
         public static final int first_name=0x7f090005;
         public static final int generalLayout=0x7f090012;
         public static final int gramName=0x7f090013;
-        public static final int horizontalScrollView1=0x7f090028;
+        public static final int horizontalScrollView1=0x7f090029;
         public static final int imageButtonClear=0x7f09000e;
         public static final int imageButtonReturn=0x7f090010;
-        public static final int lblListHeader=0x7f09002f;
-        public static final int lblListItem=0x7f090030;
+        public static final int lblListHeader=0x7f090030;
+        public static final int lblListItem=0x7f090031;
         public static final int lexiconCameraButton=0x7f09001d;
         public static final int lexiconDeleteButton=0x7f090020;
         public static final int lexiconFileButton=0x7f09001c;
@@ -77,24 +80,24 @@ public final class R {
         public static final int lexicon_word=0x7f090019;
         public static final int linearLayout1=0x7f090017;
         public static final int mainLayout=0x7f090011;
-        public static final int menu_settings=0x7f090034;
-        public static final int nextButton=0x7f090033;
+        public static final int menu_settings=0x7f090035;
+        public static final int nextButton=0x7f090034;
         public static final int picImg=0x7f090007;
-        public static final int previousButton=0x7f09002a;
+        public static final int previousButton=0x7f09002b;
         public static final int previousButton1=0x7f09001e;
-        public static final int resultLayout=0x7f090029;
+        public static final int resultLayout=0x7f09002a;
         public static final int rulesList=0x7f090014;
         public static final int scrollView1=0x7f090008;
         public static final int scrollView2=0x7f09000a;
-        public static final int selectCategoryAdministration=0x7f090027;
-        public static final int selectChildActivity=0x7f090022;
-        public static final int selectChildAdministration=0x7f090024;
-        public static final int selectEducatorActivity=0x7f090023;
-        public static final int selectGrammarAdministration=0x7f090026;
-        public static final int selectLexiconAdministration=0x7f090025;
+        public static final int selectCategoryAdministration=0x7f090028;
+        public static final int selectChildActivity=0x7f090023;
+        public static final int selectChildAdministration=0x7f090025;
+        public static final int selectEducatorActivity=0x7f090024;
+        public static final int selectGrammarAdministration=0x7f090027;
+        public static final int selectLexiconAdministration=0x7f090026;
+        public static final int small_screen_text=0x7f090000;
         public static final int supprimer=0x7f09000c;
         public static final int textCatSelect=0x7f09001a;
-        public static final int textView1=0x7f090000;
         public static final int textView2=0x7f090018;
         public static final int valider=0x7f09000d;
     }
@@ -195,6 +198,7 @@ public final class R {
         public static final int settings=0x7f060022;
         public static final int shoot_picture=0x7f060042;
         public static final int situations_manager=0x7f060034;
+        public static final int small_screen=0x7f06004b;
         public static final int suppression=0x7f060037;
         public static final int title_activity_category_administration=0x7f060029;
         public static final int title_activity_child_communication=0x7f06002c;
