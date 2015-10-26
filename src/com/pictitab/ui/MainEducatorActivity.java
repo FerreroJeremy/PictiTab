@@ -52,11 +52,19 @@ public class MainEducatorActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
+		/*
+		 * Bundle b = new Bundle(); b.putParcelable(MainActivity.DATA_KEY,
+		 * data); this.getIntent().putExtra(MainActivity.DATAEXTRA_KEY, b);
+		 * setResult(RESULT_OK, this.getIntent()); finish();
+		 */
+
+		Intent intent = new Intent(MainEducatorActivity.this,
+				MainActivity.class);
 		Bundle b = new Bundle();
 		b.putParcelable(MainActivity.DATA_KEY, data);
-		this.getIntent().putExtra(MainActivity.DATAEXTRA_KEY, b);
-		setResult(RESULT_OK, this.getIntent());
-		finish();
+		intent.putExtra(MainActivity.DATAEXTRA_KEY, b);
+		setResult(RESULT_OK, intent);
+		startActivity(intent);
 	}
 
 	/*

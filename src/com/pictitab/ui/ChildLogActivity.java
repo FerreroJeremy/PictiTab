@@ -99,7 +99,9 @@ public class ChildLogActivity extends Activity {
 			generalLayout = (LinearLayout) findViewById(R.id.generalLayout);
 
 			titre = (TextView) findViewById(R.id.small_screen_text);
-			titre.setText(R.string.child_logs + prenom);
+
+			String title = getResources().getString(R.string.child_logs);
+			titre.setText(title + ' ' + prenom);
 
 			// Get child's logs
 			logs = XMLTools.loadLogs(this, nom, prenom, data);

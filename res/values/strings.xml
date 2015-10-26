@@ -32,10 +32,22 @@
     <string name="child_grammar">Grammars of the child&#8230;</string>
     <string name="selected_element">Select an item</string>
     <string name="category">Category: </string>
-    <string name="child_logs">Logs of the child</string>
+    <string name="child_logs">Logs of the child: </string>
     <string name="word_not_found">Word no longer exists&#8230;</string>
     <string name="empty_session">Empty session&#8230;</string>
     <string name="select_parent_category">Select a category to which add a sub-category</string>
+   
+<!-- Strings related to login -->  
+    
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Identifier</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="error_invalid_email">This identifier is invalid!</string>
+    <string name="error_invalid_password">This password is too short!</string>
+    <string name="error_incorrect_password">This password is incorrect!</string>
+    <string name="error_field_required">This field is required!</string>    
     
 <!-- Graphic strings -->
 

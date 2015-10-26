@@ -228,7 +228,9 @@ public class LexiconAdministrationActivity extends Activity {
 				categorieName = listDataChildAllCat.get(
 						listDataHeaderAllCat.get(groupPosition)).get(
 						childPosition);
-				selectedCategory.setText(R.string.category + categorieName);
+				String categoryTitle = getResources().getString(
+						R.string.category);
+				selectedCategory.setText(categoryTitle + ' ' + categorieName);
 				listAdapter.notifyDataSetChanged();
 				return false;
 			}
@@ -246,8 +248,9 @@ public class LexiconAdministrationActivity extends Activity {
 		Lexicon lex = data.getWordByName(mot);
 		String word = lex.getWord();
 		Category c = lex.getCategory();
-		selectedCategory.setText(R.string.category + c.getName());
+		String categoryTitle = getResources().getString(R.string.category);
 		this.categorieName = c.getName();
+		selectedCategory.setText(categoryTitle + ' ' + this.categorieName);
 
 		// Identify the picture origin
 		final String picturePath = lex.getPictureSource();

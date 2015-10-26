@@ -32,10 +32,22 @@
     <string name="child_grammar">Grammaires de l\'enfant&#8230;</string>
     <string name="selected_element">Sélectionner un élément</string>
     <string name="category">Catégorie : </string>
-    <string name="child_logs">Historique de l\'enfant</string>
+    <string name="child_logs">Historique de l\'enfant : </string>
     <string name="word_not_found">Mot n\'existant plus&#8230;</string>
     <string name="empty_session">Session vide&#8230;</string>
     <string name="select_parent_category">Sélectionner une categorie a laquelle ajouter une fille</string>
+    
+<!-- Strings related to login -->  
+    
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Identifiant</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="action_sign_in">Se connecter</string>
+    <string name="action_sign_in_short">Se connecter</string>
+    <string name="error_invalid_email">Identifiant invalide !</string>
+    <string name="error_invalid_password">Mot de passe trop court !</string>
+    <string name="error_incorrect_password">Mot de passe incorrect !</string>
+    <string name="error_field_required">Ce champ est requis !</string>  
     
 <!-- Graphic strings -->
 

@@ -40,27 +40,31 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// Get all the data
 		data = new AppData();
-		
+
 		// Determine screen size
-		if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {     
-		    // Toast.makeText(this, "Large screen",Toast.LENGTH_LONG).show();
+		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
+			// Toast.makeText(this, "Large screen",Toast.LENGTH_LONG).show();
 			this.controlDir();
 			this.toDisplayForLargeScreen();
-		} else if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {     
-		    // Toast.makeText(this, "Normal sized screen" , Toast.LENGTH_LONG).show();
-		    this.toDisplayForOtherScreen();
-		} else if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {     
-		    // Toast.makeText(this, "Small sized screen" , Toast.LENGTH_LONG).show();
-		    this.toDisplayForOtherScreen();
-		} else if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {     
-		    // Toast.makeText(this, "XLarge sized screen" , Toast.LENGTH_LONG).show();
+		} else if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
+			// Toast.makeText(this, "Normal sized screen" ,
+			// Toast.LENGTH_LONG).show();
+			this.toDisplayForOtherScreen();
+		} else if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
+			// Toast.makeText(this, "Small sized screen" ,
+			// Toast.LENGTH_LONG).show();
+			this.toDisplayForOtherScreen();
+		} else if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+			// Toast.makeText(this, "XLarge sized screen" ,
+			// Toast.LENGTH_LONG).show();
 			this.controlDir();
 			this.toDisplayForLargeScreen();
 		} else {
-		    // Toast.makeText(this, "Screen size is neither large, normal or small" , Toast.LENGTH_LONG).show();
-		    this.toDisplayForOtherScreen();
+			// Toast.makeText(this,
+			// "Screen size is neither large, normal or small" ,
+			// Toast.LENGTH_LONG).show();
+			this.toDisplayForOtherScreen();
 		}
 	}
 
@@ -68,6 +72,13 @@ public class MainActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		this.data = (AppData) data.getBundleExtra(MainActivity.DATAEXTRA_KEY)
 				.getParcelable(MainActivity.DATA_KEY);
+	}
+
+	@Override
+	public void onBackPressed() {
+		moveTaskToBack(true);
+		android.os.Process.killProcess(android.os.Process.myPid());
+		System.exit(1);
 	}
 
 	/*
@@ -170,7 +181,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this,
-						MainEducatorActivity.class);
+						LoginActivity.class);
 				Bundle b = new Bundle();
 				b.putParcelable(DATA_KEY, data);
 				intent.putExtra(DATAEXTRA_KEY, b);
@@ -178,28 +189,30 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
-	
+
 	/**
 	 * Display the window for smart phone screen.
 	 **/
 	private void toDisplayForOtherScreen() {
 		setContentView(R.layout.activity_main);
-		getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.background));
-		
+		getWindow().getDecorView().setBackgroundColor(
+				getResources().getColor(R.color.background));
+
 		final Button ChildButton = (Button) findViewById(R.id.selectChildActivity);
 		ChildButton.setVisibility(View.INVISIBLE);
-		
+
 		final Button EducatorButton = (Button) findViewById(R.id.selectEducatorActivity);
 		EducatorButton.setVisibility(View.INVISIBLE);
-		
+
 		final ImageView pictiIcon = (ImageView) findViewById(R.id.Pictilogo);
 		pictiIcon.setVisibility(View.VISIBLE);
-		
+
 		final TextView smallScreenAlertText = (TextView) findViewById(R.id.small_screen_text);
-		smallScreenAlertText.setMovementMethod(LinkMovementMethod.getInstance());
+		smallScreenAlertText
+				.setMovementMethod(LinkMovementMethod.getInstance());
 		smallScreenAlertText.setText(R.string.small_screen);
 		smallScreenAlertText.setVisibility(View.VISIBLE);
 
-	    getActionBar().hide();
+		getActionBar().hide();
 	}
 }
