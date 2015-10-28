@@ -79,7 +79,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:paddingTop="@dimen/normal_padding"
-            android:text="@string/shoot_picture"
+            android:text="@string/choose_picture"
             android:textColor="@color/black_color"
             android:textSize="@dimen/normal_text_size"
             tools:ignore="HardcodedText" />
@@ -96,7 +96,7 @@
 
                 <ImageView
                     android:id="@+id/lexiconImageView"
-                    android:layout_width="78dp"
+                    android:layout_width="154dp"
                     android:layout_height="0dp"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="0.63"
@@ -141,6 +141,20 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/lexiconUrlButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/url_picture" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -178,7 +192,7 @@
                     <ExpandableListView
                         android:id="@+id/expListCat"
                         android:layout_width="366dp"
-                        android:layout_height="375dp"
+                        android:layout_height="310dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginTop="30dp"

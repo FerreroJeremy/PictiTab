@@ -83,7 +83,10 @@
     <string name="title_lexicon_administration">Edition d\'une entrée</string>
     <string name="lexicon_hint_word">Mot</string>
     <string name="selectLexiconTitle">Selection du lexique à modifier</string>
+    <string name="choose_picture">Choisir une image</string>
     <string name="search_in_device">Chercher sur votre appareil</string>
+    <string name="url_picture">À partir d\'une URL</string>
+    <string name="enter_url">Entrer une URL</string>
     <string name="shoot_picture">Prendre une photo</string>
     <string name="selected_picture">Image selectionnée</string>
     <string name="add_category">Ajouter une catégorie</string>

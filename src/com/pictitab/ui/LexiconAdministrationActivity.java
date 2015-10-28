@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +20,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.SparseArray;
@@ -41,16 +45,19 @@ public class LexiconAdministrationActivity extends Activity {
 	private static AppData data;
 
 	private EditText lexiconName;
-	private TextView selectedCategory;
+	private static TextView selectedCategory;
 
-	private ImageView lexiconImageView;
-	private Bitmap lexiconBit;
+	private static ImageView lexiconImageView;
+	private static Bitmap lexiconBit;
 	private Button lexiconFileButton;
 	private Button lexiconCameraButton;
+	private Button lexiconUrlButton;
 
-	private String pictureOrigin; // Origin of picture : camera or SD card
-	private String picturePathOnDevice; // Physic location of the picture on the
-										// device
+	private static String pictureOrigin; // Origin of picture : camera or SD
+											// card
+	private static String picturePathOnDevice; // Physic location of the picture
+												// on the
+	// device
 
 	// Dynamic list of category
 	private ImageButton previousButton; // Button to go back to parent category
@@ -92,11 +99,13 @@ public class LexiconAdministrationActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == RESULT_OK) {
-			this.lexiconBit = (Bitmap) data.getExtras().get("data");
-			this.picturePathOnDevice = data.getExtras().getString(
-					SelectPictureActivity.DATA_Picture);
-			this.testExtras();
-			this.lexiconImageView.setImageBitmap(lexiconBit);
+			LexiconAdministrationActivity.lexiconBit = (Bitmap) data
+					.getExtras().get("data");
+			LexiconAdministrationActivity.picturePathOnDevice = data
+					.getExtras().getString(SelectPictureActivity.DATA_Picture);
+			LexiconAdministrationActivity.testExtras();
+			LexiconAdministrationActivity.lexiconImageView
+					.setImageBitmap(lexiconBit);
 		}
 	}
 
@@ -125,11 +134,12 @@ public class LexiconAdministrationActivity extends Activity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 		this.lexiconName = (EditText) findViewById(R.id.lexicon_word);
-		this.selectedCategory = (TextView) findViewById(R.id.textCatSelect);
+		LexiconAdministrationActivity.selectedCategory = (TextView) findViewById(R.id.textCatSelect);
 
-		this.lexiconImageView = (ImageView) findViewById(R.id.lexiconImageView);
+		LexiconAdministrationActivity.lexiconImageView = (ImageView) findViewById(R.id.lexiconImageView);
 		this.lexiconFileButton = (Button) findViewById(R.id.lexiconFileButton);
 		this.lexiconCameraButton = (Button) findViewById(R.id.lexiconCameraButton);
+		this.lexiconUrlButton = (Button) findViewById(R.id.lexiconUrlButton);
 
 		this.previousButton = (ImageButton) findViewById(R.id.previousButton1);
 		this.lvExpAllCat = (ExpandableListView) findViewById(R.id.expListCat);
@@ -147,7 +157,7 @@ public class LexiconAdministrationActivity extends Activity {
 
 		this.lvExpAllCat.setAdapter(listAdapter);
 
-		this.pictureOrigin = new String("");
+		LexiconAdministrationActivity.pictureOrigin = new String("");
 		this.categorieName = new String("");
 
 		final String mot = getIntent().getStringExtra(
@@ -158,6 +168,8 @@ public class LexiconAdministrationActivity extends Activity {
 		} else {
 			createLexiconToDisplay();
 		}
+
+		// File explorer button
 		this.lexiconFileButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -174,6 +186,37 @@ public class LexiconAdministrationActivity extends Activity {
 				Intent intent = new Intent(
 						android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 				startActivityForResult(intent, 7);
+			}
+		});
+
+		// Get from url button
+		this.lexiconUrlButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// Set an EditText view to get user input
+				final EditText input = new EditText(
+						LexiconAdministrationActivity.this);
+
+				new AlertDialog.Builder(LexiconAdministrationActivity.this)
+						.setTitle(R.string.enter_url)
+						.setMessage("")
+						.setView(input)
+						.setPositiveButton(R.string.ok,
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int whichButton) {
+										String url = input.getText().toString();
+										LoadImageFromURL loadImage = new LoadImageFromURL(url);
+										loadImage.execute();
+									}
+								})
+						.setNegativeButton(R.string.no,
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int whichButton) {
+										// Do nothing.
+									}
+								}).show();
 			}
 		});
 	}
@@ -340,9 +383,9 @@ public class LexiconAdministrationActivity extends Activity {
 	 */
 	private void setPictureOrigin(String picturePath) {
 		if (picturePath.contains(File.separator + "Pictures" + File.separator))
-			this.pictureOrigin = new String("Picture");
+			LexiconAdministrationActivity.pictureOrigin = new String("Picture");
 		else
-			this.pictureOrigin = new String("Camera");
+			LexiconAdministrationActivity.pictureOrigin = new String("Camera");
 	}
 
 	/**
@@ -356,7 +399,7 @@ public class LexiconAdministrationActivity extends Activity {
 	protected void deleteLexicon(String picturePath, String mot) {
 		data.deleteWord(mot);
 
-		if (this.pictureOrigin.equals("Camera")) {
+		if (LexiconAdministrationActivity.pictureOrigin.equals("Camera")) {
 			File picture = new File(picturePath);
 			picture.delete();
 		}
@@ -405,7 +448,8 @@ public class LexiconAdministrationActivity extends Activity {
 			FileOutputStream out;
 			try {
 				out = new FileOutputStream(fileName);
-				Bitmap bitMap = this.lexiconImageView.getDrawingCache();
+				Bitmap bitMap = LexiconAdministrationActivity.lexiconImageView
+						.getDrawingCache();
 				// Resize the picture
 				bitMap.compress(Bitmap.CompressFormat.PNG, 90, out);
 
@@ -428,7 +472,7 @@ public class LexiconAdministrationActivity extends Activity {
 	 **/
 	protected void addLexicon(String picturePath) {
 		String name = this.lexiconName.getText().toString();
-		this.lexiconImageView.buildDrawingCache();
+		LexiconAdministrationActivity.lexiconImageView.buildDrawingCache();
 		// Check
 		if (name.equals("") || picturePath.equals("")
 				|| this.categorieName.equals("")) {
@@ -463,7 +507,7 @@ public class LexiconAdministrationActivity extends Activity {
 	 **/
 	private void loadPicture(String picturePath, String name) {
 
-		if (!this.pictureOrigin.equals("Pictures")) {
+		if (!LexiconAdministrationActivity.pictureOrigin.equals("Pictures")) {
 			picturePath += name + ".png";
 			File fileName = new File(picturePath);
 			FileOutputStream out;
@@ -482,7 +526,8 @@ public class LexiconAdministrationActivity extends Activity {
 			else {
 				try {
 					out = new FileOutputStream(fileName);
-					Bitmap bitMap = this.lexiconImageView.getDrawingCache();
+					Bitmap bitMap = LexiconAdministrationActivity.lexiconImageView
+							.getDrawingCache();
 					// Resize
 					bitMap.compress(Bitmap.CompressFormat.PNG, 90, out);
 
@@ -532,22 +577,26 @@ public class LexiconAdministrationActivity extends Activity {
 
 	/**
 	 * Test the values of the child activity.
+	 * 
+	 * @throws MalformedURLException
 	 */
-	private void testExtras() {
-		if (this.lexiconBit != null) {
-			lexiconImageView.setImageBitmap(this.lexiconBit);
-			this.pictureOrigin = new String("Camera");
+	private static void testExtras() {
+		if (LexiconAdministrationActivity.lexiconBit != null) {
+			lexiconImageView
+					.setImageBitmap(LexiconAdministrationActivity.lexiconBit);
+			LexiconAdministrationActivity.pictureOrigin = new String("Camera");
 		}
-		if (this.picturePathOnDevice != null
-				&& !this.picturePathOnDevice.equals("")) {
+		if (LexiconAdministrationActivity.picturePathOnDevice != null
+				&& !LexiconAdministrationActivity.picturePathOnDevice
+						.equals("")) {
 			try {
-				this.lexiconBit = BitmapFactory
+				LexiconAdministrationActivity.lexiconBit = BitmapFactory
 						.decodeStream(new FileInputStream(
-								this.picturePathOnDevice));
+								LexiconAdministrationActivity.picturePathOnDevice));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			this.pictureOrigin = new String("Pictures");
+			LexiconAdministrationActivity.pictureOrigin = new String("Pictures");
 		}
 	}
 
@@ -599,5 +648,44 @@ public class LexiconAdministrationActivity extends Activity {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Get a Bitmap from a String (URL link) with asynchronous task
+	 */
+	public class LoadImageFromURL extends AsyncTask<String, Void, Bitmap> {
+		
+		private String url;
+
+		public LoadImageFromURL(String url) {
+			this.url = url;
+		}
+
+		@Override
+		protected Bitmap doInBackground(String... params) {
+			try {
+				URL url = new URL(this.url);
+				InputStream is = url.openConnection().getInputStream();
+				Bitmap bitMap = BitmapFactory.decodeStream(is);
+				return bitMap;
+
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return null;
+
+		}
+
+		@Override
+		protected void onPostExecute(Bitmap result) {
+			super.onPostExecute(result);
+			LexiconAdministrationActivity.lexiconBit = result;
+			LexiconAdministrationActivity.picturePathOnDevice = null;
+			LexiconAdministrationActivity.testExtras();
+			LexiconAdministrationActivity.lexiconImageView.setImageBitmap(lexiconBit);
+			
+		}
 	}
 }
