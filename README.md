@@ -37,9 +37,11 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 - More secure educator's management interface (with Login activity)
 - Safer way to close the application
 - Better management of backup data
+- It's now possible to use a picture from web link for a lexicon entry
 
 ## Coming soon...
 
-- Use history entries of a child to improve predictions
+- Localize the date and time in the children's historic
+- Redesign and improve the file explorer to the search of a lexicon entry's picture
+- Use children's historic to improve predictions
 - Use current time to improve predictions
-- Make possible the use of a picture from the camera, SD card or web link
