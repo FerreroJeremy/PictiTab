@@ -28,20 +28,10 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
-## New since Play Store's 2.5b version
-
-- All comments and documentation are translated into English
-- The application is blocked for small screens (with an advertising redirection on the project's Github page)
-- The application is responsive for the large screens
-- The application is localized (English and French)
-- More secure educator's management interface (with Login activity)
-- Safer way to close the application
-- Better management of backup data
-- It's now possible to use a picture from web link for a lexicon entry
-
 ## Coming soon...
 
-- Localize the date and time in the children's historic
-- Redesign and improve the file explorer to the search of a lexicon entry's picture
-- Use children's historic to improve predictions
+- Redesign UI more friendly-user
+- Secure the educator management interface
+- Use history entries of a child to improve predictions
 - Use current time to improve predictions
+- Make possible the use of a picture from the camera, SD card or web link

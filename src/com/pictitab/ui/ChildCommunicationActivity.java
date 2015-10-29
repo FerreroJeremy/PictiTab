@@ -1,6 +1,6 @@
 package com.pictitab.ui;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,8 +37,8 @@ import com.pictitab.utils.XMLTools;
 public class ChildCommunicationActivity extends Activity {
 
 	public static final String SELECTED_CHILD = "selected_child";
-	static SimpleDateFormat dateFormat = new SimpleDateFormat(
-			"dd/MM/yyyy  -  H:mm:ss", Locale.FRANCE);
+	//static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy  -  H:mm:ss", Locale.FRANCE);
+	static DateFormat dateFormat =  DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL, Locale.getDefault());
 
 	private AppData data;
 
@@ -176,8 +176,10 @@ public class ChildCommunicationActivity extends Activity {
 
 		this.mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
 		this.topLayout = new LinearLayout(this);
+		this.topLayout.setBackgroundColor(Color.LTGRAY);
 		this.sentenceScrollView = new HorizontalScrollView(this);
 		this.sentenceLayout = new LinearLayout(this);
+		this.sentenceLayout.setBackgroundColor(Color.LTGRAY);
 		this.stopSentenceButton = (ImageButton) findViewById(R.id.imageButtonReturn);
 		this.clearSentenceButton = (ImageButton) findViewById(R.id.imageButtonClear);
 		this.botLayout = new ScrollView(this);
