@@ -35,7 +35,6 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 - It is now possible to update the application without any data loss
 - Date and time in the children's historic are localized
 - It is now possible to use a picture from web link for a lexicon entry
-- Better management of backup data (all files are erased with the uninstall of the application)
 - Login is necessary to access the educator management interface
 - The application is localized (English by default)
 - The application is responsive for the large screens
