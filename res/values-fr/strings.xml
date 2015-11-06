@@ -67,7 +67,7 @@
     <string name="mode_enfant">Mode Enfant</string>
     <string name="mode_educateur">Mode Educateur</string>
     <string name="children_profiles_manager">Gestion des profils enfant</string>
-    <string name="lexicon_manager">Gestion des lexiques</string>
+    <string name="lexicon_manager">Gestion du lexique</string>
     <string name="grammars_manager">Gestion des grammaires</string>
     <string name="categories_manager">Gestion des catégories</string>
     <string name="situations_manager">Gestion des situations</string>
@@ -99,4 +99,7 @@
     <string name="add_rule">Ajout d\'une règle</string>
     <string name="small_screen">Désolé :( mais l\'application PictiTab est réservée au tablette. \nVous pouvez suivre l\'évolution du projet ou y participer à l\'adresse suivante : \n<a href="https://github.com/FerreroJeremy/PictiTab">https://github.com/FerreroJeremy/PictiTab</a> \nMerci pour votre intéret.</string>
 
+	<string name="item">élément</string>
+    <string name="items">éléments</string>
+    <string name="parent_directory">Dossier parent</string>
 </resources>

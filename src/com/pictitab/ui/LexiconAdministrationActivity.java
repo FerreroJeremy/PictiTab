@@ -102,7 +102,7 @@ public class LexiconAdministrationActivity extends Activity {
 			LexiconAdministrationActivity.lexiconBit = (Bitmap) data
 					.getExtras().get("data");
 			LexiconAdministrationActivity.picturePathOnDevice = data
-					.getExtras().getString(SelectPictureActivity.DATA_Picture);
+					.getExtras().getString(FileChooser.DATA_Picture);
 			LexiconAdministrationActivity.testExtras();
 			LexiconAdministrationActivity.lexiconImageView
 					.setImageBitmap(lexiconBit);
@@ -173,8 +173,7 @@ public class LexiconAdministrationActivity extends Activity {
 		this.lexiconFileButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(LexiconAdministrationActivity.this,
-						SelectPictureActivity.class);
+				Intent intent = new Intent(LexiconAdministrationActivity.this, FileChooser.class);
 				startActivityForResult(intent, 60);
 			}
 		});

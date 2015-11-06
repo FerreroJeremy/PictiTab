@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pictitab.ui"
     android:versionCode="27"
-    android:versionName="3.2" >
+    android:versionName="3.4" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -22,6 +22,7 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -76,16 +77,19 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".SelectPictureActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
             android:name=".ChildLogActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name=".FileChooser"
+            android:label="Choose File" >
+            <action android:name="com.example.fileexplorer.FileChooser" />
+
+            <category android:name="android.intent.category.DEFAULT" />
         </activity>
     </application>
 

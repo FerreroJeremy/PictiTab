@@ -99,4 +99,7 @@
     <string name="add_rule">Add a rule</string>
     <string name="small_screen">Sorry :( but PictiTab is reserved for the tablet. \nYou can follow the project or participate on \n<a href="https://github.com/FerreroJeremy/PictiTab">https://github.com/FerreroJeremy/PictiTab</a> \nThank you for your interest.</string>
 
+	<string name="item">item</string>
+    <string name="items">items</string>
+    <string name="parent_directory">Parent directory</string>
 </resources>
