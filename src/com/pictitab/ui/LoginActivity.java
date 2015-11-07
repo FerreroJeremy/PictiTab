@@ -16,6 +16,7 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -66,6 +67,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 		// Set up the login form.
 		mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 		populateAutoComplete();
+		
+		final TextView smallScreenAlertText = (TextView) findViewById(R.id.textView1);
+		smallScreenAlertText.setMovementMethod(LinkMovementMethod.getInstance());
+		smallScreenAlertText.setText(R.string.home_text);
 
 		mPasswordView = (EditText) findViewById(R.id.password);
 

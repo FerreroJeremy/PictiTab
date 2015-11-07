@@ -176,10 +176,8 @@ public class ChildCommunicationActivity extends Activity {
 
 		this.mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
 		this.topLayout = new LinearLayout(this);
-		this.topLayout.setBackgroundColor(Color.LTGRAY);
 		this.sentenceScrollView = new HorizontalScrollView(this);
 		this.sentenceLayout = new LinearLayout(this);
-		this.sentenceLayout.setBackgroundColor(Color.LTGRAY);
 		this.stopSentenceButton = (ImageButton) findViewById(R.id.imageButtonReturn);
 		this.clearSentenceButton = (ImageButton) findViewById(R.id.imageButtonClear);
 		this.botLayout = new ScrollView(this);

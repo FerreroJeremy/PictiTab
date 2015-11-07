@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+        android:background="#c6ecfc"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
@@ -8,28 +9,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1.09"
+        android:layout_marginTop="@dimen/large_padding"
+        android:layout_weight="0.12"
         android:orientation="vertical"
         tools:ignore="UselessLeaf" >
 
-        <ImageView
-            android:id="@+id/Pictilogo"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="50dp"
-            android:layout_weight="1"
-            android:contentDescription="TODO"
-            android:src="@drawable/ic_picti"
-            android:visibility="invisible" />
+            android:layout_height="wrap_content"
+            tools:ignore="DisableBaselineAlignment,UselessParent" >
 
-        <TextView
-            android:id="@+id/small_screen_text"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="140dp"
+                    android:layout_height="132dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/ic_picti_gd"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="30dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                tools:ignore="InefficientWeight" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:text="PictiTab"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/black_color"
+                    android:textSize="40sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/black_color"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -38,11 +73,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="fill_horizontal"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="@dimen/small_padding"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_weight="0.24"
-        android:text="@string/mode_enfant" />
+        android:background="@color/DARK_GREY"
+        android:text="@string/mode_enfant"
+        android:textColor="@color/background"
+        android:textColorHint="@color/background"
+        android:textSize="30sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -54,11 +92,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="@dimen/normal_padding"
         android:layout_weight="0.24"
-        android:text="@string/mode_educateur" />
+        android:background="@color/DARK_GREY"
+        android:text="@string/mode_educateur"
+        android:textColor="@color/background"
+        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

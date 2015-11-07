@@ -99,6 +99,8 @@ public class SelectChildActivity extends Activity {
 	 * Display the window.
 	 **/
 	private void toDisplay() {
+		getWindow().getDecorView().setBackgroundColor(
+				getResources().getColor(R.color.background));
 		Intent intent = this.getIntent();
 		if (intent != null) {
 			String mode = intent.getStringExtra(MainActivity.TYPE_SOURCE);
@@ -121,7 +123,8 @@ public class SelectChildActivity extends Activity {
 
 		listChildren = new ScrollView(this);
 		gridChildrenLayout = new GridLayout(this);
-
+		getWindow().getDecorView().setBackgroundColor(
+				getResources().getColor(R.color.background));
 		// Define the column number in the grid layout
 		Display display = getWindowManager().getDefaultDisplay();
 		int orientation = getResources().getConfiguration().orientation;

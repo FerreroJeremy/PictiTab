@@ -97,6 +97,9 @@ public class SelectLexiconActivity extends Activity {
 	private void toDisplay() {
 		setContentView(R.layout.activity_select_lexicon);
 
+		getWindow().getDecorView().setBackgroundColor(
+				getResources().getColor(R.color.background));
+		
 		// portrait orientation
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

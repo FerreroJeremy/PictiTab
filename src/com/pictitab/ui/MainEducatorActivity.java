@@ -82,6 +82,8 @@ public class MainEducatorActivity extends Activity {
 	 **/
 	private void toDisplay() {
 		setContentView(R.layout.activity_main_educator);
+		
+		getActionBar().hide();
 
 		// Each button send to the corresponding element manager window
 		categorydButton = (Button) findViewById(R.id.selectCategoryAdministration);

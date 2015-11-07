@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+        android:background="#c6ecfc"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:baselineAligned="false"
@@ -12,8 +13,12 @@
         android:layout_height="0dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_weight="1"
+        android:layout_marginTop="@dimen/layout_padding_top"
+        android:layout_weight="0.50"
+        android:background="@color/DARK_GREY"
         android:text="@string/children_profiles_manager"
+        android:textColor="#c6ecfc"
+        android:textColorHint="#c6ecfc"
         android:textSize="30sp" />
 
     <Button
@@ -22,8 +27,12 @@
         android:layout_height="0dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_weight="1"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:layout_weight="0.50"
+        android:background="@color/DARK_GREY"
         android:text="@string/lexicon_manager"
+        android:textColor="#c6ecfc"
+        android:textColorHint="#c6ecfc"
         android:textSize="30sp" />
 
     <Button
@@ -32,8 +41,12 @@
         android:layout_height="0dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_weight="1"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:layout_weight="0.50"
+        android:background="@color/DARK_GREY"
         android:text="@string/grammars_manager"
+        android:textColor="#c6ecfc"
+        android:textColorHint="#c6ecfc"
         android:textSize="30sp" />
 
     <Button
@@ -42,8 +55,12 @@
         android:layout_height="0dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_weight="1"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:layout_weight="0.50"
+        android:background="@color/DARK_GREY"
         android:text="@string/categories_manager"
+        android:textColor="#c6ecfc"
+        android:textColorHint="#c6ecfc"
         android:textSize="30sp" />
 
     <LinearLayout

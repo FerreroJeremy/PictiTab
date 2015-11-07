@@ -86,7 +86,7 @@
     <string name="choose_picture">Choose a picture</string>
     <string name="search_in_device">Find on your device</string>
     <string name="url_picture">Get from an URL</string>
-    <string name="enter_url">Entrer an URL</string>
+    <string name="enter_url">Paste an URL here</string>
     <string name="shoot_picture">Take a picture</string>
     <string name="selected_picture">Selected picture</string>
     <string name="add_category">Add a category</string>
@@ -97,8 +97,9 @@
     <string name="grammar_name">Grammar\'s name</string>
     <string name="rule_edition">Edition of a Rule</string>
     <string name="add_rule">Add a rule</string>
-    <string name="small_screen">Sorry :( but PictiTab is reserved for the tablet. \nYou can follow the project or participate on \n<a href="https://github.com/FerreroJeremy/PictiTab">https://github.com/FerreroJeremy/PictiTab</a> \nThank you for your interest.</string>
-
+    <string name="small_screen">Thank for your interest but PictiTab is reserved for the tablet. \nYou can follow the project or participate on <a href="https://github.com/FerreroJeremy/PictiTab">GitHub</a>.</string>
+    <string name="home_text">You can follow the project or participate on <a href="https://github.com/FerreroJeremy/PictiTab">GitHub</a>.</string>
+    
 	<string name="item">item</string>
     <string name="items">items</string>
     <string name="parent_directory">Parent directory</string>

@@ -11,7 +11,6 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -161,6 +160,12 @@ public class MainActivity extends Activity {
 
 		final Button ChildButton = (Button) findViewById(R.id.selectChildActivity);
 		final Button EducatorButton = (Button) findViewById(R.id.selectEducatorActivity);
+		
+		final TextView smallScreenAlertText = (TextView) findViewById(R.id.textView1);
+		smallScreenAlertText.setMovementMethod(LinkMovementMethod.getInstance());
+		smallScreenAlertText.setText(R.string.home_text);
+		
+		getActionBar().hide();
 
 		// Child mode
 		ChildButton.setOnClickListener(new OnClickListener() {
@@ -195,6 +200,9 @@ public class MainActivity extends Activity {
 	 **/
 	private void toDisplayForOtherScreen() {
 		setContentView(R.layout.activity_main);
+		
+		getActionBar().hide();
+		
 		getWindow().getDecorView().setBackgroundColor(
 				getResources().getColor(R.color.background));
 
@@ -204,12 +212,8 @@ public class MainActivity extends Activity {
 		final Button EducatorButton = (Button) findViewById(R.id.selectEducatorActivity);
 		EducatorButton.setVisibility(View.INVISIBLE);
 
-		final ImageView pictiIcon = (ImageView) findViewById(R.id.Pictilogo);
-		pictiIcon.setVisibility(View.VISIBLE);
-
-		final TextView smallScreenAlertText = (TextView) findViewById(R.id.small_screen_text);
-		smallScreenAlertText
-				.setMovementMethod(LinkMovementMethod.getInstance());
+		final TextView smallScreenAlertText = (TextView) findViewById(R.id.textView1);
+		smallScreenAlertText.setMovementMethod(LinkMovementMethod.getInstance());
 		smallScreenAlertText.setText(R.string.small_screen);
 		smallScreenAlertText.setVisibility(View.VISIBLE);
 

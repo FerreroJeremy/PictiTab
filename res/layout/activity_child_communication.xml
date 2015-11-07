@@ -3,6 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -20,8 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:scaleType="center"
-            android:src="@android:drawable/ic_menu_delete"
+            android:scaleType="fitCenter"
+            android:src="@drawable/clean"
             tools:ignore="ContentDescription" />
 
         <ImageButton
@@ -29,8 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:scaleType="center"
-            android:src="@android:drawable/ic_delete"
+            android:scaleType="fitCenter"
+            android:src="@drawable/exit_door"
+            android:tag="Test"
+            android:visibility="visible"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>
