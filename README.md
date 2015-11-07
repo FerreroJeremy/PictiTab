@@ -21,21 +21,21 @@ Please excuse the OOP implementation and the English skill. I am taking over the
 
 Although the application presented here is becoming increasingly detached from the initial project, thank you to cite the following work:
 
-<i>Laure Brieussel, Paul Sabatier, Anne Reboul, Marie-Dominique Verpoix, Jacques Mathieu, Christine Lacombe, Valérie Arnaud, Sabine Manificat (2011) <br/>
-Aide à la communication informatisée dans les TED <br/>
-Actualités sur la prise en charge des Troubles Envahissants du Développement, <br/>
+<i>Laure Brieussel, Paul Sabatier, Anne Reboul, Marie-Dominique Verpoix, Jacques Mathieu, Christine Lacombe, ValÃ©rie Arnaud, Sabine Manificat (2011) <br/>
+Aide Ã  la communication informatisÃ©e dans les TED <br/>
+ActualitÃ©s sur la prise en charge des Troubles Envahissants du DÃ©veloppement, <br/>
 Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
-## New since Play Store's 2.5b version
+## New since Google Play's 2.5b version
 
+- Redesign according to the integration of a corporate design
 - The application supports images with transparency (e.g. GIF or PNG with alpha transparency)
 - It is now possible to search a picture for a lexicon entry in your entire device by a friendly user file explorer
 - It is now possible to update the application without any data loss
 - Date and time in the children's historic are localized
-- It is now possible to use a picture from web link for a lexicon entry
-- Better management of backup data (all files are erased with the uninstall of the application)
+- It is now possible to use a picture for a lexicon entry by copying the web link (URL)
 - Login is necessary to access the educator management interface
 - The application is localized (English by default)
 - The application is responsive for the large screens
@@ -45,4 +45,3 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 ## Coming soon...
 
 - Use children's historic to improve predictions
-- Use current time to improve predictions
