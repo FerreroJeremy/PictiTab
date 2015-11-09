@@ -117,6 +117,8 @@ public class GrammarAdministrationActivity extends Activity {
 	private void toDisplay() {
 		setContentView(R.layout.activity_grammar_administration);
 
+		getActionBar().hide();
+		
 		// portrait
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

@@ -96,6 +96,8 @@ public class SelectLexiconActivity extends Activity {
 	 **/
 	private void toDisplay() {
 		setContentView(R.layout.activity_select_lexicon);
+		
+		getActionBar().hide();
 
 		getWindow().getDecorView().setBackgroundColor(
 				getResources().getColor(R.color.background));
@@ -175,6 +177,8 @@ public class SelectLexiconActivity extends Activity {
 		addLexicon = new Button(this);
 		addLexicon.setHeight(100);
 		addLexicon.setText(R.string.add);
+		addLexicon.setBackgroundColor(getResources().getColor(R.color.DARK_GREY));
+		addLexicon.setTextColor(getResources().getColor(R.color.background));
 
 		// Action of the button
 		addLexicon.setOnClickListener(new OnClickListener() {

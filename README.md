@@ -1,4 +1,4 @@
-# PictiTab ![alt tag](https://raw.githubusercontent.com/FerreroJeremy/PictiTab/master/res/drawable-mdpi/ic_launcher.png)
+# PictiTab version 4.0 ![alt tag](https://raw.githubusercontent.com/FerreroJeremy/PictiTab/master/res/drawable-mdpi/ic_launcher.png)
 
 PictiTab is a communication tool for children with communication disorders. <br/>
 [A beta version (version 2.5b only for tablets) is freely available on the Google Play](https://play.google.com/store/apps/details?id=com.pictitab.app) (last update on March 29, 2014).
@@ -30,6 +30,8 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 
 ## New since Google Play's 2.5b version
 
+- Use children's historic to improve predictions
+- Redesign according to the graphic charter
 - Redesign according to the integration of a corporate design
 - The application supports images with transparency (e.g. GIF or PNG with alpha transparency)
 - It is now possible to search a picture for a lexicon entry in your entire device by a friendly user file explorer
@@ -42,6 +44,8 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 - The application is blocked for small screens (with an advertising redirection on the project's Github page)
 - Comments and documentation are translated into English
 
-## Coming soon...
+## ToDo
 
-- Use children's historic to improve predictions
+- A wiki or a user guide on the GitHub
+- A help menu in the app linking to the online wiki
+- Debug the improvement of predictions

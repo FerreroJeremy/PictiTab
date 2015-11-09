@@ -3,6 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".GrammarAdministrationActivity" >
 
@@ -89,7 +90,10 @@
                 android:layout_marginLeft="150dp"
                 android:layout_marginRight="150dp"
                 android:layout_marginTop="30dp"
+                android:background="@color/DARK_GREY"
                 android:text="@string/add_rule"
+                android:textColor="@color/background"
+                android:textColorHint="@color/background"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>
@@ -101,7 +105,10 @@
             android:layout_marginLeft="150dp"
             android:layout_marginRight="150dp"
             android:layout_marginTop="@dimen/normal_padding"
+            android:background="@color/DARK_GREY"
             android:text="@string/valid"
+            android:textColor="@color/background"
+            android:textColorHint="@color/background"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>

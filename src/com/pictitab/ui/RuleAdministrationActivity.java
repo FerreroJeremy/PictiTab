@@ -83,6 +83,8 @@ public class RuleAdministrationActivity extends Activity {
 	 **/
 	private void toDisplay() {
 		setContentView(R.layout.activity_rule_administration);
+		
+		getActionBar().hide();
 
 		previousButton = (ImageButton) findViewById(R.id.previousButton);
 		addRule = (Button) findViewById(R.id.addRuleInGram);

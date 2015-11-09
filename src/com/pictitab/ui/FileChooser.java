@@ -44,6 +44,7 @@ public class FileChooser extends ListActivity {
 	}
 
 	private void fill(File f) {
+		getActionBar().hide();
 		File[] dirs = f.listFiles();
 		this.setTitle(f.getAbsolutePath());
 		List<Item> dir = new ArrayList<Item>();

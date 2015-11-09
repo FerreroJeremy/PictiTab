@@ -25,9 +25,11 @@
                 android:id="@+id/previousButton"
                 android:layout_width="wrap_content"
                 android:layout_height="647dp"
+                android:background="@color/DARK_GREY"
                 android:contentDescription="TODO"
                 android:src="@android:drawable/ic_media_previous"
                 tools:ignore="HardcodedText,ContentDescription" />
+
         </LinearLayout>
 
         <LinearLayout

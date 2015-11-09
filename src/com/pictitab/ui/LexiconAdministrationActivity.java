@@ -131,6 +131,8 @@ public class LexiconAdministrationActivity extends Activity {
 	private void toDisplay() {
 		setContentView(R.layout.activity_lexicon_administration);
 
+		getActionBar().hide();
+		
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 		this.lexiconName = (EditText) findViewById(R.id.lexicon_word);

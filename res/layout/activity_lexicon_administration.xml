@@ -3,6 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".LexiconAdministrationActivity" >
 
@@ -118,10 +119,13 @@
 
                     <Button
                         android:id="@+id/lexiconFileButton"
-                        android:layout_width="match_parent"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
+                        android:background="@color/DARK_GREY"
                         android:text="@string/search_in_device"
+                        android:textColor="@color/background"
+                        android:textColorHint="@color/background"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -136,7 +140,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/DARK_GREY"
                         android:text="@string/shoot_picture"
+                        android:textColor="@color/background"
+                        android:textColorHint="@color/background"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -151,7 +159,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="@string/url_picture" />
+                        android:layout_marginTop="5dp"
+                        android:background="@color/DARK_GREY"
+                        android:text="@string/url_picture"
+                        android:textColor="@color/background"
+                        android:textColorHint="@color/background" />
 
                 </LinearLayout>
 
@@ -173,6 +185,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="26dp"
+                    android:background="@color/DARK_GREY"
                     android:src="@android:drawable/ic_media_previous"
                     tools:ignore="ContentDescription" />
 
@@ -213,7 +226,10 @@
         android:layout_marginLeft="150dp"
         android:layout_marginRight="150dp"
         android:layout_marginTop="@dimen/normal_padding"
-        android:text="@string/suppression" />
+        android:background="@color/DARK_GREY"
+        android:text="@string/suppression"
+        android:textColor="@color/background"
+        android:textColorHint="@color/background" />
 
     <Button
         android:id="@+id/lexiconValidateButton"
@@ -222,6 +238,9 @@
         android:layout_marginLeft="150dp"
         android:layout_marginRight="150dp"
         android:layout_marginTop="@dimen/normal_padding"
-        android:text="@string/valid" />
+        android:background="@color/DARK_GREY"
+        android:text="@string/valid"
+        android:textColor="@color/background"
+        android:textColorHint="@color/background" />
 
 </LinearLayout>

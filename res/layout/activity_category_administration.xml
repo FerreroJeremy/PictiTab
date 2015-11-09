@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     android:windowSoftInputMode="adjustPan" >
 
@@ -50,7 +51,11 @@
             android:layout_marginLeft="150dp"
             android:layout_marginRight="150dp"
             android:layout_marginTop="@dimen/normal_padding"
-            android:text="@string/add" />
+            android:background="@color/DARK_GREY"
+            android:text="@string/add"
+            android:textColor="#c6ecfc"
+            android:textColorHint="#c6ecfc" />
+
     </LinearLayout>
 
 </LinearLayout>

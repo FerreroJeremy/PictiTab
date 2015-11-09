@@ -92,6 +92,8 @@ public class SelectGrammarActivity extends Activity {
 	 **/
 	private void toDisplay() {
 		setContentView(R.layout.activity_select_grammar);
+		
+		getActionBar().hide();
 
 		// portrait orientation
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

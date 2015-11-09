@@ -68,6 +68,8 @@ public class CategoryAdministrationActivity extends Activity {
 	private void toDisplay() {
 		setContentView(R.layout.activity_category_administration);
 
+		getActionBar().hide();
+		
 		// Set orientation in portrait
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

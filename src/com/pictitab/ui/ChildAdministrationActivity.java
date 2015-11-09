@@ -121,6 +121,8 @@ public class ChildAdministrationActivity extends Activity {
 	private void toDisplay() {
 		setContentView(R.layout.activity_child_administration);
 
+		getActionBar().hide();
+		
 		// Set the orientation in portrait mode
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

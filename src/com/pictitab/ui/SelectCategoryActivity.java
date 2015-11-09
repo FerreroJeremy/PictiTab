@@ -100,6 +100,8 @@ public class SelectCategoryActivity extends Activity {
 	private void toDisplay() {
 		// View definition
 		setContentView(R.layout.activity_select_category);
+		
+		getActionBar().hide();
 
 		// portrait orientation
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

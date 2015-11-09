@@ -99,6 +99,7 @@ public class SelectChildActivity extends Activity {
 	 * Display the window.
 	 **/
 	private void toDisplay() {
+		getActionBar().hide();
 		getWindow().getDecorView().setBackgroundColor(
 				getResources().getColor(R.color.background));
 		Intent intent = this.getIntent();
@@ -159,6 +160,8 @@ public class SelectChildActivity extends Activity {
 		addChild = new Button(this);
 		addChild.setHeight(100);
 		addChild.setText(R.string.add);
+		addChild.setBackgroundColor(getResources().getColor(R.color.DARK_GREY));
+		addChild.setTextColor(getResources().getColor(R.color.background));
 
 		// Action of the button
 		addChild.setOnClickListener(new OnClickListener() {

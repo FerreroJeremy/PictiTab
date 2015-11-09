@@ -89,6 +89,8 @@ public class ChildLogActivity extends Activity {
 	private void toDisplay() {
 		setContentView(R.layout.activity_child_log);
 
+		getActionBar().hide();
+		
 		// Get the parent intent
 		Intent intent = this.getIntent();
 
