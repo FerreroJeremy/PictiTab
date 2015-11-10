@@ -15,7 +15,7 @@ Then for a Master's degree project, a team of friends and I realized an Android 
 
 ## Important
 
-Please excuse the OOP implementation and the English skill. <s>I am taking over the project.</s> <b>I stop the development of the project for a while to focus on my personal work.</b> But any help that you can give is welcome.
+Please excuse the OOP implementation and the English skill. <s>I am taking over the project.</s> <b>I stop the development of the project for a while to focus on my professional work.</b> But any help that you can give is welcome.
 
 ## Credits and licence
 
@@ -34,15 +34,15 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 - [Nov 10, 2015] Redesign according to the graphic charter
 - [Nov 7, 2015] Redesign according to the integration of a corporate design
 - [Nov 6, 2015] The application supports images with transparency (e.g. GIF or PNG with alpha transparency)
-- [Nov 6, 2015] It is now possible to search a picture for a lexicon entry in your entire device by a friendly user file explorer
+- [Nov 6, 2015] It is now possible to search a picture for a lexicon entry in your entire device by a file explorer
 - [Oct 29, 2015] It is now possible to update the application without any data loss
 - [Oct 29, 2015] Date and time in the children's historic are localized
-- [Oct 28, 2015] It is now possible to use a picture for a lexicon entry by copying the web link (URL)
-- [Oct 26, 2015] Login is necessary to access the educator management interface
+- [Oct 28, 2015] It is now possible to use a picture for a lexicon entry pasting a web link (an URL)
+- [Oct 26, 2015] Login is necessary to access the educator management interface (use the identifiers root:root for now)
 - [Oct 22, 2015] The application is responsive for the large screens
-- [Oct 22, 2015] The application is blocked for small screens (with an advertising redirection on the project's Github page)
+- [Oct 22, 2015] The application is locked for small screens
 - [Oct 21, 2015] The application is localized (English by default)
-- [Oct 14, 2015] Comments and documentation are translated into English
+- [Oct 14, 2015] Comments and documentation are translated in English
 
 ## ToDo
 
