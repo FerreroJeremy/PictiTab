@@ -5,21 +5,21 @@ PictiTab is a communication tool for children with communication disorders. <br/
 
 ## Origin
 
-[PictiTab](http://talep.lif.univ-mrs.fr/PictiTab/) is a French project that is the fruit of a collaboration between:
+[PictiTab](http://talep.lif.univ-mrs.fr/PictiTab/) is a French project that is the result of a collaboration between:
 * the [Laboratoire d'Informatique Fondamentale](http://www.lif.univ-mrs.fr/) of Marseille
 * the [Laboratoire sur le Langage, le Cerveau et la Cognition](http://l2c2.isc.cnrs.fr/drupal7/index.html) of Bron
-* and the [Saint-Jean de Dieu](http://sjd.arhm.fr/) hospital of Lyon
+* and the [Saint-Jean de Dieu](http://sjd.arhm.fr/) Lyon's hospital 
 
 The software was designed initially for iPad. <br/>
 Then for a Master's degree project, a team of friends and I realized an Android version. <br/>
 
 ## Important
 
-Please excuse the OOP implementation and the English skill. <s>I am taking over the project.</s> <b>I stop the development of the project for a while to focus on my professional work.</b> But any help that you can give is welcome.
+Please excuse the OOP implementation and the English comments. <s>I am taking over the project.</s> <b>I stop the development of the project for a while to focus on my professional work.</b> But any help that you can give is welcome.
 
 ## Credits and licence
 
-Although the application presented here is becoming increasingly detached from the initial project, thank you to cite the following work:
+Although the application is becoming increasingly detached from the initial project, thank you to cite the following work:
 
 <i>Laure Brieussel, Paul Sabatier, Anne Reboul, Marie-Dominique Verpoix, Jacques Mathieu, Christine Lacombe, Valérie Arnaud, Sabine Manificat (2011) <br/>
 Aide à la communication informatisée dans les TED <br/>
@@ -46,6 +46,6 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 
 ## ToDo
 
-- A wiki or a user guide
+- A wiki page and a user guide
 - A help menu in the app linking on the wiki or the user guide
 - Debug the improvement of predictions (commented code in <i>ChildCommunicationActivity.java</i>)
