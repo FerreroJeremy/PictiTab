@@ -17,17 +17,6 @@ Then for a Master's degree project, a team of friends and I realized an Android 
 
 Please excuse the OOP implementation and the English comments. <s>I am taking over the project.</s> <b>I stop the development of the project for a while to focus on my professional work.</b> But any help that you can give is welcome.
 
-## Credits and licence
-
-Although the application is becoming increasingly detached from the initial project, thank you to cite the following work:
-
-<i>Laure Brieussel, Paul Sabatier, Anne Reboul, Marie-Dominique Verpoix, Jacques Mathieu, Christine Lacombe, Valérie Arnaud, Sabine Manificat (2011) <br/>
-Aide à la communication informatisée dans les TED <br/>
-Actualités sur la prise en charge des Troubles Envahissants du Développement, <br/>
-Florence George (dir.), Solal, Marseille, pages 121-130.</i>
-
-<b>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</b>
-
 ## New since [Google Play's 2.5 version](https://play.google.com/store/apps/details?id=com.pictitab.app)
 
 - [Nov 10, 2015] Use children's historic to improve predictions
@@ -49,3 +38,14 @@ Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 - A wiki page and a user guide
 - A help menu in the app linking on the wiki or the user guide
 - Debug the improvement of predictions (commented code in <i>ChildCommunicationActivity.java</i>)
+
+## Credits & License
+
+Although the application is becoming increasingly detached from the initial project, thank you to cite the following work:
+
+<i>Laure Brieussel, Paul Sabatier, Anne Reboul, Marie-Dominique Verpoix, Jacques Mathieu, Christine Lacombe, Valérie Arnaud, Sabine Manificat (2011) <br/>
+Aide à la communication informatisée dans les TED <br/>
+Actualités sur la prise en charge des Troubles Envahissants du Développement, <br/>
+Florence George (dir.), Solal, Marseille, pages 121-130.</i>
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
