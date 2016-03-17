@@ -15,7 +15,7 @@ Then for a Master's degree project, a team of friends and I realized an Android 
 
 ## Important
 
-Please excuse the OOP implementation and the English comments. <s>I am taking over the project.</s> <b>I stop the development of the project for a while to focus on my professional work.</b> But any help that you can give is welcome.
+Please excuse the OOP implementation and the English translation of comments. <s>I am taking over the project.</s> <b>I stop the development of the project for a while to focus on my professional work.</b> But any help that you can give is welcome.
 
 ## New since [Google Play's 2.5 version](https://play.google.com/store/apps/details?id=com.pictitab.app)
 
@@ -27,7 +27,7 @@ Please excuse the OOP implementation and the English comments. <s>I am taking ov
 - [Oct 29, 2015] It is now possible to update the application without any data loss
 - [Oct 29, 2015] Date and time in the children's historic are localized
 - [Oct 28, 2015] It is now possible to use a picture for a lexicon entry pasting a web link (an URL)
-- [Oct 26, 2015] Login is necessary to access the educator management interface (use the identifiers root:root for now)
+- [Oct 26, 2015] Authentification is required to access the educator management interface (use the identifiers root:root for now)
 - [Oct 22, 2015] The application is responsive for the large screens
 - [Oct 22, 2015] The application is locked for small screens
 - [Oct 21, 2015] The application is localized (English by default)
@@ -36,7 +36,6 @@ Please excuse the OOP implementation and the English comments. <s>I am taking ov
 ## ToDo
 
 - A wiki page and a user guide
-- A help menu in the app linking on the wiki or the user guide
 - Debug the improvement of predictions (commented code in <i>ChildCommunicationActivity.java</i>)
 
 ## Credits & License
