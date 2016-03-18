@@ -2,6 +2,9 @@
 
 <b>PictiTab is a communication tool for children with communication disorders.</b>
 
+<img src="https://github.com/FerreroJeremy/PictiTab/blob/master/screenshots/close.png"> The latest release is freely available [here](https://github.com/FerreroJeremy/PictiTab/releases/tag/v4.0)! <br/>
+<img src="https://github.com/FerreroJeremy/PictiTab/blob/master/screenshots/guide.png"> Instructions for use (user guide) are also available in the [wiki](https://github.com/FerreroJeremy/PictiTab/wiki).
+
 ## Origin
 
 [PictiTab](http://talep.lif.univ-mrs.fr/PictiTab/) is a French project that is the result of a collaboration between:
