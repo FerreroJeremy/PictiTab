@@ -41,4 +41,4 @@ Aide à la communication informatisée dans les TED <br/>
 Actualités sur la prise en charge des Troubles Envahissants du Développement, <br/>
 Florence George (dir.), Solal, Marseille, pages 121-130.</i>
 
-This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<b>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</b>
