@@ -29,7 +29,7 @@ I apologise for the draft OOP implementation and the poor English translation. I
 - [Oct 29, 2015] It is now possible to update the application without any data loss
 - [Oct 29, 2015] Date and time in the history of children are localized
 - [Oct 28, 2015] It is now possible to use a web picture (pasting an URL) for a lexicon entry
-- [Oct 26, 2015] Authentification is required to access the educator mode (use the identifiers root:root for now)
+- [Oct 26, 2015] Authentification is required to access the educator mode (use id:root and password:root for now)
 - [Oct 22, 2015] The application is responsive for large screens
 - [Oct 22, 2015] The application is locked for small screens
 - [Oct 21, 2015] The application is localized (English by default)
