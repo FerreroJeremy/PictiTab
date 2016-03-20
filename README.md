@@ -7,17 +7,17 @@
 
 ## Origin
 
-[PictiTab](http://talep.lif.univ-mrs.fr/PictiTab/) is a French project that is the result of a collaboration between:
+[PictiTab](http://talep.lif.univ-mrs.fr/PictiTab/) is a <b>French project</b> that is the result of a collaboration between:
 * the [Laboratoire d'Informatique Fondamentale](http://www.lif.univ-mrs.fr/) of Marseille
 * the [Laboratoire sur le Langage, le Cerveau et la Cognition](http://l2c2.isc.cnrs.fr/drupal7/index.html) of Bron
 * and the [Saint-Jean de Dieu](http://sjd.arhm.fr/) Lyon's hospital 
 
 The software was designed initially for iPad. <br/>
-Then for a Master's degree project, a team of friends and I realized an Android version. <br/>
+Then for a Master's degree project, a team of friends and I realized an <b>Android</b> version. <br/>
 
 ## Support
 
-I apologise for the OOP implementation and the English translation of comments. I stop the development of the project for a while to focus on my professional work. So, any help is welcome!
+I apologise for the draft OOP implementation and the poor English translation. I stop the development of the project for a while to focus on my professional work. So, any help is welcome!
 
 ## New since [Google Play's v2.5](https://play.google.com/store/apps/details?id=com.pictitab.app) (March 29, 2014)
 
@@ -39,9 +39,8 @@ I apologise for the OOP implementation and the English translation of comments. 
 
 Although the application is becoming increasingly detached from the initial project, thank you to cite the following work:
 
-<i>Laure Brieussel, Paul Sabatier, Anne Reboul, Marie-Dominique Verpoix, Jacques Mathieu, Christine Lacombe, Valérie Arnaud, Sabine Manificat (2011) <br/>
-Aide à la communication informatisée dans les TED <br/>
-Actualités sur la prise en charge des Troubles Envahissants du Développement, <br/>
-Florence George (dir.), Solal, Marseille, pages 121-130.</i>
+<i>
+Laure Brieussel, Paul Sabatier, Anne Reboul, Marie-Dominique Verpoix, Jacques Mathieu, Christine Lacombe, Valérie Arnaud and Sabine Manificat. (2011). Aide à la communication informatisée dans les TED. In: Actualités sur la prise en charge des Troubles Envahissants du Développement, Florence George (dir.), Solal, Marseille, France, pages 121-130.
+</i>
 
 <b>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</b>
