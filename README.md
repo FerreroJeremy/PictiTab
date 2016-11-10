@@ -35,7 +35,7 @@ I apologise for the draft OOP implementation and the poor English translation. I
 - [Oct 21, 2015] The application is localized (English by default)
 - [Oct 14, 2015] Comments and documentation are translated into English
 
-## <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /> Credits & License
+## Credits
 
 Although the application is becoming increasingly detached from the initial project, thank you to cite the following work:
 
