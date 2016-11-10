@@ -42,5 +42,3 @@ Although the application is becoming increasingly detached from the initial proj
 <i>
 Laure Brieussel, Paul Sabatier, Anne Reboul, Marie-Dominique Verpoix, Jacques Mathieu, Christine Lacombe, Valérie Arnaud and Sabine Manificat. (2011). Aide à la communication informatisée dans les TED. In: Actualités sur la prise en charge des Troubles Envahissants du Développement, Florence George (dir.), Solal, Marseille, France, pages 121-130.
 </i>
-
-<b>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</b>
