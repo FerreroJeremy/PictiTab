@@ -1,5 +1,9 @@
 # <img src="https://raw.githubusercontent.com/FerreroJeremy/PictiTab/master/res/drawable-mdpi/ic_launcher.png" width="25"> PictiTab
 
+[![Release Version](https://img.shields.io/badge/release-4.0-brightgreen.svg)](https://github.com/FerreroJeremy/PictiTab/releases)
+[![Wiki](https://img.shields.io/badge/wiki-latest-brightgreen.svg)](https://github.com/FerreroJeremy/PictiTab/wiki)
+[![Licence](https://img.shields.io/badge/licence-GPL--3.0-brightgreen.svg)](https://github.com/FerreroJeremy/PictiTab/blob/master/LICENSE)
+
 <b>PictiTab is a communication tool for children with communication disorders.</b>
 
 <img src="https://github.com/FerreroJeremy/PictiTab/blob/master/screenshots/close.png"> The latest release is freely available [here](https://github.com/FerreroJeremy/PictiTab/releases/tag/v4.0)! <br/>
